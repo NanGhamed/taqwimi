@@ -508,7 +508,8 @@
     return `<footer class="site-footer">
       <img class="footer-logo" src="icons/committee-logo-320.png" alt="شعار لجنة التحول الرقمي والذكاء الاصطناعي" width="96" height="96" loading="lazy">
       <div class="footer-text">
-        <strong>إهداء من لجنة التحول الرقمي والذكاء الاصطناعي — نون متحد</strong>
+        <strong>إهداء من لجنة التحول الرقمي والذكاء الاصطناعي</strong>
+        <span class="footer-brand">نون متحد</span>
       </div>
     </footer>`;
   }
@@ -766,6 +767,8 @@
       </div>` : ''}
 
       ${body}
+
+      ${renderFooter()}
     </div>`;
   }
 
@@ -882,6 +885,8 @@
           </div>
         </div>
       </div>
+
+      ${renderFooter()}
     </div>`;
   }
 

@@ -117,7 +117,7 @@ button { font-family: inherit; }
   min-width: 0;
 }
 .brand-logo {
-  height: 62px;
+  height: 46px;
   width: auto;
   flex: none;
   display: block;
@@ -135,7 +135,16 @@ button { font-family: inherit; }
   box-shadow: var(--shadow-1);
   flex: none;
 }
+.brand-text { display: flex; align-items: baseline; gap: 10px; min-width: 0; line-height: 1.2; }
 .brand-title { font-size: 19px; font-weight: 800; letter-spacing: -.2px; color: var(--brand-900); white-space: nowrap; }
+.brand-sub {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--brand-700);
+  white-space: nowrap;
+  padding-inline-start: 10px;
+  border-inline-start: 1px solid var(--line-strong);
+}
 
 .navtabs {
   display: flex;
@@ -426,7 +435,8 @@ button { font-family: inherit; }
   line-height: 1.7;
   max-width: 420px;
 }
-.site-footer .footer-text strong { color: var(--brand-800); }
+.site-footer .footer-text strong { display: block; color: var(--brand-800); }
+.site-footer .footer-brand { display: block; margin-top: 2px; font-size: 15px; font-weight: 800; color: var(--brand-900); letter-spacing: .2px; }
 .site-footer .footer-note {
   display: block;
   margin-top: 4px;
@@ -1149,18 +1159,23 @@ mark {
 }
 
 /* ---------------- responsive ---------------- */
-@media (max-width: 860px) {
+@media (max-width: 1090px) {
   .appbar-inner { flex-wrap: wrap; padding: 8px 14px 10px; gap: 8px 10px; }
   .brand { order: 1; width: 100%; margin-inline-end: 0; gap: 8px; }
-  .brand-logo { height: 54px; }
-  .brand-divider { height: 32px; margin: 0; }
+  .brand-logo { height: 44px; }
+  .brand-divider { height: 30px; margin: 0; }
   .brand-mark { width: 34px; height: 34px; border-radius: 10px; }
+  .brand-text { flex: 1 1 auto; flex-direction: column; align-items: flex-start; gap: 1px; min-width: 0; }
   .brand-title { font-size: 18px; }
+  .brand-sub { font-size: 11.5px; line-height: 1.35; white-space: normal; padding-inline-start: 0; border-inline-start: 0; }
   .navtabs { order: 2; flex: 1 1 220px; width: auto; justify-content: space-between; }
   .histbtns { order: 3; margin-inline-start: auto; gap: 4px; }
   .histbtn { width: 34px; height: 34px; }
   .navtab { flex: 1; justify-content: center; padding: 7px 5px; font-size: 13px; gap: 4px; }
   .navtab .ic { width: 15px; height: 15px; }
+}
+
+@media (max-width: 860px) {
   .page { padding: 16px 14px 110px; }
   .page-title { font-size: 22px; }
   .daytabs { grid-template-columns: repeat(2, 1fr); }
@@ -1172,8 +1187,9 @@ mark {
 }
 
 @media (max-width: 350px) {
-  .brand-logo { height: 44px; }
+  .brand-logo { height: 38px; }
   .brand-title { font-size: 17px; }
+  .brand-sub { font-size: 11px; }
   .histbtns { display: none; }
 }
 
