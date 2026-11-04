@@ -96,9 +96,9 @@ button { font-family: inherit; }
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(247, 244, 236, .86);
+  background: rgba(247, 244, 236, .88);
   backdrop-filter: saturate(1.4) blur(14px);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 2px solid var(--gold-500);
 }
 .appbar-inner {
   max-width: 1180px;
@@ -114,16 +114,28 @@ button { font-family: inherit; }
   align-items: center;
   gap: 10px;
   margin-inline-end: auto;
+  min-width: 0;
+}
+.brand-logo {
+  height: 62px;
+  width: auto;
+  flex: none;
+  display: block;
+}
+.brand-divider {
+  width: 1px;
+  height: 38px;
+  background: var(--line-strong);
+  flex: none;
+  margin: 0 2px;
 }
 .brand-mark {
-  width: 40px; height: 40px;
-  border-radius: 12px;
+  width: 38px; height: 38px;
+  border-radius: 11px;
   box-shadow: var(--shadow-1);
   flex: none;
 }
-.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
-.brand-title { font-size: 19px; font-weight: 800; letter-spacing: -.2px; color: var(--brand-900); }
-.brand-sub { font-size: 12px; color: var(--muted); font-weight: 700; line-height: 1.3; }
+.brand-title { font-size: 19px; font-weight: 800; letter-spacing: -.2px; color: var(--brand-900); white-space: nowrap; }
 
 .navtabs {
   display: flex;
@@ -208,6 +220,30 @@ button { font-family: inherit; }
 }
 .page-intro .ic { width: 18px; height: 18px; color: var(--brand-600); flex: none; margin-top: 3px; }
 
+/* optional visitor name */
+.name-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin: 0 0 16px;
+  box-shadow: var(--shadow-1);
+}
+.name-card-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--brand-800);
+}
+.name-card-label .ic { width: 16px; height: 16px; color: var(--brand-600); }
+.name-card-input { flex: 1 1 220px; max-width: 320px; }
+
 /* ---------------- day tabs ---------------- */
 .daytabs {
   display: grid;
@@ -243,6 +279,17 @@ button { font-family: inherit; }
   background: var(--brand-800);
   border-color: var(--brand-800);
   box-shadow: 0 8px 20px rgba(92, 59, 78, .22);
+}
+.daytab[aria-selected="true"]::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--gold-500);
 }
 .daytab[aria-selected="true"] .dt-day,
 .daytab[aria-selected="true"] .dt-date { color: #fff; }
@@ -415,8 +462,8 @@ button { font-family: inherit; }
   margin-inline-start: auto;
   font-size: 12px;
   font-weight: 700;
-  color: var(--muted);
-  background: var(--sand-2);
+  color: var(--brand-800);
+  background: var(--gold-100);
   border-radius: 999px;
   padding: 2px 10px;
 }
@@ -486,7 +533,7 @@ table.prog tbody tr.is-selected { background: linear-gradient(90deg, rgba(241, 2
   border-radius: 6px;
   padding: 1px 7px;
 }
-.tag.gold { background: var(--gold-100); color: var(--gold-700); }
+.tag.gold { background: var(--gold-100); color: var(--brand-800); }
 .tag.green { background: var(--brand-50); color: var(--brand-700); }
 
 .c-time { white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: 800; color: var(--brand-800); font-size: 13px; line-height: 1.25; display: flex; flex-direction: column; gap: 1px; }
@@ -505,7 +552,7 @@ table.prog .c-actions { width: 186px; }
   align-items: center;
   gap: 4px;
   font-size: 11px;
-  color: var(--gold-700);
+  color: var(--brand-800);
   background: var(--gold-100);
   border: 1px solid #eedca4;
   border-radius: 999px;
@@ -544,9 +591,9 @@ table.prog .prio-btn { justify-content: center; padding: 6px 4px; font-size: 11.
   color: #fff;
 }
 .prio-btn.alt[aria-pressed="true"] {
-  background: var(--gold-500);
+  background: var(--gold-100);
   border-color: var(--gold-500);
-  color: #3d2f05;
+  color: var(--brand-800);
 }
 .prio-btn.clear { padding: 6px 8px; color: var(--muted); }
 .prio-btn.clear:hover { color: var(--danger); border-color: var(--danger); }
@@ -592,7 +639,7 @@ table.prog .prio-btn { justify-content: center; padding: 6px 4px; font-size: 11.
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: .3px;
-  color: var(--gold-500);
+  color: rgba(255, 255, 255, .72);
   text-transform: uppercase;
 }
 .nextcard .nc-title { font-size: 18px; font-weight: 800; margin-top: 2px; }
@@ -705,7 +752,7 @@ table.mycal .mc-note textarea:focus { border-color: var(--brand-600); background
   white-space: nowrap;
 }
 .pill.first { background: var(--brand-100); color: var(--brand-800); }
-.pill.alt { background: var(--gold-100); color: var(--gold-700); }
+.pill.alt { background: var(--gold-100); color: var(--brand-800); }
 .pill.none { background: var(--sand-2); color: var(--muted); }
 .pill.attended { background: var(--brand-100); color: var(--brand-800); }
 .pill.missed { background: var(--danger-bg); color: var(--danger); }
@@ -1103,11 +1150,17 @@ mark {
 
 /* ---------------- responsive ---------------- */
 @media (max-width: 860px) {
-  .appbar-inner { flex-wrap: wrap; padding: 8px 14px 10px; gap: 10px; }
-  .brand { margin-inline-end: 0; }
-  .histbtns { order: 2; margin-inline-start: auto; }
-  .navtabs { order: 3; width: 100%; justify-content: space-between; }
-  .navtab { flex: 1; justify-content: center; padding: 8px 8px; font-size: 13px; }
+  .appbar-inner { flex-wrap: wrap; padding: 8px 14px 10px; gap: 8px 10px; }
+  .brand { order: 1; width: 100%; margin-inline-end: 0; gap: 8px; }
+  .brand-logo { height: 54px; }
+  .brand-divider { height: 32px; margin: 0; }
+  .brand-mark { width: 34px; height: 34px; border-radius: 10px; }
+  .brand-title { font-size: 18px; }
+  .navtabs { order: 2; flex: 1 1 220px; width: auto; justify-content: space-between; }
+  .histbtns { order: 3; margin-inline-start: auto; gap: 4px; }
+  .histbtn { width: 34px; height: 34px; }
+  .navtab { flex: 1; justify-content: center; padding: 7px 5px; font-size: 13px; gap: 4px; }
+  .navtab .ic { width: 15px; height: 15px; }
   .page { padding: 16px 14px 110px; }
   .page-title { font-size: 22px; }
   .daytabs { grid-template-columns: repeat(2, 1fr); }
@@ -1116,6 +1169,12 @@ mark {
   .nextcard .nc-time { font-size: 22px; }
   .tl-card { grid-template-columns: 64px 1fr; }
   .tl-side { grid-column: 1 / -1; flex-direction: row; justify-content: flex-start; flex-wrap: wrap; }
+}
+
+@media (max-width: 350px) {
+  .brand-logo { height: 44px; }
+  .brand-title { font-size: 17px; }
+  .histbtns { display: none; }
 }
 
 @media (max-width: 900px) {

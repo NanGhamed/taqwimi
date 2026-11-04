@@ -715,11 +715,17 @@
       body = (state.settings.view === 'timeline' ? renderTimeline(list) : renderMyTable(list));
     }
 
+    const visitor = (state.name || '').trim();
+    const myTitle = visitor ? `مخطّط زيارة ${esc(visitor)}` : 'تقويمي';
+    const mySub = visitor
+      ? 'اختياراتك… لزيارة تستحق وقتك'
+      : 'فعالياتك المختارة وملاحظاتك، محفوظة على جهازك.';
+
     return `<div class="page">
       <div class="page-head">
         <div>
-          <h1 class="page-title">تقويمي</h1>
-          <p class="page-sub">${state.name ? esc(state.name) + ' — ' : ''}فعالياتك المختارة وملاحظاتك، محفوظة على جهازك.</p>
+          <h1 class="page-title my-title">${myTitle}</h1>
+          <p class="page-sub my-sub">${mySub}</p>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap" class="no-print">
           <div class="viewswitch" role="group" aria-label="طريقة العرض">
@@ -731,9 +737,14 @@
         </div>
       </div>
 
+      <div class="name-card no-print">
+        <label class="name-card-label" for="visitor-name">${icon('star')} خطّتك تبدأ باسمك</label>
+        <input class="input name-card-input" id="visitor-name" type="text" maxlength="40" autocomplete="name" placeholder="اكتب اسمك هنا" value="${esc(state.name || '')}">
+      </div>
+
       <div class="print-only" style="margin-bottom:14px">
         <h2 style="font-size:18px">تقويمي</h2>
-        <div class="small">${state.name ? esc(state.name) + ' · ' : ''}${new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+        <div class="small"><span class="print-name">${state.name ? esc(state.name) + ' · ' : ''}</span>${new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
       </div>
 
       ${renderNextCard()}
@@ -758,6 +769,16 @@
     </div>`;
   }
 
+  function updateMyNameUI() {
+    const v = (state.name || '').trim();
+    const h = $('.my-title');
+    const s = $('.my-sub');
+    const p = $('.print-name');
+    if (h) h.textContent = v ? `مخطّط زيارة ${v}` : 'تقويمي';
+    if (s) s.textContent = v ? 'اختياراتك… لزيارة تستحق وقتك' : 'فعالياتك المختارة وملاحظاتك، محفوظة على جهازك.';
+    if (p) p.textContent = v ? v + ' · ' : '';
+  }
+
   /* ---------------- settings ---------------- */
   function notifStatus() {
     if (!('Notification' in window)) return { key: 'unsupported', label: 'غير مدعومة في هذا المتصفح', cls: 'status-na' };
@@ -780,11 +801,11 @@
       </div>
 
       <div class="card">
-        <div class="card-head"><h2>${icon('star')} الاسم</h2><p>اختياري — يظهر في رأس صفحة الطباعة فقط.</p></div>
+        <div class="card-head"><h2>${icon('star')} خطّتك تبدأ باسمك</h2><p>اختياري — يظهر في عنوان صفحة تقويمي ورأس الطباعة.</p></div>
         <div class="card-body">
           <div class="field">
             <label for="name">الاسم</label>
-            <input class="input" id="name" type="text" maxlength="60" placeholder="مثال: عبدالله" value="${esc(state.name)}">
+            <input class="input" id="name" type="text" maxlength="40" placeholder="اكتب اسمك هنا" value="${esc(state.name)}">
             <div class="hint">لا يُرسل إلى أي جهة، ويبقى في متصفحك.</div>
           </div>
         </div>
@@ -1409,9 +1430,10 @@
       const q = $('#q');
       if (q) { q.focus(); q.setSelectionRange(pos, pos); }
     }
-    if (e.target.id === 'name') {
+    if (e.target.id === 'name' || e.target.id === 'visitor-name') {
       state.name = e.target.value;
       save();
+      if (e.target.id === 'visitor-name') updateMyNameUI();
     }
     if (e.target.dataset && e.target.dataset.note) {
       rec(e.target.dataset.note).notes = e.target.value;

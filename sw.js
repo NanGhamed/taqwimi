@@ -1,8 +1,8 @@
 ﻿/* تقويمي — Service Worker
    استراتيجية: pre-cache للهيكل، ثم cache-first مع تحديث في الخلفية. */
 
-const VERSION = 'taqwimi-v10';
-const ASSET_V = '14';
+const VERSION = 'taqwimi-v13';
+const ASSET_V = '17';
 const CORE = [
   './',
   './index.html',
@@ -17,6 +17,7 @@ const CORE = [
   './icons/apple-touch-icon.png',
   './icons/favicon-32.png',
   './icons/committee-logo-320.png',
+  './icons/noon-logo.png',
 ];
 
 self.addEventListener('install', (event) => {
