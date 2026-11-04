@@ -188,8 +188,25 @@ button { font-family: inherit; }
   margin-bottom: 16px;
 }
 .page-title { font-size: 26px; color: var(--brand-900); letter-spacing: -.3px; }
+.page-title.day-title { font-size: 19px; font-weight: 800; letter-spacing: 0; }
 .page-sub { color: var(--muted); font-size: 14px; margin-top: 2px; }
 .page-sub .ps-count { display: inline-block; white-space: nowrap; }
+
+.page-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 12px;
+  padding: 12px 15px;
+  border: 1px solid #EBD9E2;
+  border-inline-start: 4px solid var(--brand-600);
+  border-radius: 12px;
+  background: var(--brand-50);
+  color: var(--brand-900);
+  font-size: 13.5px;
+  line-height: 1.75;
+}
+.page-intro .ic { width: 18px; height: 18px; color: var(--brand-600); flex: none; margin-top: 3px; }
 
 /* ---------------- day tabs ---------------- */
 .daytabs {

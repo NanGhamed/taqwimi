@@ -9,7 +9,6 @@
   const APP = { name: 'تقويمي', version: 1 };
   const STORE_KEY = 'taqwimi.v1.user';
   const UI_KEY = 'taqwimi.v1.ui';
-  const INSTALL_KEY = 'taqwimi.v1.install';
   const NOTIFIED_KEY = 'taqwimi.v1.notified';
 
   /* ---------------- helpers ---------------- */
@@ -469,10 +468,11 @@
     }
 
     return `<div class="page">
+      <p class="page-intro">${icon('info')} <span>اختر الفعاليات التي تهمك وأضفها إلى تقويمك، وحدّد أولوياتك وبدائلك، ودوّن ملاحظاتك وتابع حضورك بسهولة.</span></p>
+
       <div class="page-head">
         <div>
-          <h1 class="page-title">البرنامج</h1>
-          <p class="page-sub">مؤتمر ومعرض الحج النسخة السادسة — ${esc(day.weekday)} ${esc(day.dateLabel.replace(day.weekday + ' ', ''))} <span class="ps-count">· ${evCount(visibleTotal)} في البرنامج</span></p>
+          <h1 class="page-title day-title">تستعرض الآن برنامج يوم ${esc(day.weekday)}، ${esc(day.dateLabel.replace(day.weekday + ' ', ''))}.</h1>
         </div>
         <div class="chips" style="align-items:center">
           <span class="small muted">${evCount(isSelectedCount())} في تقويمك</span>
@@ -732,7 +732,7 @@
       </div>
 
       <div class="print-only" style="margin-bottom:14px">
-        <h2 style="font-size:18px">تقويمي — مؤتمر ومعرض الحج النسخة السادسة</h2>
+        <h2 style="font-size:18px">تقويمي</h2>
         <div class="small">${state.name ? esc(state.name) + ' · ' : ''}${new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
       </div>
 
@@ -1216,7 +1216,6 @@
     return window.matchMedia('(display-mode: standalone)').matches ||
       window.navigator.standalone === true;
   }
-  function installFlags() { return readJSON(INSTALL_KEY, { cardDismissed: false }); }
 
   function setupInstall() {
     const fab = $('#btn-install');
@@ -1234,10 +1233,9 @@
       toast('تم تثبيت تقويمي بنجاح', 'ok');
     });
 
-    const flags = installFlags();
-    if (!flags.cardDismissed) {
-      setTimeout(showInstallCard, 1400);
-    }
+    /* The card is shown on every open/refresh; dismissing it only hides it
+       for the current view, and the install button brings it back. */
+    setTimeout(showInstallCard, 1400);
   }
 
   function showInstallCard() {
@@ -1259,8 +1257,6 @@
 
   function dismissInstallCard() {
     $('#install-host').innerHTML = '';
-    const f = installFlags(); f.cardDismissed = true;
-    writeJSON(INSTALL_KEY, f);
   }
 
   function promptInstall() {
@@ -1298,8 +1294,7 @@
     }
     openModal({
       title: 'تثبيت التطبيق',
-      body: `<p>لم يعرض المتصفح نافذة تثبيت تلقائية. يمكنك التثبيت يدويًا:</p>${steps}
-        <p class="small muted">ملاحظة: التثبيت يعمل عند فتح الموقع عبر خادم ويب (http/https)، وليس عند فتح الملف مباشرة من القرص.</p>`,
+      body: steps,
       footer: `<button class="btn btn-primary" type="button" data-modal-close>فهمت</button>`,
       onMount(root, close) { root.querySelector('[data-modal-close]').addEventListener('click', close); },
     });
@@ -1505,7 +1500,7 @@
   function init() {
     $('#btn-back').addEventListener('click', () => history.back());
     $('#btn-forward').addEventListener('click', () => history.forward());
-    $('#btn-install').addEventListener('click', promptInstall);
+    $('#btn-install').addEventListener('click', showInstallCard);
 
     const topBtn = $('#btn-top');
     topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
