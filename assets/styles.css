@@ -112,12 +112,12 @@ button { font-family: inherit; }
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-inline-end: auto;
   min-width: 0;
 }
 .brand-logo {
-  height: 46px;
+  height: 40px;
   width: auto;
   flex: none;
   display: block;
@@ -135,14 +135,14 @@ button { font-family: inherit; }
   box-shadow: var(--shadow-1);
   flex: none;
 }
-.brand-text { display: flex; align-items: baseline; gap: 10px; min-width: 0; line-height: 1.2; }
-.brand-title { font-size: 19px; font-weight: 800; letter-spacing: -.2px; color: var(--brand-900); white-space: nowrap; }
+.brand-text { display: flex; align-items: baseline; gap: 8px; min-width: 0; line-height: 1.2; }
+.brand-title { font-size: 18px; font-weight: 800; letter-spacing: -.2px; color: var(--brand-900); white-space: nowrap; }
 .brand-sub {
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
   color: var(--brand-700);
   white-space: nowrap;
-  padding-inline-start: 10px;
+  padding-inline-start: 8px;
   border-inline-start: 1px solid var(--line-strong);
 }
 
@@ -159,7 +159,7 @@ button { font-family: inherit; }
   border: 0;
   background: transparent;
   color: var(--ink-soft);
-  padding: 8px 16px;
+  padding: 8px 12px;
   border-radius: 999px;
   font-size: 14px;
   font-weight: 700;
@@ -180,7 +180,7 @@ button { font-family: inherit; }
 
 .histbtns { display: flex; gap: 6px; }
 .histbtn {
-  width: 38px; height: 38px;
+  width: 34px; height: 34px;
   border-radius: 11px;
   border: 1px solid var(--line);
   background: #fff;
@@ -1159,7 +1159,7 @@ mark {
 }
 
 /* ---------------- responsive ---------------- */
-@media (max-width: 1090px) {
+@media (max-width: 990px) {
   .appbar-inner { flex-wrap: wrap; padding: 8px 14px 10px; gap: 8px 10px; }
   .brand { order: 1; width: 100%; margin-inline-end: 0; gap: 8px; }
   .brand-logo { height: 44px; }
