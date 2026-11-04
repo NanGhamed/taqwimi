@@ -1,0 +1,49 @@
+{
+  "name": "تقويمي — مؤتمر ومعرض الحج النسخة السادسة",
+  "short_name": "تقويمي",
+  "description": "منظّم حضور مؤتمر ومعرض الحج النسخة السادسة: البرنامج الكامل، أولوياتك، ملاحظاتك، وحالة حضورك — يعمل دون اتصال.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FAF6EF",
+  "theme_color": "#5C3B4E",
+  "id": "./",
+  "categories": ["productivity", "education", "events"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "البرنامج",
+      "short_name": "البرنامج",
+      "url": "./index.html#/program",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "تقويمي",
+      "short_name": "تقويمي",
+      "url": "./index.html#/my",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

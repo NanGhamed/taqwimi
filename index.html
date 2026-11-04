@@ -1,0 +1,162 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تقويمي — مؤتمر ومعرض الحج النسخة السادسة</title>
+<meta name="description" content="تقويمي: منظّم حضور مؤتمر ومعرض الحج النسخة السادسة. استعرض البرنامج، حدّد أولوياتك، دوّن ملاحظاتك، وتابع حضورك — يعمل دون اتصال.">
+<meta name="theme-color" content="#5C3B4E">
+<meta name="color-scheme" content="light">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="تقويمي">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="stylesheet" href="assets/styles.css?v=10">
+</head>
+<body>
+
+<a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
+
+<header class="appbar">
+  <div class="appbar-inner">
+    <div class="brand">
+      <img class="brand-mark" src="icons/icon-192.png" alt="" width="40" height="40">
+      <div class="brand-text">
+        <span class="brand-title">تقويمي</span>
+        <span class="brand-sub">مؤتمر ومعرض الحج النسخة السادسة</span>
+      </div>
+    </div>
+
+    <nav class="navtabs" aria-label="التنقل الرئيسي">
+      <button class="navtab" data-route="program" type="button">
+        <svg class="ic" aria-hidden="true"><use href="#i-calendar"></use></svg>
+        <span>البرنامج</span>
+      </button>
+      <button class="navtab" data-route="my" type="button">
+        <svg class="ic" aria-hidden="true"><use href="#i-bookmark"></use></svg>
+        <span>تقويمي</span>
+      </button>
+      <button class="navtab" data-route="settings" type="button">
+        <svg class="ic" aria-hidden="true"><use href="#i-settings"></use></svg>
+        <span>الإعدادات</span>
+      </button>
+    </nav>
+
+    <div class="histbtns" aria-label="التنقل بين الصفحات">
+      <button class="histbtn" id="btn-back" type="button" title="رجوع" aria-label="رجوع">
+        <svg class="ic" aria-hidden="true"><use href="#i-back"></use></svg>
+      </button>
+      <button class="histbtn" id="btn-forward" type="button" title="تقدّم" aria-label="تقدّم">
+        <svg class="ic" aria-hidden="true"><use href="#i-forward"></use></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1"></main>
+
+<div class="floaters" aria-hidden="false">
+  <button class="fab fab-install hidden" id="btn-install" type="button" title="تثبيت التطبيق" aria-label="تثبيت التطبيق">
+    <svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg>
+    <span class="badge-dot" aria-hidden="true"></span>
+  </button>
+  <button class="fab fab-top" id="btn-top" type="button" title="العودة إلى الأعلى" aria-label="العودة إلى الأعلى">
+    <svg class="ic" aria-hidden="true"><use href="#i-up"></use></svg>
+  </button>
+</div>
+
+<div id="install-host"></div>
+<div id="toast-host" aria-live="polite" aria-atomic="false"></div>
+<div id="modal-host"></div>
+
+<!-- icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>
+    </symbol>
+    <symbol id="i-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21l-6-4-6 4z"/>
+    </symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/>
+    </symbol>
+    <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 6l6 6-6 6"/>
+    </symbol>
+    <symbol id="i-forward" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 6l-6 6 6 6"/>
+    </symbol>
+    <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </symbol>
+    <symbol id="i-install" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v11M8 11l4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="6" y="2.5" width="12" height="19" rx="3.2"/><path d="M10.5 5.5h3"/><path d="M11 18.3h2"/>
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9L3.5 9.7l5.9-.8z"/>
+    </symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 21V4M5 4h9l-1 3 1 3H5"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 12.5l5 5L20 6.5"/>
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 6l12 12M18 6L6 18"/>
+    </symbol>
+    <symbol id="i-empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M9 15h6"/>
+    </symbol>
+    <symbol id="i-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 17h12v4H6z"/>
+    </symbol>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v11M8 11l4 4 4-4M4 19h16"/>
+    </symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 15V4M8 7l4-4 4 4M4 19h16"/>
+    </symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15V10a6 6 0 1 0-12 0v5l-2 3h16z"/><path d="M10 21h4"/>
+    </symbol>
+    <symbol id="i-table" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 10v10"/>
+    </symbol>
+    <symbol id="i-timeline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 3v18"/><circle cx="6" cy="7" r="2"/><circle cx="6" cy="16" r="2"/><path d="M11 7h9M11 16h9"/>
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>
+    </symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/>
+    </symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>
+    </symbol>
+    <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 13a4 4 0 0 0 5.7 0l2.3-2.3a4 4 0 0 0-5.7-5.7L11 6.3"/><path d="M14 11a4 4 0 0 0-5.7 0L6 13.3a4 4 0 0 0 5.7 5.7L13 17.7"/>
+    </symbol>
+  </defs>
+</svg>
+
+<script src="data/program.js"></script>
+<script src="assets/app.js?v=10"></script>
+</body>
+</html>
