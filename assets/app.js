@@ -1558,6 +1558,10 @@
         <div class="welcome-logo-wrap">
           <img class="welcome-logo" src="icons/conference-logo.png" alt="شعار مؤتمر ومعرض الحج" width="531" height="439">
         </div>
+        <a class="welcome-link" href="https://hajjconfex.com/" target="_blank" rel="noopener noreferrer">
+          <svg class="ic ext" aria-hidden="true"><use href="#i-link"></use></svg>
+          الموقع الإلكتروني الرسمي لمؤتمر ومعرض الحج
+        </a>
         ${ended ? '<h2 class="welcome-ended">انطلق المؤتمر، أهلاً بزيارتك</h2>' : `<h2 class="welcome-title">بقي على انطلاق المؤتمر</h2>${cdHtml}`}
         <div class="welcome-name field">
           <label for="welcome-name">خطّتك تبدأ باسمك</label>
@@ -1568,11 +1572,7 @@
     const footer = `<div class="welcome-actions">
         <button class="btn btn-ghost welcome-skip" type="button">تخطي</button>
         <button class="btn btn-primary welcome-go" type="button">ابدأ زيارتي</button>
-      </div>
-      <a class="welcome-link" href="https://hajjconfex.com/" target="_blank" rel="noopener noreferrer">
-        <svg class="ic ext" aria-hidden="true"><use href="#i-link"></use></svg>
-        الموقع الإلكتروني الرسمي لمؤتمر ومعرض الحج
-      </a>`;
+      </div>`;
     openModal({
       title: 'تقويمي',
       body,
@@ -1583,6 +1583,8 @@
         const skip = root.querySelector('.welcome-skip');
         const foot = root.querySelector('.modal-foot');
         if (foot) foot.classList.add('welcome-foot');
+        const card = root.querySelector('.modal');
+        if (card) card.classList.add('welcome-modal');
         if (input) input.focus();
         goBtn.addEventListener('click', () => {
           state.name = input.value.trim();
