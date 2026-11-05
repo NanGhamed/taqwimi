@@ -1555,7 +1555,9 @@
     const nameVal = esc(state.name || '');
     const body = `
       <div class="welcome-card">
-        <img class="welcome-logo" src="icons/conference-logo.png" alt="شعار مؤتمر ومعرض الحج" width="531" height="439">
+        <div class="welcome-logo-wrap">
+          <img class="welcome-logo" src="icons/conference-logo.png" alt="شعار مؤتمر ومعرض الحج" width="531" height="439">
+        </div>
         ${ended ? '<h2 class="welcome-ended">انطلق المؤتمر، أهلاً بزيارتك</h2>' : `<h2 class="welcome-title">بقي على انطلاق المؤتمر</h2>${cdHtml}`}
         <div class="welcome-name field">
           <label for="welcome-name">خطّتك تبدأ باسمك</label>
