@@ -1523,6 +1523,134 @@
     });
   }
 
+  /* ---------------- welcome modal ---------------- */
+  const WELCOME_SEEN_KEY = 'taqwimi.welcome.seen';
+  const WELCOME_TARGET = new Date('2026-11-08T09:00:00+03:00').getTime();
+  let welcomeTimer = null;
+  let welcomeShown = false;
+
+  function welcomeWasSeen() { return sessionStorage.getItem(WELCOME_SEEN_KEY) === '1'; }
+  function welcomeMarkSeen() { sessionStorage.setItem(WELCOME_SEEN_KEY, '1'); }
+
+  function cdParts() {
+    const sec = Math.floor((WELCOME_TARGET - Date.now()) / 1000);
+    if (sec <= 0) return null;
+    return { d: Math.floor(sec / 86400), h: Math.floor(sec / 3600) % 24, m: Math.floor(sec / 60) % 60, s: sec % 60 };
+  }
+
+  function showWelcome() {
+    if (welcomeShown || welcomeWasSeen()) return;
+    welcomeShown = true;
+    const p = cdParts();
+    const ended = !p;
+    const cdHtml = ended ? ''
+      : `<div class="welcome-cd" role="timer" aria-live="off">
+           <div class="welcome-cd-row">
+             <span class="welcome-cd-unit"><span id="cd-d">${pad(p.d)}</span><span class="welcome-cd-cap">يوم</span></span>
+             <span class="welcome-cd-unit"><span id="cd-h">${pad(p.h)}</span><span class="welcome-cd-cap">ساعة</span></span>
+             <span class="welcome-cd-unit"><span id="cd-m">${pad(p.m)}</span><span class="welcome-cd-cap">دقيقة</span></span>
+             <span class="welcome-cd-unit"><span id="cd-s">${pad(p.s)}</span><span class="welcome-cd-cap">ثانية</span></span>
+           </div>
+         </div>`;
+    const nameVal = esc(state.name || '');
+    const body = `
+      <div class="welcome-card">
+        <img class="welcome-logo" src="icons/conference-logo.png" alt="شعار مؤتمر ومعرض الحج" width="531" height="439">
+        ${ended ? '<h2 class="welcome-ended">انطلق المؤتمر، أهلاً بزيارتك</h2>' : `<h2 class="welcome-title">بقي على انطلاق المؤتمر</h2>${cdHtml}`}
+        <div class="welcome-name field">
+          <label for="welcome-name">خطّتك تبدأ باسمك</label>
+          <input class="input welcome-name-input" id="welcome-name" type="text" maxlength="40" autocomplete="name" placeholder="اكتب اسمك هنا" value="${nameVal}">
+          <div class="hint">اختياري — يظهر في عنوان “تقويمي” ورأس الطباعة.</div>
+        </div>
+      </div>`;
+    const footer = `<div class="welcome-actions">
+        <button class="btn btn-ghost welcome-skip" type="button">تخطي</button>
+        <button class="btn btn-primary welcome-go" type="button">ابدأ زيارتي</button>
+      </div>
+      <a class="welcome-link" href="https://hajjconfex.com/" target="_blank" rel="noopener noreferrer">
+        <svg class="ic ext" aria-hidden="true"><use href="#i-link"></use></svg>
+        الموقع الإلكتروني الرسمي لمؤتمر ومعرض الحج
+      </a>`;
+    openModal({
+      title: 'تقويمي',
+      body,
+      footer,
+      onMount(root, close) {
+        const input = root.querySelector('#welcome-name');
+        const goBtn = root.querySelector('.welcome-go');
+        const skip = root.querySelector('.welcome-skip');
+        const foot = root.querySelector('.modal-foot');
+        if (foot) foot.classList.add('welcome-foot');
+        if (input) input.focus();
+        goBtn.addEventListener('click', () => {
+          state.name = input.value.trim();
+          save(true);
+          updateMyNameUI();
+          close();
+          go(href('program', state.settings.lastDay));
+        });
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            goBtn.click();
+          }
+        });
+        skip.addEventListener('click', () => close());
+        skip.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            skip.click();
+          }
+        });
+        if (!ended) startWelcomeCd(root);
+        root.addEventListener('keydown', (e) => {
+          if (e.key !== 'Tab') return;
+          const f = Array.from(root.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+            .filter((el) => !el.disabled && el.offsetParent !== null);
+          if (!f.length) return;
+          const first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        });
+      },
+      onClose() {
+        welcomeMarkSeen();
+        clearInterval(welcomeTimer);
+        welcomeTimer = null;
+        welcomeShown = false;
+      },
+      returnFocus: null
+    });
+  }
+
+  function startWelcomeCd(root) {
+    const render = () => {
+      const p = cdParts();
+      if (!p) {
+        const title = root.querySelector('.welcome-title');
+        const cd = root.querySelector('.welcome-cd');
+        if (title) { title.textContent = 'انطلق المؤتمر، أهلاً بزيارتك'; title.className = 'welcome-ended'; }
+        if (cd) cd.remove();
+        clearInterval(welcomeTimer);
+        welcomeTimer = null;
+        return;
+      }
+      [['d','cd-d'],['h','cd-h'],['m','cd-m'],['s','cd-s']].forEach(([id, elId]) => {
+        const el = root.querySelector('#' + elId);
+        if (!el) return;
+        const v = pad(p[id]);
+        if (el.textContent !== v) {
+          el.textContent = v;
+          el.classList.remove('welcome-tick');
+          void el.offsetHeight;
+          el.classList.add('welcome-tick');
+        }
+      });
+    };
+    render();
+    welcomeTimer = setInterval(render, 1000);
+  }
+
   /* ---------------- init ---------------- */
   function init() {
     $('#btn-back').addEventListener('click', () => history.back());
@@ -1552,6 +1680,8 @@
         (state.settings.lastRoute === 'program' || !state.settings.lastRoute) ? state.settings.lastDay : null));
     }
     handleHash(true);
+
+    showWelcome();
 
     setupInstall();
     setInterval(checkReminders, 30000);
