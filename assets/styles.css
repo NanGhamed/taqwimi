@@ -1196,19 +1196,15 @@ choice .ch-desc { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
   color: var(--brand-800);
   line-height: 1;
   display: block;
+  font-variant-numeric: tabular-nums;
+  min-width: 2.2ch;
+  text-align: center;
 }
 .welcome-cd-cap {
   font-size: 10.5px;
   color: var(--muted);
   font-weight: 700;
   white-space: nowrap;
-}
-.welcome-tick {
-  animation: welcomeTick .35s ease;
-}
-@keyframes welcomeTick {
-  from { opacity: .35; transform: translateY(-5px); }
-  to { opacity: 1; transform: none; }
 }
 .welcome-name {
   width: 100%;

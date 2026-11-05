@@ -1643,12 +1643,7 @@
         const el = root.querySelector('#' + elId);
         if (!el) return;
         const v = pad(p[id]);
-        if (el.textContent !== v) {
-          el.textContent = v;
-          el.classList.remove('welcome-tick');
-          void el.offsetHeight;
-          el.classList.add('welcome-tick');
-        }
+        if (el.textContent !== v) el.textContent = v;
       });
     };
     render();
