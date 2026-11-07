@@ -6,7 +6,7 @@
   'use strict';
 
   const DATA = window.TAQWIMI_DATA;
-  const APP = { name: 'تقويمي', version: 1 };
+  const APP = { name: 'تقويمي', version: 2 };
   const STORE_KEY = 'taqwimi.v1.user';
   const UI_KEY = 'taqwimi.v1.ui';
   const NOTIFIED_KEY = 'taqwimi.v1.notified';
@@ -62,10 +62,14 @@
   function timeCell(o) {
     let start = o.start;
     let end = o.end;
-    if (!start && o.eventId && typeof EVENT_BY_ID !== 'undefined') {
-      const ev = EVENT_BY_ID.get(o.eventId);
-      if (ev) { start = ev.start; end = ev.end; }
+    const ev = (o.eventId && typeof EVENT_BY_ID !== 'undefined') ? EVENT_BY_ID.get(o.eventId) : null;
+    const ranges = (o.ranges && o.ranges.length) ? o.ranges : (ev && ev.ranges && ev.ranges.length ? ev.ranges : []);
+    if (ranges.length > 1) {
+      const text = o.timeText || (ev && ev.timeText) ||
+        ranges.map((r) => `${to12(r.start)} - ${to12(r.end)}`).join(' / ');
+      return `<div class="c-time c-time-text">${esc(compactTime(text))}</div>`;
     }
+    if (!start && ev) { start = ev.start; end = ev.end; }
     if (start && end) {
       return `<div class="c-time"><span class="t-start">${esc(to12(start))}</span><span class="t-end">إلى ${esc(to12(end))}</span></div>`;
     }
@@ -97,6 +101,7 @@
     if (!OCC_BY_EVENT.has(o.eventId)) OCC_BY_EVENT.set(o.eventId, []);
     OCC_BY_EVENT.get(o.eventId).push(o);
   });
+  const REMOVED_BY_ID = new Map((DATA.removed || []).map((r) => [r.id, r]));
 
   /* ---------------- state ---------------- */
   const defaultState = () => ({
@@ -695,6 +700,50 @@
     }).join('') + `</div>`;
   }
 
+  function orphanRecords() {
+    return Object.keys(state.events).filter((id) => !EVENT_BY_ID.has(id)).map((id) => {
+      const r = state.events[id] || {};
+      return { id, r, meta: REMOVED_BY_ID.get(id) || null };
+    }).filter(({ r }) => r && (r.notes || r.priority || r.attendance || r.reminder != null));
+  }
+
+  function renderOrphanNotes() {
+    const orphans = orphanRecords();
+    if (!orphans.length) return '';
+    const rows = orphans.map(({ id, r, meta }) => {
+      const day = meta ? dayInfo(meta.dayId) : null;
+      const dayLabel = day
+        ? `${day.weekday} ${day.dateLabel.replace(day.weekday + ' ', '')}`
+        : (meta ? meta.dayId : '');
+      const time = meta
+        ? (meta.start && meta.end ? `${to12(meta.start)} إلى ${to12(meta.end)}` : (meta.timeText || 'بدون توقيت'))
+        : '';
+      const tags = [];
+      if (r.priority) tags.push(`<span class="pill ${r.priority === 'first' ? 'first' : 'alt'}">${r.priority === 'first' ? 'أولوية أولى' : 'خيار بديل'}</span>`);
+      if (r.attendance === 'attended') tags.push('<span class="pill attended">حضرت</span>');
+      if (r.attendance === 'missed') tags.push('<span class="pill missed">لم أحضر</span>');
+      if (r.reminder != null) tags.push(`<span class="tag green">${icon('bell')} ${r.reminder === 0 ? 'عند البدء' : 'قبل ' + r.reminder + ' د'}</span>`);
+      return `<div class="orphan-item">
+        <div class="orphan-head">
+          <div>
+            <div class="r-title">${esc(meta ? meta.title : 'فعالية سابقة')}</div>
+            <div class="r-desc">${esc(dayLabel)}${time ? ' · ' + esc(time) : ''}${meta && meta.place ? ' · ' + esc(meta.place) : ''}</div>
+          </div>
+          <span class="pill none">لم تعد ضمن البرنامج</span>
+        </div>
+        ${tags.length ? `<div class="c-sub" style="margin-bottom:8px">${tags.join('')}</div>` : ''}
+        <textarea class="input" rows="2" data-note="${esc(id)}" placeholder="ملاحظتك محفوظة…" aria-label="ملاحظات ${esc(meta ? meta.title : 'فعالية سابقة')}">${esc(r.notes || '')}</textarea>
+      </div>`;
+    }).join('');
+    return `<div class="card" style="margin-top:16px">
+      <div class="card-head">
+        <h2>${icon('info')} فعاليات لم تعد ضمن البرنامج</h2>
+        <p>حفظنا ملاحظاتك وبياناتك السابقة. هذه الفعاليات لم تعد ضمن البرنامج الحالي، ولم نحذف أي شيء.</p>
+      </div>
+      <div class="card-body"><div class="orphan-list">${rows}</div></div>
+    </div>`;
+  }
+
   function renderMy() {
     const list = sortEvents(selectedEvents());
     const first = list.filter((e) => recSafe(e.id).priority === 'first').length;
@@ -767,6 +816,8 @@
       </div>` : ''}
 
       ${body}
+
+      ${renderOrphanNotes()}
 
       ${renderFooter()}
     </div>`;
@@ -860,7 +911,7 @@
       <div class="card">
         <div class="card-head"><h2>${icon('info')} عن التطبيق</h2></div>
         <div class="card-body">
-          <div class="row"><div><div class="r-title">مصدر البيانات</div><div class="r-desc">ملف البرنامج الرسمي «تقويمي2.pdf» — ${total} فعالية فريدة، ${DATA.meta.occurrencesCount} ظهورًا في الأقسام.</div></div><span class="pill first">PDF</span></div>
+          <div class="row"><div><div class="r-title">مصدر البيانات</div><div class="r-desc">ملف البرنامج الرسمي «${esc(DATA.meta.source || 'تقويمي3 معدل.pdf')}» — ${total} فعالية فريدة، ${DATA.meta.occurrencesCount} ظهورًا في الأقسام.</div></div><span class="pill first">PDF</span></div>
           <div class="row"><div><div class="r-title">العمل دون اتصال</div><div class="r-desc">البرنامج وتقويمك وملاحظاتك تعمل دون إنترنت بعد أول زيارة. الوظائف التي تحتاج اتصالًا: لا شيء أساسي — التثبيت والتنبيهات تعتمد على المتصفح لا على الشبكة.</div></div><span class="pill attended">${icon('check')} مدعوم</span></div>
           <div class="row"><div><div class="r-title">الإصدار</div><div class="r-desc">${APP.name} ${APP.version}.0 — نسخة مراجعة داخلية.</div></div></div>
         </div>
@@ -1109,7 +1160,7 @@
         e.category ? 'التصنيف: ' + e.category : '',
         e.speaker ? 'المختص: ' + e.speaker : '',
         r.notes ? 'ملاحظات: ' + r.notes : '',
-        'المصدر: تقويمي2.pdf',
+        'المصدر: ' + (DATA.meta.source || 'تقويمي3 معدل.pdf'),
       ].filter(Boolean).join('\n');
 
       if (!ranges.length) {

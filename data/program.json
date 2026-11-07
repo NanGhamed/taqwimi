@@ -2,13 +2,17 @@
  "meta": {
   "title": "تقويمي",
   "subtitle": "مؤتمر ومعرض الحج النسخة السادسة",
-  "source": "تقويمي2.pdf",
-  "version": 1,
+  "source": "تقويمي3 معدل.pdf",
+  "version": 2,
+  "updatedAt": "2026-11-07",
   "daysCount": 4,
-  "eventsCount": 172,
-  "occurrencesCount": 185,
-  "workshopsCount": 64,
-  "expertsCount": 18
+  "eventsCount": 201,
+  "occurrencesCount": 212,
+  "workshopsCount": 71,
+  "expertsCount": 18,
+  "preservedCount": 167,
+  "newEventsCount": 34,
+  "removedEventsCount": 5
  },
  "days": [
   {
@@ -103,12 +107,6 @@
        "title": "الفعاليات المصاحبة",
        "empty": false,
        "emptyText": ""
-      },
-      {
-       "id": "special",
-       "title": "فعاليات خاصة",
-       "empty": false,
-       "emptyText": ""
       }
      ]
     },
@@ -167,6 +165,12 @@
        "title": "الفعاليات المصاحبة",
        "empty": false,
        "emptyText": ""
+      },
+      {
+       "id": "special",
+       "title": "فعاليات خاصة",
+       "empty": false,
+       "emptyText": ""
       }
      ]
     },
@@ -195,8 +199,8 @@
      "id": "majlis",
      "title": "مجلس الحج",
      "subsections": [],
-     "empty": true,
-     "emptyText": "لا يوجد جلسات"
+     "empty": false,
+     "emptyText": ""
     },
     {
      "id": "forum",
@@ -211,8 +215,8 @@
       {
        "id": "majlis_forum",
        "title": "جلسات مجلس الحج",
-       "empty": true,
-       "emptyText": "لا يوجد جلسات تخص ملتقى التوعية والتدريب"
+       "empty": false,
+       "emptyText": ""
       },
       {
        "id": "experts",
@@ -239,6 +243,60 @@
   }
  ],
  "events": [
+  {
+   "id": "ea5e618e384",
+   "dayId": "2026-11-08",
+   "title": "إدارة الحشود والتنقل والبنية التحتية والمرونة التشغيلية",
+   "start": "13:00",
+   "end": "13:45",
+   "ranges": [
+    {
+     "start": "13:00",
+     "end": "13:45"
+    }
+   ],
+   "durationMinutes": 45,
+   "durationText": "45 دقيقة",
+   "timeText": "01:00 م - 01:45 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "ea5e618e384-o1"
+   ]
+  },
+  {
+   "id": "e87b9e1dafc",
+   "dayId": "2026-11-08",
+   "title": "الذكاء الاصطناعي والتحول الرقمي في خدمة ضيوف الرحمن",
+   "start": "13:45",
+   "end": "14:30",
+   "ranges": [
+    {
+     "start": "13:45",
+     "end": "14:30"
+    }
+   ],
+   "durationMinutes": 45,
+   "durationText": "45 دقيقة",
+   "timeText": "01:45 م - 02:30 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "e87b9e1dafc-o1"
+   ]
+  },
   {
    "id": "eaf566a2e5e",
    "dayId": "2026-11-08",
@@ -269,9 +327,9 @@
    ]
   },
   {
-   "id": "e2df5fd93c5",
+   "id": "e71d67725fe",
    "dayId": "2026-11-08",
-   "title": "التجربة التونسية في التوعية والتدريب",
+   "title": "التوعية البيئية لضيوف الرحمن وإدارة الاستدامة",
    "start": "14:45",
    "end": "15:00",
    "ranges": [
@@ -283,64 +341,60 @@
    "durationMinutes": 15,
    "durationText": "15 دقيقة",
    "timeText": "02:45 م - 03:00 م",
-   "place": "مسرح مجلس الحج (ملتقى التوعية والتدريب)",
+   "place": "مسرح مجلس الحج",
    "type": "",
    "track": "",
    "category": "",
    "speaker": "",
    "sections": [
-    "majlis",
-    "forum/majlis_forum"
+    "majlis"
    ],
    "occurrenceIds": [
-    "e2df5fd93c5-o1",
-    "e2df5fd93c5-o2"
+    "e71d67725fe-o1"
    ]
   },
   {
-   "id": "e501b8a012f",
+   "id": "ef9f85bc855",
    "dayId": "2026-11-08",
-   "title": "التجربة التركية في التوعية والتدريب",
+   "title": "نحو منظومة صحية متكاملة تواكب رحلة الحاج",
    "start": "15:00",
-   "end": "15:15",
+   "end": "15:20",
    "ranges": [
     {
      "start": "15:00",
-     "end": "15:15"
+     "end": "15:20"
     }
    ],
-   "durationMinutes": 15,
-   "durationText": "15 دقيقة",
-   "timeText": "03:00 م - 03:15 م",
-   "place": "مسرح مجلس الحج (ملتقى التوعية والتدريب)",
+   "durationMinutes": 20,
+   "durationText": "20 دقيقة",
+   "timeText": "03:00 م - 03:20 م",
+   "place": "مسرح مجلس الحج",
    "type": "",
    "track": "",
    "category": "",
    "speaker": "",
    "sections": [
-    "majlis",
-    "forum/majlis_forum"
+    "majlis"
    ],
    "occurrenceIds": [
-    "e501b8a012f-o1",
-    "e501b8a012f-o2"
+    "ef9f85bc855-o1"
    ]
   },
   {
    "id": "efac7cedf05",
    "dayId": "2026-11-08",
-   "title": "أنظمة الرؤية الحاسوبية لإدارة مخلفات الغذاء",
+   "title": "أنظمة الرؤية الحاسوبية لإدارة مخلفات الغذاء -\"مشاركة مسجلة\"",
    "start": "16:00",
-   "end": "16:10",
+   "end": "16:30",
    "ranges": [
     {
      "start": "16:00",
-     "end": "16:10"
+     "end": "16:30"
     }
    ],
-   "durationMinutes": 10,
-   "durationText": "10 دقائق",
-   "timeText": "04:00 م - 04:10 م",
+   "durationMinutes": 30,
+   "durationText": "30 دقائق",
+   "timeText": "04:00 م - 04:30 م",
    "place": "مسرح مجلس الحج",
    "type": "",
    "track": "",
@@ -357,17 +411,17 @@
    "id": "e2efe0ae0da",
    "dayId": "2026-11-08",
    "title": "منصة موردي: نحو منظومة إعاشة أكثر كفاءة واستدامة",
-   "start": "16:10",
-   "end": "16:30",
+   "start": "16:30",
+   "end": "16:50",
    "ranges": [
     {
-     "start": "16:10",
-     "end": "16:30"
+     "start": "16:30",
+     "end": "16:50"
     }
    ],
    "durationMinutes": 20,
    "durationText": "20 دقيقة",
-   "timeText": "04:10 م - 04:30 م",
+   "timeText": "04:30 م - 04:50 م",
    "place": "مسرح مجلس الحج",
    "type": "",
    "track": "",
@@ -383,18 +437,18 @@
   {
    "id": "e874c0d4a6a",
    "dayId": "2026-11-08",
-   "title": "\"علامة حلال العالمية\": امتثال يحقق طمأنينةًلضيوف الرحمن",
-   "start": "16:30",
-   "end": "16:40",
+   "title": "\"علامة حلال العالمية\": امتثال يحقق طمأنينةً لضيوف الرحمن",
+   "start": "16:50",
+   "end": "17:00",
    "ranges": [
     {
-     "start": "16:30",
-     "end": "16:40"
+     "start": "16:50",
+     "end": "17:00"
     }
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "04:30 م - 04:40 م",
+   "timeText": "04:50 م - 05:00 م",
    "place": "مسرح مجلس الحج",
    "type": "",
    "track": "",
@@ -405,33 +459,6 @@
    ],
    "occurrenceIds": [
     "e874c0d4a6a-o1"
-   ]
-  },
-  {
-   "id": "e71d67725fe",
-   "dayId": "2026-11-08",
-   "title": "التوعية البيئية لضيوف الرحمن وإدارة الاستدامة",
-   "start": "16:40",
-   "end": "17:00",
-   "ranges": [
-    {
-     "start": "16:40",
-     "end": "17:00"
-    }
-   ],
-   "durationMinutes": 20,
-   "durationText": "20 دقيقة",
-   "timeText": "04:40 م - 05:00 م",
-   "place": "مسرح مجلس الحج",
-   "type": "",
-   "track": "",
-   "category": "",
-   "speaker": "",
-   "sections": [
-    "majlis"
-   ],
-   "occurrenceIds": [
-    "e71d67725fe-o1"
    ]
   },
   {
@@ -464,7 +491,7 @@
   {
    "id": "e9d2c6d95b2",
    "dayId": "2026-11-08",
-   "title": "الرعاية الصحية التطوعّية في خدمة ضيوف الرحمن",
+   "title": "الرعاية الصحية التطوّعية في خدمة ضيوف الرحمن",
    "start": "17:20",
    "end": "17:40",
    "ranges": [
@@ -491,7 +518,7 @@
   {
    "id": "e347fa8b167",
    "dayId": "2026-11-08",
-   "title": "هوية مكة المكرمة العطرية: بعُد حسيّ جديد في تجربة ضيف الرحمن",
+   "title": "هوية مكة المكرمة العطرية: بُعد حسّي جديد في تجربة ضيف الرحمن",
    "start": "10:30",
    "end": "11:30",
    "ranges": [
@@ -516,9 +543,9 @@
    ]
   },
   {
-   "id": "eb41189766b",
+   "id": "e8e3b94133c",
    "dayId": "2026-11-08",
-   "title": "الريادة والتميز في خدمات المستفيدين لضيوف الرحمن",
+   "title": "التميز المؤسسي والتشغيلي في منظومة أعمال الحج والعمرة",
    "start": "10:30",
    "end": "11:30",
    "ranges": [
@@ -532,14 +559,14 @@
    "timeText": "10:30 ص - 11:30 ص",
    "place": "Room 3",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
+   "track": "التنمية والاستدامة",
+   "category": "إثراء التجربة",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "eb41189766b-o1"
+    "e8e3b94133c-o1"
    ]
   },
   {
@@ -567,6 +594,33 @@
    ],
    "occurrenceIds": [
     "ee7d5dc5041-o1"
+   ]
+  },
+  {
+   "id": "e36df9b1d3c",
+   "dayId": "2026-11-08",
+   "title": "تعزيزات أمن وسلامة ضيوف الرحمن: التيسير والوعي وإدارة الأزمات والمخاطر",
+   "start": "10:30",
+   "end": "11:30",
+   "ranges": [
+    {
+     "start": "10:30",
+     "end": "11:30"
+    }
+   ],
+   "durationMinutes": 60,
+   "durationText": "60 دقيقة",
+   "timeText": "10:30 ص - 11:30 ص",
+   "place": "Room 1",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "الأمن والسلامة",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "e36df9b1d3c-o1"
    ]
   },
   {
@@ -613,7 +667,7 @@
    "timeText": "12:30 م - 01:30 م",
    "place": "Room 1",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
    "sections": [
@@ -640,7 +694,7 @@
    "timeText": "12:30 م - 01:30 م",
    "place": "Room 2",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
    "sections": [
@@ -705,6 +759,33 @@
    ]
   },
   {
+   "id": "e1d007c17cd",
+   "dayId": "2026-11-08",
+   "title": "الاستجابة الطبية الأولية للحالات الطارئة",
+   "start": "15:30",
+   "end": "16:30",
+   "ranges": [
+    {
+     "start": "15:30",
+     "end": "16:30"
+    }
+   ],
+   "durationMinutes": 60,
+   "durationText": "60 دقيقة",
+   "timeText": "03:30 م - 04:30 م",
+   "place": "Room 1",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "الرعاية الصحية",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "e1d007c17cd-o1"
+   ]
+  },
+  {
    "id": "eea5abadde3",
    "dayId": "2026-11-08",
    "title": "كيف نصنع الخبر في عصر الذكاء الاصطناعي؟",
@@ -729,6 +810,60 @@
    ],
    "occurrenceIds": [
     "eea5abadde3-o1"
+   ]
+  },
+  {
+   "id": "ee3026149b6",
+   "dayId": "2026-11-08",
+   "title": "الشراكة المجتمعية والعمل التطوعي في خدمة ضيوف الرحمن",
+   "start": "18:00",
+   "end": "19:00",
+   "ranges": [
+    {
+     "start": "18:00",
+     "end": "19:00"
+    }
+   ],
+   "durationMinutes": 60,
+   "durationText": "60 دقيقة",
+   "timeText": "06:00 م - 07:00 م",
+   "place": "Room 4",
+   "type": "",
+   "track": "التنمية والاستدامة",
+   "category": "القطاع الثالث",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "ee3026149b6-o1"
+   ]
+  },
+  {
+   "id": "ea5f5e3bb2b",
+   "dayId": "2026-11-08",
+   "title": "الرعاية والإخلاء الطبي الآمن في مناطق الازدحام",
+   "start": "20:00",
+   "end": "21:00",
+   "ranges": [
+    {
+     "start": "20:00",
+     "end": "21:00"
+    }
+   ],
+   "durationMinutes": 60,
+   "durationText": "60 دقيقة",
+   "timeText": "08:00 م - 09:00 م",
+   "place": "Room 2",
+   "type": "",
+   "track": "التنمية والاستدامة",
+   "category": "القطاع الثالث",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "ea5f5e3bb2b-o1"
    ]
   },
   {
@@ -843,17 +978,17 @@
    "id": "ec2137be7bc",
    "dayId": "2026-11-09",
    "title": "حوكمة التنظيمات واللوائح لرفع جودة الخدمات المقدمة لضيوف الرحمن",
-   "start": "14:00",
-   "end": "15:00",
+   "start": "13:55",
+   "end": "14:55",
    "ranges": [
     {
-     "start": "14:00",
-     "end": "15:00"
+     "start": "13:55",
+     "end": "14:55"
     }
    ],
    "durationMinutes": 60,
    "durationText": "60 دقيقة",
-   "timeText": "02:00 م - 03:00 م",
+   "timeText": "01:55 م - 02:55 م",
    "place": "المسرح الرئيسي",
    "type": "جلسة رئيسة",
    "track": "التمكين والتكامل",
@@ -960,7 +1095,7 @@
     }
    ],
    "durationMinutes": 10,
-   "durationText": "10 دقائق",
+   "durationText": "10 دقيقة",
    "timeText": "05:00 م - 05:10 م",
    "place": "المسرح الرئيسي (ملتقى التوعية والتدريب)",
    "type": "كلمة رئيسية",
@@ -1050,7 +1185,7 @@
    "durationText": "40 دقيقة",
    "timeText": "06:30 م - 07:10 م",
    "place": "المسرح الرئيسي (ملتقى التوعية والتدريب)",
-   "type": "جلسة رئيسية",
+   "type": "جلسة رئيسة",
    "track": "التمكين والتكامل",
    "category": "",
    "speaker": "",
@@ -1119,64 +1254,6 @@
    "occurrenceIds": [
     "eacc4637d88-o1",
     "eacc4637d88-o2"
-   ]
-  },
-  {
-   "id": "e7c978a560c",
-   "dayId": "2026-11-09",
-   "title": "الاتصال السلوكي الممُكنَّ بالذكاء الاصطناعي لتعظيم أثر توعية ضيوف الرحمن",
-   "start": "14:30",
-   "end": "14:45",
-   "ranges": [
-    {
-     "start": "14:30",
-     "end": "14:45"
-    }
-   ],
-   "durationMinutes": 15,
-   "durationText": "15 دقيقة",
-   "timeText": "02:30 م - 02:45 م",
-   "place": "مسرح مجلس الحج (ملتقى التوعية والتدريب)",
-   "type": "",
-   "track": "",
-   "category": "",
-   "speaker": "",
-   "sections": [
-    "majlis",
-    "forum/majlis_forum"
-   ],
-   "occurrenceIds": [
-    "e7c978a560c-o1",
-    "e7c978a560c-o2"
-   ]
-  },
-  {
-   "id": "e37d9ebda8a",
-   "dayId": "2026-11-09",
-   "title": "مستقبل التدريب والتمكين",
-   "start": "14:45",
-   "end": "15:00",
-   "ranges": [
-    {
-     "start": "14:45",
-     "end": "15:00"
-    }
-   ],
-   "durationMinutes": 15,
-   "durationText": "15 دقيقة",
-   "timeText": "02:45 م - 03:00 م",
-   "place": "مسرح مجلس الحج (ملتقى التوعية والتدريب)",
-   "type": "",
-   "track": "",
-   "category": "",
-   "speaker": "",
-   "sections": [
-    "majlis",
-    "forum/majlis_forum"
-   ],
-   "occurrenceIds": [
-    "e37d9ebda8a-o1",
-    "e37d9ebda8a-o2"
    ]
   },
   {
@@ -1290,7 +1367,7 @@
   {
    "id": "e4dfff4546d",
    "dayId": "2026-11-09",
-   "title": "مشروع تلطيف وتظليل جبل الرحمة:التكامل التشغيلي والجاهزية الميدانية",
+   "title": "مشروع تلطيف وتظليل جبل الرحمة: التكامل التشغيلي والجاهزية الميدانية",
    "start": "19:50",
    "end": "20:10",
    "ranges": [
@@ -1344,7 +1421,7 @@
   {
    "id": "ec93ec80b2e",
    "dayId": "2026-11-09",
-   "title": "تدشين مشروع مؤشر الوعي",
+   "title": "تدشين مؤشر الجاهزية التوعوية لضيوف الرحمن",
    "start": "17:10",
    "end": "17:20",
    "ranges": [
@@ -1354,7 +1431,7 @@
     }
    ],
    "durationMinutes": 10,
-   "durationText": "",
+   "durationText": "10 دقيقة",
    "timeText": "05:10 م - 05:20 م",
    "place": "المسرح الرئيسي - خارج منطقة الملتقى",
    "type": "تدشين",
@@ -1366,6 +1443,60 @@
    ],
    "occurrenceIds": [
     "ec93ec80b2e-o1"
+   ]
+  },
+  {
+   "id": "e7c978a560c",
+   "dayId": "2026-11-09",
+   "title": "الاتصال السلوكي الممكن بالذكاء الاصطناعي: إطار وطني لتعظيم أثر توعية ضيوف الرحمن",
+   "start": "14:30",
+   "end": "14:45",
+   "ranges": [
+    {
+     "start": "14:30",
+     "end": "14:45"
+    }
+   ],
+   "durationMinutes": 15,
+   "durationText": "15 دقيقة",
+   "timeText": "02:30 م - 02:45 م",
+   "place": "مسرح مجلس الحج - خارج منطقة الملتقى",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "forum/majlis_forum"
+   ],
+   "occurrenceIds": [
+    "e7c978a560c-o1"
+   ]
+  },
+  {
+   "id": "e37d9ebda8a",
+   "dayId": "2026-11-09",
+   "title": "مستقبل التدريب والتمكين",
+   "start": "14:45",
+   "end": "15:00",
+   "ranges": [
+    {
+     "start": "14:45",
+     "end": "15:00"
+    }
+   ],
+   "durationMinutes": 15,
+   "durationText": "15 دقيقة",
+   "timeText": "02:45 م - 03:00 م",
+   "place": "مسرح مجلس الحج - خارج منطقة الملتقى",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "forum/majlis_forum"
+   ],
+   "occurrenceIds": [
+    "e37d9ebda8a-o1"
    ]
   },
   {
@@ -1382,7 +1513,7 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "12:00 م",
+   "timeText": "12:00 م - 12:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
@@ -1409,7 +1540,7 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "01:00 م",
+   "timeText": "01:00 م - 01:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
@@ -1436,7 +1567,7 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "02:00 م",
+   "timeText": "02:00 م - 02:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
@@ -1450,9 +1581,9 @@
    ]
   },
   {
-   "id": "e3aa8118f54",
+   "id": "eb2564b59f2",
    "dayId": "2026-11-09",
-   "title": "التدريب والتطوير في مراكز الضيافة",
+   "title": "من التدريب إلى الأثر",
    "start": "15:00",
    "end": "15:10",
    "ranges": [
@@ -1463,17 +1594,17 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "03:00 م",
+   "timeText": "03:00 م - 03:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
    "category": "",
-   "speaker": "أفنان صديق قماش مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
+   "speaker": "د . أحمد بانوير شركة قيام",
    "sections": [
     "forum/experts"
    ],
    "occurrenceIds": [
-    "e3aa8118f54-o1"
+    "eb2564b59f2-o1"
    ]
   },
   {
@@ -1490,12 +1621,12 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "04:00 م",
+   "timeText": "04:00 م - 04:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
    "category": "",
-   "speaker": "حسين باكر ب شات شركة قيام",
+   "speaker": "حسين باكربشات شركة قيام",
    "sections": [
     "forum/experts"
    ],
@@ -1517,7 +1648,7 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "05:00 م",
+   "timeText": "05:00 م - 05:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
@@ -1724,25 +1855,30 @@
    ]
   },
   {
-   "id": "e2709278dd0",
+   "id": "e097f46b4ba",
    "dayId": "2026-11-09",
-   "title": "لقاء تواصل (مكاتب شؤون الحجاج)",
-   "start": null,
-   "end": null,
-   "ranges": [],
-   "durationMinutes": null,
-   "durationText": "",
-   "timeText": "دعوة خاصة",
-   "place": "قاعة ملتقى مكاتب شؤون الحجاج",
+   "title": "كيف تتعامل الجهات مع الظواهر السلبية في موسم الحج؟ رصد ومعالجة",
+   "start": "10:30",
+   "end": "12:00",
+   "ranges": [
+    {
+     "start": "10:30",
+     "end": "12:00"
+    }
+   ],
+   "durationMinutes": 90,
+   "durationText": "90 دقيقة",
+   "timeText": "10:30 ص - 12:00 م",
+   "place": "Room 1",
    "type": "",
-   "track": "",
-   "category": "",
+   "track": "البنية التحتية والخدمات التشغيلية",
+   "category": "البنى التحتية وإدارة المرافق",
    "speaker": "",
    "sections": [
-    "forum/special"
+    "workshops"
    ],
    "occurrenceIds": [
-    "e2709278dd0-o1"
+    "e097f46b4ba-o1"
    ]
   },
   {
@@ -1773,33 +1909,6 @@
    ]
   },
   {
-   "id": "eea93d1d88d",
-   "dayId": "2026-11-09",
-   "title": "سكن ضيوف الرحمن: نحو ضيافة متكاملة في مكة المكرمة والمدينة المنورة",
-   "start": "10:30",
-   "end": "12:00",
-   "ranges": [
-    {
-     "start": "10:30",
-     "end": "12:00"
-    }
-   ],
-   "durationMinutes": 90,
-   "durationText": "90 دقيقة",
-   "timeText": "10:30 ص - 12:00 م",
-   "place": "Room 3",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "الإسكان والضيافة",
-   "speaker": "",
-   "sections": [
-    "workshops"
-   ],
-   "occurrenceIds": [
-    "eea93d1d88d-o1"
-   ]
-  },
-  {
    "id": "e912d69c9b5",
    "dayId": "2026-11-09",
    "title": "إثراء تجربة زائر المدينة المنورة خلال فترة الإقامة",
@@ -1827,9 +1936,9 @@
    ]
   },
   {
-   "id": "e097f46b4ba",
+   "id": "eea93d1d88d",
    "dayId": "2026-11-09",
-   "title": "كيف تتعامل الجهات مع الظواهر السلبية في موسم الحج؟ رصد ومعالجة",
+   "title": "سكن ضيوف الرحمن: نحو ضيافة متكاملة في مكة المكرمة والمدينة المنورة",
    "start": "10:30",
    "end": "12:00",
    "ranges": [
@@ -1841,16 +1950,16 @@
    "durationMinutes": 90,
    "durationText": "90 دقيقة",
    "timeText": "10:30 ص - 12:00 م",
-   "place": "Room 1",
+   "place": "Room 3",
    "type": "",
    "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "البنى التحتية وإدارة المرافق",
+   "category": "الإسكان والضيافة",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "e097f46b4ba-o1"
+    "eea93d1d88d-o1"
    ]
   },
   {
@@ -1897,7 +2006,7 @@
    "timeText": "12:30 م - 02:30 م",
    "place": "Room 2",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
    "sections": [
@@ -1935,9 +2044,36 @@
    ]
   },
   {
-   "id": "edbcb6da769",
+   "id": "ec7d51736b5",
    "dayId": "2026-11-09",
-   "title": "من التجربة إلى التميز: رحلة تطوير برنامج تأهيل قادة مراكز الضيافة",
+   "title": "التكامل الاستراتيجي بين الجهات في منظومة الحج",
+   "start": "12:30",
+   "end": "14:30",
+   "ranges": [
+    {
+     "start": "12:30",
+     "end": "14:30"
+    }
+   ],
+   "durationMinutes": 120,
+   "durationText": "120 دقيقة",
+   "timeText": "12:30 م - 02:30 م",
+   "place": "Room 3",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "الأمن والسلامة",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "ec7d51736b5-o1"
+   ]
+  },
+  {
+   "id": "e0ebc993280",
+   "dayId": "2026-11-09",
+   "title": "نمذجة الحشود والنقل في مكة المكرمة والمشاعر المقدسة",
    "start": "15:30",
    "end": "17:30",
    "ranges": [
@@ -1949,7 +2085,34 @@
    "durationMinutes": 120,
    "durationText": "120 دقيقة",
    "timeText": "03:30 م - 05:30 م",
-   "place": "Room 3",
+   "place": "Room 1",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "التقنية والابتكار",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "e0ebc993280-o1"
+   ]
+  },
+  {
+   "id": "ed01b87b017",
+   "dayId": "2026-11-09",
+   "title": "تميز وكالات الحج الخارجية: فرص التطوير ومستجدات المسار (English)",
+   "start": "15:30",
+   "end": "17:30",
+   "ranges": [
+    {
+     "start": "15:30",
+     "end": "17:30"
+    }
+   ],
+   "durationMinutes": 120,
+   "durationText": "120 دقيقة",
+   "timeText": "03:30 م - 05:30 م",
+   "place": "Room 2",
    "type": "",
    "track": "التنمية والاستدامة",
    "category": "التدريب والتأهيل والتطوير",
@@ -1958,7 +2121,7 @@
     "workshops"
    ],
    "occurrenceIds": [
-    "edbcb6da769-o1"
+    "ed01b87b017-o1"
    ]
   },
   {
@@ -1989,9 +2152,9 @@
    ]
   },
   {
-   "id": "ed01b87b017",
+   "id": "edbcb6da769",
    "dayId": "2026-11-09",
-   "title": "تميز وكالات الحج الخارجية: فرص التطوير ومستجدات المسار",
+   "title": "من التجربة إلى التميّز: رحلة تطوير برنامج تأهيل قادة مراكز الضيافة",
    "start": "15:30",
    "end": "17:30",
    "ranges": [
@@ -2003,7 +2166,7 @@
    "durationMinutes": 120,
    "durationText": "120 دقيقة",
    "timeText": "03:30 م - 05:30 م",
-   "place": "Room 2",
+   "place": "Room 3",
    "type": "",
    "track": "التنمية والاستدامة",
    "category": "التدريب والتأهيل والتطوير",
@@ -2012,34 +2175,61 @@
     "workshops"
    ],
    "occurrenceIds": [
-    "ed01b87b017-o1"
+    "edbcb6da769-o1"
    ]
   },
   {
-   "id": "e0ebc993280",
+   "id": "e128492f5b1",
    "dayId": "2026-11-09",
-   "title": "نمذجة الحشود والنقل في مكة المكرمة والمشاعر المقدسة",
-   "start": "15:30",
-   "end": "17:30",
+   "title": "كيف يسهم الذكاء الاصطناعي في الارتقاء بتجربة ضيوف الرحمن؟",
+   "start": "18:00",
+   "end": "19:30",
    "ranges": [
     {
-     "start": "15:30",
-     "end": "17:30"
+     "start": "18:00",
+     "end": "19:30"
     }
    ],
-   "durationMinutes": 120,
-   "durationText": "120 دقيقة",
-   "timeText": "03:30 م - 05:30 م",
-   "place": "Room 1",
+   "durationMinutes": 90,
+   "durationText": "90 دقيقة",
+   "timeText": "06:00 م - 07:30 م",
+   "place": "Room 4",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "e0ebc993280-o1"
+    "e128492f5b1-o1"
+   ]
+  },
+  {
+   "id": "e506e36cb4d",
+   "dayId": "2026-11-09",
+   "title": "إثراء تجربة ضيوف الرحمن في قطاع خدمة حجاج الداخل",
+   "start": "18:00",
+   "end": "19:30",
+   "ranges": [
+    {
+     "start": "18:00",
+     "end": "19:30"
+    }
+   ],
+   "durationMinutes": 90,
+   "durationText": "90 دقيقة",
+   "timeText": "06:00 م - 07:30 م",
+   "place": "Room 3",
+   "type": "",
+   "track": "التنمية والاستدامة",
+   "category": "إثراء التجربة",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "e506e36cb4d-o1"
    ]
   },
   {
@@ -2059,7 +2249,7 @@
    "timeText": "06:00 م - 07:30 م",
    "place": "Room 1",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
    "sections": [
@@ -2097,33 +2287,6 @@
    ]
   },
   {
-   "id": "e506e36cb4d",
-   "dayId": "2026-11-09",
-   "title": "إثراء تجربة ضيوف الرحمن في قطاع خدمة حجاج الداخل",
-   "start": "18:00",
-   "end": "19:30",
-   "ranges": [
-    {
-     "start": "18:00",
-     "end": "19:30"
-    }
-   ],
-   "durationMinutes": 90,
-   "durationText": "90 دقيقة",
-   "timeText": "06:00 م - 07:30 م",
-   "place": "Room 3",
-   "type": "",
-   "track": "التنمية والاستدامة",
-   "category": "إثراء التجربة",
-   "speaker": "",
-   "sections": [
-    "workshops"
-   ],
-   "occurrenceIds": [
-    "e506e36cb4d-o1"
-   ]
-  },
-  {
    "id": "ebd159cb013",
    "dayId": "2026-11-09",
    "title": "تكامل خدمات الضيافة في منظومة الحج",
@@ -2148,60 +2311,6 @@
    ],
    "occurrenceIds": [
     "ebd159cb013-o1"
-   ]
-  },
-  {
-   "id": "ef3373c1bb0",
-   "dayId": "2026-11-09",
-   "title": "منتجات العنوان الوطني وحالات تطبيقية في موسم الحج",
-   "start": "20:00",
-   "end": "21:00",
-   "ranges": [
-    {
-     "start": "20:00",
-     "end": "21:00"
-    }
-   ],
-   "durationMinutes": 60,
-   "durationText": "60 دقيقة",
-   "timeText": "08:00 م - 09:00 م",
-   "place": "Room 2",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "النقل والخدمات اللوجستية",
-   "speaker": "",
-   "sections": [
-    "workshops"
-   ],
-   "occurrenceIds": [
-    "ef3373c1bb0-o1"
-   ]
-  },
-  {
-   "id": "eec02aed2d0",
-   "dayId": "2026-11-09",
-   "title": "التكامل التقني بين جهات الحج: من طلب الربط إلى التشغيل عبر المنصة الموحدة",
-   "start": "20:00",
-   "end": "21:00",
-   "ranges": [
-    {
-     "start": "20:00",
-     "end": "21:00"
-    }
-   ],
-   "durationMinutes": 60,
-   "durationText": "60 دقيقة",
-   "timeText": "08:00 م - 09:00 م",
-   "place": "Room 3",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
-   "speaker": "",
-   "sections": [
-    "workshops"
-   ],
-   "occurrenceIds": [
-    "eec02aed2d0-o1"
    ]
   },
   {
@@ -2232,6 +2341,60 @@
    ]
   },
   {
+   "id": "eec02aed2d0",
+   "dayId": "2026-11-09",
+   "title": "التكامل التقني بين جهات الحج: من طلب الربط إلى التشغيل عبر المنصة الموحدة",
+   "start": "20:00",
+   "end": "21:00",
+   "ranges": [
+    {
+     "start": "20:00",
+     "end": "21:00"
+    }
+   ],
+   "durationMinutes": 60,
+   "durationText": "60 دقيقة",
+   "timeText": "08:00 م - 09:00 م",
+   "place": "Room 3",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "التقنية والابتكار",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "eec02aed2d0-o1"
+   ]
+  },
+  {
+   "id": "ef3373c1bb0",
+   "dayId": "2026-11-09",
+   "title": "منتجات العنوان الوطني وحالات تطبيقية في موسم الحج",
+   "start": "20:00",
+   "end": "21:00",
+   "ranges": [
+    {
+     "start": "20:00",
+     "end": "21:00"
+    }
+   ],
+   "durationMinutes": 60,
+   "durationText": "60 دقيقة",
+   "timeText": "08:00 م - 09:00 م",
+   "place": "Room 2",
+   "type": "",
+   "track": "البنية التحتية والخدمات التشغيلية",
+   "category": "النقل والخدمات اللوجستية",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "ef3373c1bb0-o1"
+   ]
+  },
+  {
    "id": "e66eb434f86",
    "dayId": "2026-11-10",
    "title": "التعليم والبحث العلمي والابتكار لتطوير منظومة الحج",
@@ -2244,11 +2407,11 @@
     }
    ],
    "durationMinutes": 10,
-   "durationText": "10 دقائق",
+   "durationText": "10 دقيقة",
    "timeText": "10:30 ص - 10:40 ص",
    "place": "المسرح الرئيسي للمؤتمر",
    "type": "كلمة رئيسية",
-   "track": "التنمية والاستدامة",
+   "track": "التنمية والإستدامة",
    "category": "",
    "speaker": "",
    "sections": [
@@ -2286,6 +2449,33 @@
    ]
   },
   {
+   "id": "ed6635b6133",
+   "dayId": "2026-11-10",
+   "title": "من الرؤية إلى الأثر: مؤشرات الأداء وجودة خدمات ضيوف الرحمن",
+   "start": "11:20",
+   "end": "12:05",
+   "ranges": [
+    {
+     "start": "11:20",
+     "end": "12:05"
+    }
+   ],
+   "durationMinutes": 45,
+   "durationText": "45 دقيقة",
+   "timeText": "11:20 ص - 12:05 م",
+   "place": "المسرح الرئيسي للمؤتمر",
+   "type": "جلسة رئيسية",
+   "track": "التمكين والتكامل",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "conference"
+   ],
+   "occurrenceIds": [
+    "ed6635b6133-o1"
+   ]
+  },
+  {
    "id": "e7b8f307e61",
    "dayId": "2026-11-10",
    "title": "القيادة الميدانية لأمن وسلامة ضيوف الرحمن",
@@ -2315,7 +2505,7 @@
   {
    "id": "e554c944da7",
    "dayId": "2026-11-10",
-   "title": "الذكاء الجيومكاني ومستقبل صناعة القرار",
+   "title": "الذكاء الجيومكاني ومستقبل صناعة القرار - \"مشاركة مسجلة\"",
    "start": "12:55",
    "end": "13:05",
    "ranges": [
@@ -2325,7 +2515,7 @@
     }
    ],
    "durationMinutes": 10,
-   "durationText": "10 دقائق",
+   "durationText": "10 دقيقة",
    "timeText": "12:55 م - 01:05 م",
    "place": "المسرح الرئيسي للمؤتمر",
    "type": "كلمة رئيسية",
@@ -2396,7 +2586,7 @@
   {
    "id": "eca67a99b79",
    "dayId": "2026-11-10",
-   "title": "الحوسبة السحابية: رحلة تحولُّ وزارة الحج والعمرة لخدمة ضيوف الرحمن",
+   "title": "الحوسبة السحابية: رحلة تحوُّل وزارة الحج والعمرة لخدمة ضيوف الرحمن",
    "start": "13:50",
    "end": "14:30",
    "ranges": [
@@ -2487,7 +2677,7 @@
     }
    ],
    "durationMinutes": 10,
-   "durationText": "10 دقائق",
+   "durationText": "10 دقيقة",
    "timeText": "03:50 م - 04:00 م",
    "place": "المسرح الرئيسي للمؤتمر",
    "type": "كلمة رئيسية",
@@ -2610,6 +2800,114 @@
    ]
   },
   {
+   "id": "ebe7c679207",
+   "dayId": "2026-11-10",
+   "title": "توجهات التوعية وبرنامج التوعية المشتركة لموسم حج 1448 هـ",
+   "start": "18:30",
+   "end": "18:45",
+   "ranges": [
+    {
+     "start": "18:30",
+     "end": "18:45"
+    }
+   ],
+   "durationMinutes": 15,
+   "durationText": "15 دقيقة",
+   "timeText": "06:30 م - 06:45 م",
+   "place": "المسرح الرئيسي للمؤتمر",
+   "type": "جلسة خاصة",
+   "track": "التمكين والتكامل",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "conference"
+   ],
+   "occurrenceIds": [
+    "ebe7c679207-o1"
+   ]
+  },
+  {
+   "id": "e61733aa9aa",
+   "dayId": "2026-11-10",
+   "title": "الترتيبات التنظيمية والتشغيلية لمكاتب شؤون الحج",
+   "start": "18:45",
+   "end": "20:30",
+   "ranges": [
+    {
+     "start": "18:45",
+     "end": "20:30"
+    }
+   ],
+   "durationMinutes": 105,
+   "durationText": "105 دقيقة",
+   "timeText": "06:45 م - 08:30 م",
+   "place": "المسرح الرئيسي للمؤتمر",
+   "type": "جلسة خاصة",
+   "track": "التمكين والتكامل",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "conference"
+   ],
+   "occurrenceIds": [
+    "e61733aa9aa-o1"
+   ]
+  },
+  {
+   "id": "e81552b1717",
+   "dayId": "2026-11-10",
+   "title": "التوجهات والمستجدات في أعمال مكاتب شؤون الحج لموسم حج ١٤٤٨ هـ",
+   "start": "18:45",
+   "end": "20:30",
+   "ranges": [
+    {
+     "start": "18:45",
+     "end": "20:30"
+    }
+   ],
+   "durationMinutes": 105,
+   "durationText": "105 دقيقة",
+   "timeText": "06:45 م - 08:30 م",
+   "place": "المسرح الرئيسي للمؤتمر",
+   "type": "جلسة خاصة",
+   "track": "التمكين والتكامل",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "conference"
+   ],
+   "occurrenceIds": [
+    "e81552b1717-o1"
+   ]
+  },
+  {
+   "id": "e2ca688c858",
+   "dayId": "2026-11-10",
+   "title": "الصحة والسلامة والجاهزية الطبية في الحج والعمرة",
+   "start": "13:00",
+   "end": "13:45",
+   "ranges": [
+    {
+     "start": "13:00",
+     "end": "13:45"
+    }
+   ],
+   "durationMinutes": 45,
+   "durationText": "45 دقيقة",
+   "timeText": "01:00 م - 01:45 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "e2ca688c858-o1"
+   ]
+  },
+  {
    "id": "e802cc3c2d4",
    "dayId": "2026-11-10",
    "title": "تجربة قياس الأثر في مشروع مؤشر وعي ضيوف الرحمن",
@@ -2641,7 +2939,7 @@
   {
    "id": "ecc8c1e2662",
    "dayId": "2026-11-10",
-   "title": "المسؤولية الاجتماعية والتطوعّ: شراكةٌتصنع الأثر في خدمة ضيوف الرحمن",
+   "title": "المسؤولية الاجتماعية والتطوّع: شراكةٌ تصنع الأثر في خدمة ضيوف الرحمن",
    "start": "14:45",
    "end": "15:00",
    "ranges": [
@@ -2724,7 +3022,7 @@
   {
    "id": "ec795590122",
    "dayId": "2026-11-10",
-   "title": "إدارة أساطيل النقل في الحج: نحو منظومة ذكية ممُكنّة بإنترنت الأشياء",
+   "title": "إدارة أساطيل النقل في الحج: نحو منظومة ذكية مُمكّنة بإنترنت الأشياء",
    "start": "16:40",
    "end": "17:00",
    "ranges": [
@@ -2751,7 +3049,7 @@
   {
    "id": "eb386784455",
    "dayId": "2026-11-10",
-   "title": "دور مطار الملك عبد العزيز الدولي في إثراء تجربة ضيوف الرحمن",
+   "title": "دور مطار الملك عبدالعزيز الدولي في إثراء تجربة ضيوف الرحمن",
    "start": "17:00",
    "end": "17:20",
    "ranges": [
@@ -2773,33 +3071,6 @@
    ],
    "occurrenceIds": [
     "eb386784455-o1"
-   ]
-  },
-  {
-   "id": "e6f48f913fc",
-   "dayId": "2026-11-10",
-   "title": "الاستثمار والابتكار: بناء منظومة إسكان متكاملة لخدمة ضيوف الرحمن",
-   "start": "17:30",
-   "end": "17:40",
-   "ranges": [
-    {
-     "start": "17:30",
-     "end": "17:40"
-    }
-   ],
-   "durationMinutes": 10,
-   "durationText": "10 دقائق",
-   "timeText": "05:30 م - 05:40 م",
-   "place": "مسرح مجلس الحج",
-   "type": "",
-   "track": "",
-   "category": "",
-   "speaker": "",
-   "sections": [
-    "majlis"
-   ],
-   "occurrenceIds": [
-    "e6f48f913fc-o1"
    ]
   },
   {
@@ -2886,7 +3157,7 @@
   {
    "id": "ecbadd97670",
    "dayId": "2026-11-10",
-   "title": "ماء زمزم من البئر الى ضيف الرحمن: منظومة متكاملة من الجودة والأصالة",
+   "title": "ماء زمزم من البئر إلى ضيف الرحمن: منظومة متكاملة من الجودة والأصالة",
    "start": "19:50",
    "end": "20:10",
    "ranges": [
@@ -2951,7 +3222,7 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "12:00 م",
+   "timeText": "12:00 م - 12:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
@@ -2967,7 +3238,7 @@
   {
    "id": "ee410525f2c",
    "dayId": "2026-11-10",
-   "title": "كيف ن حول الجهود الإعلامية إلى نتائج قابلة للقياس؟",
+   "title": "كيف نحول الجهود الإعلامية إلى نتائج قابلة للقياس؟",
    "start": "13:00",
    "end": "13:10",
    "ranges": [
@@ -2978,7 +3249,7 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "01:00 م",
+   "timeText": "01:00 م - 01:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
@@ -3005,7 +3276,7 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "02:00 م",
+   "timeText": "02:00 م - 02:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
@@ -3032,12 +3303,12 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "03:00 م",
+   "timeText": "03:00 م - 03:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
    "category": "",
-   "speaker": "أمل عبدالله الزهراني – مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة سندس الشغدلي – شركة علم",
+   "speaker": "أمل عبدهللا الزهراني – مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة سندس الشغدلي – شركة علم",
    "sections": [
     "forum/experts"
    ],
@@ -3059,7 +3330,7 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "04:00 م",
+   "timeText": "04:00 م - 04:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
@@ -3086,7 +3357,7 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "05:00 م",
+   "timeText": "05:00 م - 05:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
@@ -3113,7 +3384,7 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "06:00 م",
+   "timeText": "06:00 م - 06:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
@@ -3363,8 +3634,8 @@
    "timeText": "10:30 ص - 12:00 م",
    "place": "Room 3",
    "type": "",
-   "track": "التنمية والاستدامة",
-   "category": "التدريب والتأهيل والتطوير",
+   "track": "التمكين والتكامل",
+   "category": "الإعلام والتواصل",
    "speaker": "",
    "sections": [
     "workshops"
@@ -3428,9 +3699,9 @@
    ]
   },
   {
-   "id": "efb37448edd",
+   "id": "ead1c969cfb",
    "dayId": "2026-11-10",
-   "title": "صوت واحد لمنظومة الحج: حوكمة الاتصال بين الجهات في الموسم",
+   "title": "أمن سلسلة الإمداد في موسم الحج وفق المواصفة الدولية أيزو 28000",
    "start": "12:30",
    "end": "14:30",
    "ranges": [
@@ -3442,16 +3713,43 @@
    "durationMinutes": 120,
    "durationText": "120 دقيقة",
    "timeText": "12:30 م - 02:30 م",
-   "place": "Room 4",
+   "place": "Room 1",
    "type": "",
-   "track": "التمكين والتكامل",
-   "category": "الإعلام والتواصل",
+   "track": "البنية التحتية والخدمات التشغيلية",
+   "category": "النقل والخدمات اللوجستية",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "efb37448edd-o1"
+    "ead1c969cfb-o1"
+   ]
+  },
+  {
+   "id": "e3ea108c5df",
+   "dayId": "2026-11-10",
+   "title": "تصميم الخدمات الرقمية لضيوف الرحمن",
+   "start": "12:30",
+   "end": "14:30",
+   "ranges": [
+    {
+     "start": "12:30",
+     "end": "14:30"
+    }
+   ],
+   "durationMinutes": 120,
+   "durationText": "120 دقيقة",
+   "timeText": "12:30 م - 02:30 م",
+   "place": "Room 2",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "التقنية والابتكار",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "e3ea108c5df-o1"
    ]
   },
   {
@@ -3482,9 +3780,9 @@
    ]
   },
   {
-   "id": "e3ea108c5df",
+   "id": "efc8b8f2999",
    "dayId": "2026-11-10",
-   "title": "تصميم الخدمات الرقمية لضيوف الرحمن",
+   "title": "تطوير مهارات العمل الجماعي في خدمة ضيوف الرحمن",
    "start": "12:30",
    "end": "14:30",
    "ranges": [
@@ -3496,49 +3794,22 @@
    "durationMinutes": 120,
    "durationText": "120 دقيقة",
    "timeText": "12:30 م - 02:30 م",
-   "place": "Room 2",
+   "place": "Room 4",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
+   "track": "التمكين والتكامل",
+   "category": "الإعلام والتواصل",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "e3ea108c5df-o1"
+    "efc8b8f2999-o1"
    ]
   },
   {
-   "id": "ead1c969cfb",
+   "id": "e2685021921",
    "dayId": "2026-11-10",
-   "title": "أمن سلسلة الإمداد في موسم الحج وفق المواصفة الدولية أيزو 28000",
-   "start": "12:30",
-   "end": "14:30",
-   "ranges": [
-    {
-     "start": "12:30",
-     "end": "14:30"
-    }
-   ],
-   "durationMinutes": 120,
-   "durationText": "120 دقيقة",
-   "timeText": "12:30 م - 02:30 م",
-   "place": "Room 1",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "النقل والخدمات اللوجستية",
-   "speaker": "",
-   "sections": [
-    "workshops"
-   ],
-   "occurrenceIds": [
-    "ead1c969cfb-o1"
-   ]
-  },
-  {
-   "id": "e1a2a9a1367",
-   "dayId": "2026-11-10",
-   "title": "رحلة ضيف الرحمن في المطار: من تنظيم الحركة إلى التجربة الرقمية",
+   "title": "أدوات قياس كفاءة العمل التطوعي في المشاعر المقدسة",
    "start": "15:30",
    "end": "17:30",
    "ranges": [
@@ -3550,43 +3821,16 @@
    "durationMinutes": 120,
    "durationText": "120 دقيقة",
    "timeText": "03:30 م - 05:30 م",
-   "place": "Room 1",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
-   "speaker": "",
-   "sections": [
-    "workshops"
-   ],
-   "occurrenceIds": [
-    "e1a2a9a1367-o1"
-   ]
-  },
-  {
-   "id": "e7a40870d2a",
-   "dayId": "2026-11-10",
-   "title": "رحلة نسك مسار لشركات تقديم الخدمة",
-   "start": "15:30",
-   "end": "17:30",
-   "ranges": [
-    {
-     "start": "15:30",
-     "end": "17:30"
-    }
-   ],
-   "durationMinutes": 120,
-   "durationText": "120 دقيقة",
-   "timeText": "03:30 م - 05:30 م",
-   "place": "Room 2",
+   "place": "Room 4",
    "type": "",
    "track": "التنمية والاستدامة",
-   "category": "التدريب والتأهيل والتطوير",
+   "category": "القطاع الثالث",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "e7a40870d2a-o1"
+    "e2685021921-o1"
    ]
   },
   {
@@ -3617,9 +3861,9 @@
    ]
   },
   {
-   "id": "e2685021921",
+   "id": "e7a40870d2a",
    "dayId": "2026-11-10",
-   "title": "أدوات قياس كفاءة العمل التطوعي في المشاعر المقدسة",
+   "title": "رحلة نسك مسار لشركات تقديم الخدمة",
    "start": "15:30",
    "end": "17:30",
    "ranges": [
@@ -3631,16 +3875,43 @@
    "durationMinutes": 120,
    "durationText": "120 دقيقة",
    "timeText": "03:30 م - 05:30 م",
-   "place": "Room 4",
+   "place": "Room 2",
    "type": "",
    "track": "التنمية والاستدامة",
-   "category": "القطاع الثالث",
+   "category": "التدريب والتأهيل والتطوير",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "e2685021921-o1"
+    "e7a40870d2a-o1"
+   ]
+  },
+  {
+   "id": "e1a2a9a1367",
+   "dayId": "2026-11-10",
+   "title": "رحلة ضيف الرحمن في المطار: من تنظيم الحركة إلى التجربة الرقمية",
+   "start": "15:30",
+   "end": "17:30",
+   "ranges": [
+    {
+     "start": "15:30",
+     "end": "17:30"
+    }
+   ],
+   "durationMinutes": 120,
+   "durationText": "120 دقيقة",
+   "timeText": "03:30 م - 05:30 م",
+   "place": "Room 1",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "التقنية والابتكار",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "e1a2a9a1367-o1"
    ]
   },
   {
@@ -3698,6 +3969,33 @@
    ]
   },
   {
+   "id": "e2709278dd0",
+   "dayId": "2026-11-10",
+   "title": "لقاء تواصل مسؤولي التوعية والتدريب (دعوة خاصة)",
+   "start": "16:00",
+   "end": "17:30",
+   "ranges": [
+    {
+     "start": "16:00",
+     "end": "17:30"
+    }
+   ],
+   "durationMinutes": 90,
+   "durationText": "90 دقيقة",
+   "timeText": "04:00 م - 05:30 م",
+   "place": "قاعة ملتقى مكاتب شؤون الحجاج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "forum/special"
+   ],
+   "occurrenceIds": [
+    "e2709278dd0-o1"
+   ]
+  },
+  {
    "id": "e9c8b7a2485",
    "dayId": "2026-11-10",
    "title": "تسليم: تكامل رقمي بمراجعة بشرية لقياس أثر الأداء التشغيلي",
@@ -3714,7 +4012,7 @@
    "timeText": "06:00 م - 07:30 م",
    "place": "Room 3",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
    "sections": [
@@ -3725,9 +4023,9 @@
    ]
   },
   {
-   "id": "efc8b8f2999",
+   "id": "e3f196d9a8d",
    "dayId": "2026-11-10",
-   "title": "تطوير مهارات العمل الجماعي في خدمة ضيوف الرحمن",
+   "title": "الحوكمة الاتصالية للمنظومات الكبرى",
    "start": "18:00",
    "end": "19:30",
    "ranges": [
@@ -3741,14 +4039,14 @@
    "timeText": "06:00 م - 07:30 م",
    "place": "Room 4",
    "type": "",
-   "track": "التنمية والاستدامة",
-   "category": "التدريب والتأهيل والتطوير",
+   "track": "التمكين والتكامل",
+   "category": "الإعلام والتواصل",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "efc8b8f2999-o1"
+    "e3f196d9a8d-o1"
    ]
   },
   {
@@ -3822,7 +4120,7 @@
    "timeText": "08:00 م - 09:00 م",
    "place": "Room 4",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
    "sections": [
@@ -3833,20 +4131,47 @@
    ]
   },
   {
+   "id": "e956515cbeb",
+   "dayId": "2026-11-10",
+   "title": "إطار عمل قائم على تقييم المخاطر لتخطيط مسارات الإخلاء الآمنة في التجمعات عالية الكثافة: الحج دراسةَ حالة",
+   "start": "20:00",
+   "end": "21:00",
+   "ranges": [
+    {
+     "start": "20:00",
+     "end": "21:00"
+    }
+   ],
+   "durationMinutes": 60,
+   "durationText": "60 دقيقة",
+   "timeText": "08:00 م - 09:00 م",
+   "place": "Room 2",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "الأمن والسلامة",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "e956515cbeb-o1"
+   ]
+  },
+  {
    "id": "e8d4f7448bb",
    "dayId": "2026-11-11",
    "title": "الذكاء الاصطناعي ومستقبل الخدمات الرقمية",
-   "start": "10:40",
-   "end": "11:20",
+   "start": "11:00",
+   "end": "11:40",
    "ranges": [
     {
-     "start": "10:40",
-     "end": "11:20"
+     "start": "11:00",
+     "end": "11:40"
     }
    ],
    "durationMinutes": 40,
    "durationText": "40 دقيقة",
-   "timeText": "10:40 ص - 11:20 ص",
+   "timeText": "11:00 ص - 11:40 ص",
    "place": "المسرح الرئيسي للمؤتمر",
    "type": "جلسات بحثية",
    "track": "التمكين والتكامل",
@@ -3862,18 +4187,18 @@
   {
    "id": "efec136fac1",
    "dayId": "2026-11-11",
-   "title": "الكشافة السعودية: ريادة التطوع في خدمة ضيوف الرحمن",
-   "start": "11:20",
-   "end": "11:40",
+   "title": "إسهامات الكشافة السعودية في خدمة ضيوف الرحمن",
+   "start": "11:40",
+   "end": "12:00",
    "ranges": [
     {
-     "start": "11:20",
-     "end": "11:40"
+     "start": "11:40",
+     "end": "12:00"
     }
    ],
    "durationMinutes": 20,
    "durationText": "20 دقيقة",
-   "timeText": "11:20 ص - 11:40 ص",
+   "timeText": "11:40 ص - 12:00 م",
    "place": "المسرح الرئيسي للمؤتمر",
    "type": "جلسة حوارية",
    "track": "التنمية والاستدامة",
@@ -3914,6 +4239,33 @@
    ]
   },
   {
+   "id": "e9714ec2fa8",
+   "dayId": "2026-11-11",
+   "title": "الخدمات الطبية في الحج: الجاهزية والاستجابة",
+   "start": "12:30",
+   "end": "12:50",
+   "ranges": [
+    {
+     "start": "12:30",
+     "end": "12:50"
+    }
+   ],
+   "durationMinutes": 20,
+   "durationText": "20 دقيقة",
+   "timeText": "12:30 م - 12:50 م",
+   "place": "المسرح الرئيسي للمؤتمر",
+   "type": "جلسة حوارية",
+   "track": "التمكين والتكامل",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "conference"
+   ],
+   "occurrenceIds": [
+    "e9714ec2fa8-o1"
+   ]
+  },
+  {
    "id": "e05eb01ed0a",
    "dayId": "2026-11-11",
    "title": "\"على خطاه\": إحياء درب الهجرة",
@@ -3926,7 +4278,7 @@
     }
    ],
    "durationMinutes": 10,
-   "durationText": "10 دقائق",
+   "durationText": "10 دقيقة",
    "timeText": "12:50 م - 01:00 م",
    "place": "المسرح الرئيسي للمؤتمر",
    "type": "كلمة رئيسية",
@@ -3941,47 +4293,20 @@
    ]
   },
   {
-   "id": "e1f9e33db69",
-   "dayId": "2026-11-11",
-   "title": "الفنون التقليدية وذاكرة الحج الثقافية",
-   "start": "13:00",
-   "end": "13:20",
-   "ranges": [
-    {
-     "start": "13:00",
-     "end": "13:20"
-    }
-   ],
-   "durationMinutes": 20,
-   "durationText": "20 دقيقة",
-   "timeText": "01:00 م - 01:20 م",
-   "place": "المسرح الرئيسي للمؤتمر",
-   "type": "جلسة حوارية",
-   "track": "التنمية والاستدامة",
-   "category": "",
-   "speaker": "",
-   "sections": [
-    "conference"
-   ],
-   "occurrenceIds": [
-    "e1f9e33db69-o1"
-   ]
-  },
-  {
    "id": "e52bae4861e",
    "dayId": "2026-11-11",
    "title": "التحول في تجربة ضيوف الرحمن عند أداء النسك",
-   "start": "13:20",
-   "end": "13:50",
+   "start": "13:00",
+   "end": "13:30",
    "ranges": [
     {
-     "start": "13:20",
-     "end": "13:50"
+     "start": "13:00",
+     "end": "13:30"
     }
    ],
    "durationMinutes": 30,
    "durationText": "30 دقيقة",
-   "timeText": "01:20 م - 01:50 م",
+   "timeText": "01:00 م - 01:30 م",
    "place": "المسرح الرئيسي للمؤتمر",
    "type": "جلسة حوارية",
    "track": "التنمية والاستدامة",
@@ -3998,17 +4323,17 @@
    "id": "eb8481a1a1a",
    "dayId": "2026-11-11",
    "title": "ريادة الأعمال في التطوير العمراني لخدمة ضيوف الرحمن",
-   "start": "13:50",
-   "end": "14:00",
+   "start": "13:30",
+   "end": "13:40",
    "ranges": [
     {
-     "start": "13:50",
-     "end": "14:00"
+     "start": "13:30",
+     "end": "13:40"
     }
    ],
    "durationMinutes": 10,
-   "durationText": "10 دقائق",
-   "timeText": "01:50 م - 02:00 م",
+   "durationText": "10 دقيقة",
+   "timeText": "01:30 م - 01:40 م",
    "place": "المسرح الرئيسي للمؤتمر",
    "type": "كلمة رئيسية",
    "track": "البنية التحتية والخدمات التشغيلية",
@@ -4025,17 +4350,17 @@
    "id": "e1d280beae5",
    "dayId": "2026-11-11",
    "title": "دور التشريعات والتنظيمات في الارتقاء بجودة خدمات الضيافة",
-   "start": "14:00",
-   "end": "14:30",
+   "start": "13:40",
+   "end": "14:10",
    "ranges": [
     {
-     "start": "14:00",
-     "end": "14:30"
+     "start": "13:40",
+     "end": "14:10"
     }
    ],
    "durationMinutes": 30,
    "durationText": "30 دقيقة",
-   "timeText": "02:00 م - 02:30 م",
+   "timeText": "01:40 م - 02:10 م",
    "place": "المسرح الرئيسي للمؤتمر",
    "type": "جلسة حوارية",
    "track": "البنية التحتية والخدمات التشغيلية",
@@ -4052,17 +4377,17 @@
    "id": "e963e7b501a",
    "dayId": "2026-11-11",
    "title": "مراكز الضيافة: استراتيجيات التطوير والتميز التشغيلي",
-   "start": "14:30",
-   "end": "15:20",
+   "start": "14:10",
+   "end": "15:00",
    "ranges": [
     {
-     "start": "14:30",
-     "end": "15:20"
+     "start": "14:10",
+     "end": "15:00"
     }
    ],
    "durationMinutes": 50,
    "durationText": "50 دقيقة",
-   "timeText": "02:30 م - 03:20 م",
+   "timeText": "02:10 م - 03:00 م",
    "place": "المسرح الرئيسي للمؤتمر",
    "type": "عروض تنفيذية Executive Talks",
    "track": "البنية التحتية والخدمات التشغيلية",
@@ -4073,6 +4398,33 @@
    ],
    "occurrenceIds": [
     "e963e7b501a-o1"
+   ]
+  },
+  {
+   "id": "e1f9e33db69",
+   "dayId": "2026-11-11",
+   "title": "الفنون التقليدية وذاكرة الحج الثقافية",
+   "start": "15:00",
+   "end": "15:20",
+   "ranges": [
+    {
+     "start": "15:00",
+     "end": "15:20"
+    }
+   ],
+   "durationMinutes": 20,
+   "durationText": "20 دقيقة",
+   "timeText": "03:00 م - 03:20 م",
+   "place": "المسرح الرئيسي للمؤتمر",
+   "type": "جلسة حوارية",
+   "track": "التنمية والاستدامة",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "conference"
+   ],
+   "occurrenceIds": [
+    "e1f9e33db69-o1"
    ]
   },
   {
@@ -4103,6 +4455,442 @@
    ]
   },
   {
+   "id": "ee377a4d24c",
+   "dayId": "2026-11-11",
+   "title": "افتتاح «رواد الأثر» والترحيب",
+   "start": "13:00",
+   "end": "13:05",
+   "ranges": [
+    {
+     "start": "13:00",
+     "end": "13:05"
+    }
+   ],
+   "durationMinutes": 5,
+   "durationText": "5 دقائق",
+   "timeText": "01:00 م - 01:05 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "ee377a4d24c-o1"
+   ]
+  },
+  {
+   "id": "e21daf95486",
+   "dayId": "2026-11-11",
+   "title": "قصص تُروى… وأثر يبقى",
+   "start": "13:05",
+   "end": "13:17",
+   "ranges": [
+    {
+     "start": "13:05",
+     "end": "13:17"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "01:05 م - 01:17 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "e21daf95486-o1"
+   ]
+  },
+  {
+   "id": "ed999fc3645",
+   "dayId": "2026-11-11",
+   "title": "صناعة الأثر… من اللحظات الحرجة",
+   "start": "13:17",
+   "end": "13:29",
+   "ranges": [
+    {
+     "start": "13:17",
+     "end": "13:29"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "01:17 م - 01:29 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "ed999fc3645-o1"
+   ]
+  },
+  {
+   "id": "e9f8ebb0e8f",
+   "dayId": "2026-11-11",
+   "title": "الطمأنينة علاجٌ أيضًا",
+   "start": "13:29",
+   "end": "13:41",
+   "ranges": [
+    {
+     "start": "13:29",
+     "end": "13:41"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "01:29 م - 01:41 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "e9f8ebb0e8f-o1"
+   ]
+  },
+  {
+   "id": "e67b879e633",
+   "dayId": "2026-11-11",
+   "title": "ماذا يبقى بعد أن تنتهي الرحلة؟",
+   "start": "13:41",
+   "end": "13:53",
+   "ranges": [
+    {
+     "start": "13:41",
+     "end": "13:53"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "01:41 م - 01:53 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "e67b879e633-o1"
+   ]
+  },
+  {
+   "id": "e2df5fd93c5",
+   "dayId": "2026-11-11",
+   "title": "تجربة دولة تونس في تدريب العاملين",
+   "start": "13:53",
+   "end": "14:05",
+   "ranges": [
+    {
+     "start": "13:53",
+     "end": "14:05"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "01:53 م - 02:05 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis",
+    "forum/majlis_forum"
+   ],
+   "occurrenceIds": [
+    "e2df5fd93c5-o1",
+    "e2df5fd93c5-o2"
+   ]
+  },
+  {
+   "id": "ebc0cee74ab",
+   "dayId": "2026-11-11",
+   "title": "من الاستقبال إلى الوداع… مُحسن يمسك الخيط؟",
+   "start": "14:05",
+   "end": "14:17",
+   "ranges": [
+    {
+     "start": "14:05",
+     "end": "14:17"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "02:05 م - 02:17 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "ebc0cee74ab-o1"
+   ]
+  },
+  {
+   "id": "e05bd7fd7fb",
+   "dayId": "2026-11-11",
+   "title": "سماڤ — التجربة الأجمل أثرًا",
+   "start": "14:17",
+   "end": "14:29",
+   "ranges": [
+    {
+     "start": "14:17",
+     "end": "14:29"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "02:17 م - 02:29 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "e05bd7fd7fb-o1"
+   ]
+  },
+  {
+   "id": "ea8c56e154f",
+   "dayId": "2026-11-11",
+   "title": "حين يصبح البيت المكي وجهة",
+   "start": "14:29",
+   "end": "14:41",
+   "ranges": [
+    {
+     "start": "14:29",
+     "end": "14:41"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "02:29 م - 02:41 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "ea8c56e154f-o1"
+   ]
+  },
+  {
+   "id": "e04eba36bf1",
+   "dayId": "2026-11-11",
+   "title": "تجربة التطوع لأول مرة في الحج",
+   "start": "14:41",
+   "end": "14:53",
+   "ranges": [
+    {
+     "start": "14:41",
+     "end": "14:53"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "02:41 م - 02:53 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "e04eba36bf1-o1"
+   ]
+  },
+  {
+   "id": "ea70b187988",
+   "dayId": "2026-11-11",
+   "title": "ما بعد جودة الخدمة… طمأنينة الإنسان",
+   "start": "14:53",
+   "end": "15:05",
+   "ranges": [
+    {
+     "start": "14:53",
+     "end": "15:05"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "02:53 م - 03:05 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "ea70b187988-o1"
+   ]
+  },
+  {
+   "id": "e1f4f3f77bc",
+   "dayId": "2026-11-11",
+   "title": "من موقف إنساني بدأ الابتكار… تسليم GPT",
+   "start": "15:05",
+   "end": "15:17",
+   "ranges": [
+    {
+     "start": "15:05",
+     "end": "15:17"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "03:05 م - 03:17 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "e1f4f3f77bc-o1"
+   ]
+  },
+  {
+   "id": "e1e83816b3a",
+   "dayId": "2026-11-11",
+   "title": "ما القصة التي سيرويها الحاج حين يعود؟",
+   "start": "15:35",
+   "end": "15:47",
+   "ranges": [
+    {
+     "start": "15:35",
+     "end": "15:47"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "03:35 م - 03:47 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "e1e83816b3a-o1"
+   ]
+  },
+  {
+   "id": "eccb575d749",
+   "dayId": "2026-11-11",
+   "title": "حج بلا هدر",
+   "start": "15:47",
+   "end": "15:59",
+   "ranges": [
+    {
+     "start": "15:47",
+     "end": "15:59"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "03:47 م - 03:59 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "eccb575d749-o1"
+   ]
+  },
+  {
+   "id": "e501b8a012f",
+   "dayId": "2026-11-11",
+   "title": "تجربة دولة تركيا في تدريب العاملين",
+   "start": "15:59",
+   "end": "16:11",
+   "ranges": [
+    {
+     "start": "15:59",
+     "end": "16:11"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "03:59 م - 04:11 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis",
+    "forum/majlis_forum"
+   ],
+   "occurrenceIds": [
+    "e501b8a012f-o1",
+    "e501b8a012f-o2"
+   ]
+  },
+  {
+   "id": "e15f4482781",
+   "dayId": "2026-11-11",
+   "title": "اتصالٌ واحد… بأي لغة",
+   "start": "16:11",
+   "end": "16:23",
+   "ranges": [
+    {
+     "start": "16:11",
+     "end": "16:23"
+    }
+   ],
+   "durationMinutes": 12,
+   "durationText": "12 دقيقة",
+   "timeText": "04:11 م - 04:23 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "e15f4482781-o1"
+   ]
+  },
+  {
    "id": "ed7d322198e",
    "dayId": "2026-11-11",
    "title": "اختبارات قياس المعرفة والسلوك للعمل في قطاع خدمة ضيوف الرحمن",
@@ -4116,7 +4904,7 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "01:00 م",
+   "timeText": "01:00 م - 01:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
@@ -4143,12 +4931,12 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "02:00 م",
+   "timeText": "02:00 م - 02:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
    "category": "",
-   "speaker": "جمانة عبدالله البلوشي مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
+   "speaker": "جمانة عبدهللا البلوشي مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
    "sections": [
     "forum/experts"
    ],
@@ -4157,9 +4945,9 @@
    ]
   },
   {
-   "id": "eb2564b59f2",
+   "id": "e3aa8118f54",
    "dayId": "2026-11-11",
-   "title": "من التدريب إلى الأثر",
+   "title": "التدريب والتطوير في مراكز الضيافة",
    "start": "15:00",
    "end": "15:10",
    "ranges": [
@@ -4170,17 +4958,17 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "03:00 م",
+   "timeText": "03:00 م - 03:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
    "category": "",
-   "speaker": "د. أحمد بانوير شركة قيام",
+   "speaker": "أفنان صديق قماش مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
    "sections": [
     "forum/experts"
    ],
    "occurrenceIds": [
-    "eb2564b59f2-o1"
+    "e3aa8118f54-o1"
    ]
   },
   {
@@ -4197,7 +4985,7 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "04:00 م",
+   "timeText": "04:00 م - 04:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
@@ -4224,12 +5012,12 @@
    ],
    "durationMinutes": 10,
    "durationText": "10 دقائق",
-   "timeText": "05:00 م",
+   "timeText": "05:00 م - 05:10 م",
    "place": "مجلس الخبراء — Z40، رقم 2",
    "type": "",
    "track": "",
    "category": "",
-   "speaker": "د. عهود حسنين شركة رحلات ومنافع لخدمات الحج",
+   "speaker": "د . عهود حسنين شركة رحلات ومنافع لخدمات الحج",
    "sections": [
     "forum/experts"
    ],
@@ -4431,9 +5219,9 @@
    ]
   },
   {
-   "id": "e9dec645f78",
+   "id": "e7db90a2fae",
    "dayId": "2026-11-11",
-   "title": "من الوقاية إلى الاستجابة: منظومة الرعاية الصحية لضيوف الرحمن",
+   "title": "دور التكامل المؤسسي في تعزيز الجاهزية والاستجابة للطوارئ في منظومة الأمن والسلامة خلال مواسم الحج والعمرة",
    "start": "10:30",
    "end": "12:00",
    "ranges": [
@@ -4445,16 +5233,16 @@
    "durationMinutes": 90,
    "durationText": "90 دقيقة",
    "timeText": "10:30 ص - 12:00 م",
-   "place": "Room 3",
+   "place": "Room 1",
    "type": "",
    "track": "التمكين والتكامل",
-   "category": "الرعاية الصحية",
+   "category": "الأمن والسلامة",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "e9dec645f78-o1"
+    "e7db90a2fae-o1"
    ]
   },
   {
@@ -4485,9 +5273,9 @@
    ]
   },
   {
-   "id": "e768fbd71de",
+   "id": "e9dec645f78",
    "dayId": "2026-11-11",
-   "title": "الضوابط والتصاريح للتغطيات الإعلامية للحج",
+   "title": "من الوقاية إلى الاستجابة: منظومة الرعاية الصحية لضيوف الرحمن",
    "start": "10:30",
    "end": "12:00",
    "ranges": [
@@ -4499,22 +5287,22 @@
    "durationMinutes": 90,
    "durationText": "90 دقيقة",
    "timeText": "10:30 ص - 12:00 م",
-   "place": "Room 2",
+   "place": "Room 3",
    "type": "",
    "track": "التمكين والتكامل",
-   "category": "الإعلام والتواصل",
+   "category": "الرعاية الصحية",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "e768fbd71de-o1"
+    "e9dec645f78-o1"
    ]
   },
   {
-   "id": "e80f15daf5e",
+   "id": "ea61028430e",
    "dayId": "2026-11-11",
-   "title": "سلامة الغذاء في خدمات الإعاشة: الاشتراطات الرقابية ومسؤوليات مقدمي الخدمة",
+   "title": "المهارات والسمات النفسية لرجال الأمن ودورها في نجاح موسم الحج",
    "start": "12:30",
    "end": "14:30",
    "ranges": [
@@ -4526,43 +5314,16 @@
    "durationMinutes": 120,
    "durationText": "120 دقيقة",
    "timeText": "12:30 م - 02:30 م",
-   "place": "Room 1",
+   "place": "Room 3",
    "type": "",
-   "track": "التمكين والتكامل",
-   "category": "الإعاشة والتغذية",
+   "track": "التنمية والاستدامة",
+   "category": "التدريب والتأهيل والتطوير",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "e80f15daf5e-o1"
-   ]
-  },
-  {
-   "id": "e3fd2ce63b1",
-   "dayId": "2026-11-11",
-   "title": "بطاقة نسك لرحلة حج ميسرة",
-   "start": "12:30",
-   "end": "14:30",
-   "ranges": [
-    {
-     "start": "12:30",
-     "end": "14:30"
-    }
-   ],
-   "durationMinutes": 120,
-   "durationText": "120 دقيقة",
-   "timeText": "12:30 م - 02:30 م",
-   "place": "Room 2",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
-   "speaker": "",
-   "sections": [
-    "workshops"
-   ],
-   "occurrenceIds": [
-    "e3fd2ce63b1-o1"
+    "ea61028430e-o1"
    ]
   },
   {
@@ -4593,6 +5354,60 @@
    ]
   },
   {
+   "id": "e80f15daf5e",
+   "dayId": "2026-11-11",
+   "title": "سلامة الغذاء في خدمات الإعاشة: الاشتراطات الرقابية ومسؤوليات مقدمي الخدمة",
+   "start": "12:30",
+   "end": "14:30",
+   "ranges": [
+    {
+     "start": "12:30",
+     "end": "14:30"
+    }
+   ],
+   "durationMinutes": 120,
+   "durationText": "120 دقيقة",
+   "timeText": "12:30 م - 02:30 م",
+   "place": "Room 1",
+   "type": "",
+   "track": "البنية التحتية والخدمات التشغيلية",
+   "category": "الإعاشة والتغذية",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "e80f15daf5e-o1"
+   ]
+  },
+  {
+   "id": "e3fd2ce63b1",
+   "dayId": "2026-11-11",
+   "title": "بطاقة نسك لرحلة حج ميسرة",
+   "start": "12:30",
+   "end": "14:30",
+   "ranges": [
+    {
+     "start": "12:30",
+     "end": "14:30"
+    }
+   ],
+   "durationMinutes": 120,
+   "durationText": "120 دقيقة",
+   "timeText": "12:30 م - 02:30 م",
+   "place": "Room 2",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "التقنية والابتكار",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "e3fd2ce63b1-o1"
+   ]
+  },
+  {
    "id": "e3ab7ad5078",
    "dayId": "2026-11-11",
    "title": "التخطيط لإعاشة الحجاج - من تقدير الاحتياج إلى إدارة التعاقد وضمان جودة تقديم الخدمة",
@@ -4609,7 +5424,7 @@
    "timeText": "03:30 م - 05:30 م",
    "place": "Room 1",
    "type": "",
-   "track": "التمكين والتكامل",
+   "track": "البنية التحتية والخدمات التشغيلية",
    "category": "الإعاشة والتغذية",
    "speaker": "",
    "sections": [
@@ -4701,60 +5516,6 @@
    ]
   },
   {
-   "id": "e02d34f192c",
-   "dayId": "2026-11-11",
-   "title": "مؤشرات الإنذار المبكر في العمليات التشغيلية للحج: نموذج تنبؤي",
-   "start": "18:00",
-   "end": "19:30",
-   "ranges": [
-    {
-     "start": "18:00",
-     "end": "19:30"
-    }
-   ],
-   "durationMinutes": 90,
-   "durationText": "90 دقيقة",
-   "timeText": "06:00 م - 07:30 م",
-   "place": "Room 2",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
-   "speaker": "",
-   "sections": [
-    "workshops"
-   ],
-   "occurrenceIds": [
-    "e02d34f192c-o1"
-   ]
-  },
-  {
-   "id": "e62e7a836dc",
-   "dayId": "2026-11-11",
-   "title": "حماية بيانات الحجاج في التشغيل: توازن التميز والامتثال",
-   "start": "18:00",
-   "end": "19:30",
-   "ranges": [
-    {
-     "start": "18:00",
-     "end": "19:30"
-    }
-   ],
-   "durationMinutes": 90,
-   "durationText": "90 دقيقة",
-   "timeText": "06:00 م - 07:30 م",
-   "place": "Room 4",
-   "type": "",
-   "track": "التنمية والاستدامة",
-   "category": "التدريب والتأهيل والتطوير",
-   "speaker": "",
-   "sections": [
-    "workshops"
-   ],
-   "occurrenceIds": [
-    "e62e7a836dc-o1"
-   ]
-  },
-  {
    "id": "e17bbeff863",
    "dayId": "2026-11-11",
    "title": "حوكمة سلامة الإعاشة في الحج: نموذج عملي",
@@ -4771,7 +5532,7 @@
    "timeText": "06:00 م - 07:30 م",
    "place": "Room 3",
    "type": "",
-   "track": "التمكين والتكامل",
+   "track": "البنية التحتية والخدمات التشغيلية",
    "category": "الإعاشة والتغذية",
    "speaker": "",
    "sections": [
@@ -4779,6 +5540,33 @@
    ],
    "occurrenceIds": [
     "e17bbeff863-o1"
+   ]
+  },
+  {
+   "id": "e02d34f192c",
+   "dayId": "2026-11-11",
+   "title": "مؤشرات الإنذار المبكر في العمليات التشغيلية للحج: نموذج تنبؤي",
+   "start": "18:00",
+   "end": "19:30",
+   "ranges": [
+    {
+     "start": "18:00",
+     "end": "19:30"
+    }
+   ],
+   "durationMinutes": 90,
+   "durationText": "90 دقيقة",
+   "timeText": "06:00 م - 07:30 م",
+   "place": "Room 2",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "التقنية والابتكار",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "e02d34f192c-o1"
    ]
   },
   {
@@ -4809,9 +5597,9 @@
    ]
   },
   {
-   "id": "e9488841cc1",
+   "id": "eee45a34a80",
    "dayId": "2026-11-11",
-   "title": "كيف نرفع وعي الحجاج القادمين عبر الجو؟",
+   "title": "صناعة محتوى الحج",
    "start": "20:00",
    "end": "21:00",
    "ranges": [
@@ -4823,43 +5611,16 @@
    "durationMinutes": 60,
    "durationText": "60 دقيقة",
    "timeText": "08:00 م - 09:00 م",
-   "place": "Room 1",
+   "place": "Room 2",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "النقل والخدمات اللوجستية",
+   "track": "التمكين والتكامل",
+   "category": "الإعلام والتواصل",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "e9488841cc1-o1"
-   ]
-  },
-  {
-   "id": "e5a86cadde7",
-   "dayId": "2026-11-11",
-   "title": "من منظور ضيف الرحمن: هندسة التجربة واستدامة الأثر في عصر الذكاء الاصطناعي",
-   "start": "20:00",
-   "end": "21:00",
-   "ranges": [
-    {
-     "start": "20:00",
-     "end": "21:00"
-    }
-   ],
-   "durationMinutes": 60,
-   "durationText": "60 دقيقة",
-   "timeText": "08:00 م - 09:00 م",
-   "place": "Room 3",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
-   "speaker": "",
-   "sections": [
-    "workshops"
-   ],
-   "occurrenceIds": [
-    "e5a86cadde7-o1"
+    "eee45a34a80-o1"
    ]
   },
   {
@@ -4890,9 +5651,9 @@
    ]
   },
   {
-   "id": "eee45a34a80",
+   "id": "e5a86cadde7",
    "dayId": "2026-11-11",
-   "title": "صناعة محتوى الحج",
+   "title": "من منظور ضيف الرحمن: هندسة التجربة واستدامة الأثر في عصر الذكاء الاصطناعي",
    "start": "20:00",
    "end": "21:00",
    "ranges": [
@@ -4904,20 +5665,77 @@
    "durationMinutes": 60,
    "durationText": "60 دقيقة",
    "timeText": "08:00 م - 09:00 م",
-   "place": "Room 2",
+   "place": "Room 3",
    "type": "",
    "track": "التمكين والتكامل",
-   "category": "الإعلام والتواصل",
+   "category": "التقنية والابتكار",
    "speaker": "",
    "sections": [
     "workshops"
    ],
    "occurrenceIds": [
-    "eee45a34a80-o1"
+    "e5a86cadde7-o1"
+   ]
+  },
+  {
+   "id": "e9488841cc1",
+   "dayId": "2026-11-11",
+   "title": "كيف نرفع وعي الحجاج القادمين عبر الجو؟",
+   "start": "20:00",
+   "end": "21:00",
+   "ranges": [
+    {
+     "start": "20:00",
+     "end": "21:00"
+    }
+   ],
+   "durationMinutes": 60,
+   "durationText": "60 دقيقة",
+   "timeText": "08:00 م - 09:00 م",
+   "place": "Room 1",
+   "type": "",
+   "track": "البنية التحتية والخدمات التشغيلية",
+   "category": "النقل والخدمات اللوجستية",
+   "speaker": "",
+   "sections": [
+    "workshops"
+   ],
+   "occurrenceIds": [
+    "e9488841cc1-o1"
    ]
   }
  ],
  "occurrences": [
+  {
+   "id": "ea5e618e384-o1",
+   "eventId": "ea5e618e384",
+   "dayId": "2026-11-08",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "01:00 م - 01:45 م",
+   "durationText": "45 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e87b9e1dafc-o1",
+   "eventId": "e87b9e1dafc",
+   "dayId": "2026-11-08",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "01:45 م - 02:30 م",
+   "durationText": "45 دقيقة",
+   "order": 0
+  },
   {
    "id": "eaf566a2e5e-o1",
    "eventId": "eaf566a2e5e",
@@ -4949,12 +5767,12 @@
    "order": 1
   },
   {
-   "id": "e2df5fd93c5-o1",
-   "eventId": "e2df5fd93c5",
+   "id": "e71d67725fe-o1",
+   "eventId": "e71d67725fe",
    "dayId": "2026-11-08",
    "sectionId": "majlis",
    "subsectionId": null,
-   "place": "مسرح مجلس الحج (ملتقى التوعية والتدريب)",
+   "place": "مسرح مجلس الحج",
    "type": "",
    "track": "",
    "category": "",
@@ -4964,49 +5782,19 @@
    "order": 0
   },
   {
-   "id": "e2df5fd93c5-o2",
-   "eventId": "e2df5fd93c5",
-   "dayId": "2026-11-08",
-   "sectionId": "forum",
-   "subsectionId": "majlis_forum",
-   "place": "مسرح مجلس الحج - خارج منطقة الملتقى",
-   "type": "",
-   "track": "",
-   "category": "",
-   "speaker": "",
-   "timeText": "02:45 م - 03:00 م",
-   "durationText": "15 دقيقة",
-   "order": 1
-  },
-  {
-   "id": "e501b8a012f-o1",
-   "eventId": "e501b8a012f",
+   "id": "ef9f85bc855-o1",
+   "eventId": "ef9f85bc855",
    "dayId": "2026-11-08",
    "sectionId": "majlis",
    "subsectionId": null,
-   "place": "مسرح مجلس الحج (ملتقى التوعية والتدريب)",
+   "place": "مسرح مجلس الحج",
    "type": "",
    "track": "",
    "category": "",
    "speaker": "",
-   "timeText": "03:00 م - 03:15 م",
-   "durationText": "15 دقيقة",
+   "timeText": "03:00 م - 03:20 م",
+   "durationText": "20 دقيقة",
    "order": 0
-  },
-  {
-   "id": "e501b8a012f-o2",
-   "eventId": "e501b8a012f",
-   "dayId": "2026-11-08",
-   "sectionId": "forum",
-   "subsectionId": "majlis_forum",
-   "place": "مسرح مجلس الحج - خارج منطقة الملتقى",
-   "type": "",
-   "track": "",
-   "category": "",
-   "speaker": "",
-   "timeText": "03:00 م - 03:15 م",
-   "durationText": "15 دقيقة",
-   "order": 1
   },
   {
    "id": "efac7cedf05-o1",
@@ -5019,8 +5807,8 @@
    "track": "",
    "category": "",
    "speaker": "",
-   "timeText": "04:00 م - 04:10 م",
-   "durationText": "10 دقائق",
+   "timeText": "04:00 م - 04:30 م",
+   "durationText": "30 دقائق",
    "order": 0
   },
   {
@@ -5034,7 +5822,7 @@
    "track": "",
    "category": "",
    "speaker": "",
-   "timeText": "04:10 م - 04:30 م",
+   "timeText": "04:30 م - 04:50 م",
    "durationText": "20 دقيقة",
    "order": 0
   },
@@ -5049,23 +5837,8 @@
    "track": "",
    "category": "",
    "speaker": "",
-   "timeText": "04:30 م - 04:40 م",
+   "timeText": "04:50 م - 05:00 م",
    "durationText": "10 دقائق",
-   "order": 0
-  },
-  {
-   "id": "e71d67725fe-o1",
-   "eventId": "e71d67725fe",
-   "dayId": "2026-11-08",
-   "sectionId": "majlis",
-   "subsectionId": null,
-   "place": "مسرح مجلس الحج",
-   "type": "",
-   "track": "",
-   "category": "",
-   "speaker": "",
-   "timeText": "04:40 م - 05:00 م",
-   "durationText": "20 دقيقة",
    "order": 0
   },
   {
@@ -5114,15 +5887,15 @@
    "order": 0
   },
   {
-   "id": "eb41189766b-o1",
-   "eventId": "eb41189766b",
+   "id": "e8e3b94133c-o1",
+   "eventId": "e8e3b94133c",
    "dayId": "2026-11-08",
    "sectionId": "workshops",
    "subsectionId": null,
    "place": "Room 3",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
+   "track": "التنمية والاستدامة",
+   "category": "إثراء التجربة",
    "speaker": "",
    "timeText": "10:30 ص - 11:30 ص",
    "durationText": "60 دقيقة",
@@ -5138,6 +5911,21 @@
    "type": "",
    "track": "التمكين والتكامل",
    "category": "الإعلام والتواصل",
+   "speaker": "",
+   "timeText": "10:30 ص - 11:30 ص",
+   "durationText": "60 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e36df9b1d3c-o1",
+   "eventId": "e36df9b1d3c",
+   "dayId": "2026-11-08",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 1",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "الأمن والسلامة",
    "speaker": "",
    "timeText": "10:30 ص - 11:30 ص",
    "durationText": "60 دقيقة",
@@ -5166,7 +5954,7 @@
    "subsectionId": null,
    "place": "Room 1",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
    "timeText": "12:30 م - 01:30 م",
@@ -5181,7 +5969,7 @@
    "subsectionId": null,
    "place": "Room 2",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
    "timeText": "12:30 م - 01:30 م",
@@ -5219,6 +6007,21 @@
    "order": 0
   },
   {
+   "id": "e1d007c17cd-o1",
+   "eventId": "e1d007c17cd",
+   "dayId": "2026-11-08",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 1",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "الرعاية الصحية",
+   "speaker": "",
+   "timeText": "03:30 م - 04:30 م",
+   "durationText": "60 دقيقة",
+   "order": 0
+  },
+  {
    "id": "eea5abadde3-o1",
    "eventId": "eea5abadde3",
    "dayId": "2026-11-08",
@@ -5230,6 +6033,36 @@
    "category": "الإعلام والتواصل",
    "speaker": "",
    "timeText": "06:00 م - 07:00 م",
+   "durationText": "60 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "ee3026149b6-o1",
+   "eventId": "ee3026149b6",
+   "dayId": "2026-11-08",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 4",
+   "type": "",
+   "track": "التنمية والاستدامة",
+   "category": "القطاع الثالث",
+   "speaker": "",
+   "timeText": "06:00 م - 07:00 م",
+   "durationText": "60 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "ea5f5e3bb2b-o1",
+   "eventId": "ea5f5e3bb2b",
+   "dayId": "2026-11-08",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 2",
+   "type": "",
+   "track": "التنمية والاستدامة",
+   "category": "القطاع الثالث",
+   "speaker": "",
+   "timeText": "08:00 م - 09:00 م",
    "durationText": "60 دقيقة",
    "order": 0
   },
@@ -5304,7 +6137,7 @@
    "track": "التمكين والتكامل",
    "category": "",
    "speaker": "",
-   "timeText": "02:00 م - 03:00 م",
+   "timeText": "01:55 م - 02:55 م",
    "durationText": "60 دقيقة",
    "order": 0
   },
@@ -5365,7 +6198,7 @@
    "category": "",
    "speaker": "",
    "timeText": "05:00 م - 05:10 م",
-   "durationText": "10 دقائق",
+   "durationText": "10 دقيقة",
    "order": 0
   },
   {
@@ -5380,7 +6213,7 @@
    "category": "",
    "speaker": "",
    "timeText": "05:00 م - 05:10 م",
-   "durationText": "",
+   "durationText": "10 دقيقة",
    "order": 1
   },
   {
@@ -5410,7 +6243,7 @@
    "category": "",
    "speaker": "",
    "timeText": "05:20 م - 05:45 م",
-   "durationText": "",
+   "durationText": "25 دقيقة",
    "order": 1
   },
   {
@@ -5440,7 +6273,7 @@
    "category": "",
    "speaker": "",
    "timeText": "06:00 م - 06:30 م",
-   "durationText": "",
+   "durationText": "30 دقيقة",
    "order": 1
   },
   {
@@ -5450,7 +6283,7 @@
    "sectionId": "conference",
    "subsectionId": null,
    "place": "المسرح الرئيسي (ملتقى التوعية والتدريب)",
-   "type": "جلسة رئيسية",
+   "type": "جلسة رئيسة",
    "track": "التمكين والتكامل",
    "category": "",
    "speaker": "",
@@ -5465,12 +6298,12 @@
    "sectionId": "forum",
    "subsectionId": "main",
    "place": "المسرح الرئيسي - خارج منطقة الملتقى",
-   "type": "جلسة رئيسية",
+   "type": "جلسة رئيسة",
    "track": "التمكين والتكامل",
    "category": "",
    "speaker": "",
    "timeText": "06:30 م - 07:10 م",
-   "durationText": "",
+   "durationText": "40 دقيقة",
    "order": 1
   },
   {
@@ -5500,7 +6333,7 @@
    "category": "",
    "speaker": "",
    "timeText": "07:10 م - 07:40 م",
-   "durationText": "",
+   "durationText": "30 دقيقة",
    "order": 1
   },
   {
@@ -5530,67 +6363,7 @@
    "category": "",
    "speaker": "",
    "timeText": "07:40 م - 08:00 م",
-   "durationText": "",
-   "order": 1
-  },
-  {
-   "id": "e7c978a560c-o1",
-   "eventId": "e7c978a560c",
-   "dayId": "2026-11-09",
-   "sectionId": "majlis",
-   "subsectionId": null,
-   "place": "مسرح مجلس الحج (ملتقى التوعية والتدريب)",
-   "type": "",
-   "track": "",
-   "category": "",
-   "speaker": "",
-   "timeText": "02:30 م - 02:45 م",
-   "durationText": "15 دقيقة",
-   "order": 0
-  },
-  {
-   "id": "e7c978a560c-o2",
-   "eventId": "e7c978a560c",
-   "dayId": "2026-11-09",
-   "sectionId": "forum",
-   "subsectionId": "majlis_forum",
-   "place": "مسرح مجلس الحج - خارج منطقة الملتقى",
-   "type": "",
-   "track": "",
-   "category": "",
-   "speaker": "",
-   "timeText": "02:30 م - 02:45 م",
-   "durationText": "15 دقيقة",
-   "order": 1
-  },
-  {
-   "id": "e37d9ebda8a-o1",
-   "eventId": "e37d9ebda8a",
-   "dayId": "2026-11-09",
-   "sectionId": "majlis",
-   "subsectionId": null,
-   "place": "مسرح مجلس الحج (ملتقى التوعية والتدريب)",
-   "type": "",
-   "track": "",
-   "category": "",
-   "speaker": "",
-   "timeText": "02:45 م - 03:00 م",
-   "durationText": "15 دقيقة",
-   "order": 0
-  },
-  {
-   "id": "e37d9ebda8a-o2",
-   "eventId": "e37d9ebda8a",
-   "dayId": "2026-11-09",
-   "sectionId": "forum",
-   "subsectionId": "majlis_forum",
-   "place": "مسرح مجلس الحج - خارج منطقة الملتقى",
-   "type": "",
-   "track": "",
-   "category": "",
-   "speaker": "",
-   "timeText": "02:45 م - 03:00 م",
-   "durationText": "15 دقيقة",
+   "durationText": "20 دقيقة",
    "order": 1
   },
   {
@@ -5695,7 +6468,37 @@
    "category": "",
    "speaker": "",
    "timeText": "05:10 م - 05:20 م",
-   "durationText": "",
+   "durationText": "10 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e7c978a560c-o1",
+   "eventId": "e7c978a560c",
+   "dayId": "2026-11-09",
+   "sectionId": "forum",
+   "subsectionId": "majlis_forum",
+   "place": "مسرح مجلس الحج - خارج منطقة الملتقى",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "02:30 م - 02:45 م",
+   "durationText": "15 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e37d9ebda8a-o1",
+   "eventId": "e37d9ebda8a",
+   "dayId": "2026-11-09",
+   "sectionId": "forum",
+   "subsectionId": "majlis_forum",
+   "place": "مسرح مجلس الحج - خارج منطقة الملتقى",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "02:45 م - 03:00 م",
+   "durationText": "15 دقيقة",
    "order": 0
   },
   {
@@ -5709,7 +6512,7 @@
    "track": "",
    "category": "",
    "speaker": "سعيد مسعد الوافي مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
-   "timeText": "12:00 م",
+   "timeText": "12:00 م - 12:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -5724,7 +6527,7 @@
    "track": "",
    "category": "",
    "speaker": "آلاء سامي أولياء مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
-   "timeText": "01:00 م",
+   "timeText": "01:00 م - 01:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -5739,13 +6542,13 @@
    "track": "",
    "category": "",
    "speaker": "رحاب عبدالرزاق مال شركة رحلات ومنافع لخدمات الحج",
-   "timeText": "02:00 م",
+   "timeText": "02:00 م - 02:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
   {
-   "id": "e3aa8118f54-o1",
-   "eventId": "e3aa8118f54",
+   "id": "eb2564b59f2-o1",
+   "eventId": "eb2564b59f2",
    "dayId": "2026-11-09",
    "sectionId": "forum",
    "subsectionId": "experts",
@@ -5753,8 +6556,8 @@
    "type": "",
    "track": "",
    "category": "",
-   "speaker": "أفنان صديق قماش مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
-   "timeText": "03:00 م",
+   "speaker": "د . أحمد بانوير شركة قيام",
+   "timeText": "03:00 م - 03:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -5768,8 +6571,8 @@
    "type": "",
    "track": "",
    "category": "",
-   "speaker": "حسين باكر ب شات شركة قيام",
-   "timeText": "04:00 م",
+   "speaker": "حسين باكربشات شركة قيام",
+   "timeText": "04:00 م - 04:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -5784,7 +6587,7 @@
    "track": "",
    "category": "",
    "speaker": "محمد الصحفي وزارة الحج والعمرة",
-   "timeText": "05:00 م",
+   "timeText": "05:00 م - 05:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -5894,18 +6697,18 @@
    "order": 0
   },
   {
-   "id": "e2709278dd0-o1",
-   "eventId": "e2709278dd0",
+   "id": "e097f46b4ba-o1",
+   "eventId": "e097f46b4ba",
    "dayId": "2026-11-09",
-   "sectionId": "forum",
-   "subsectionId": "special",
-   "place": "قاعة ملتقى مكاتب شؤون الحجاج",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 1",
    "type": "",
-   "track": "",
-   "category": "",
+   "track": "البنية التحتية والخدمات التشغيلية",
+   "category": "البنى التحتية وإدارة المرافق",
    "speaker": "",
-   "timeText": "دعوة خاصة",
-   "durationText": "",
+   "timeText": "10:30 ص - 12:00 م",
+   "durationText": "90 دقيقة",
    "order": 0
   },
   {
@@ -5918,21 +6721,6 @@
    "type": "",
    "track": "التمكين والتكامل",
    "category": "الإعلام والتواصل",
-   "speaker": "",
-   "timeText": "10:30 ص - 12:00 م",
-   "durationText": "90 دقيقة",
-   "order": 0
-  },
-  {
-   "id": "eea93d1d88d-o1",
-   "eventId": "eea93d1d88d",
-   "dayId": "2026-11-09",
-   "sectionId": "workshops",
-   "subsectionId": null,
-   "place": "Room 3",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "الإسكان والضيافة",
    "speaker": "",
    "timeText": "10:30 ص - 12:00 م",
    "durationText": "90 دقيقة",
@@ -5954,15 +6742,15 @@
    "order": 0
   },
   {
-   "id": "e097f46b4ba-o1",
-   "eventId": "e097f46b4ba",
+   "id": "eea93d1d88d-o1",
+   "eventId": "eea93d1d88d",
    "dayId": "2026-11-09",
    "sectionId": "workshops",
    "subsectionId": null,
-   "place": "Room 1",
+   "place": "Room 3",
    "type": "",
    "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "البنى التحتية وإدارة المرافق",
+   "category": "الإسكان والضيافة",
    "speaker": "",
    "timeText": "10:30 ص - 12:00 م",
    "durationText": "90 دقيقة",
@@ -5991,7 +6779,7 @@
    "subsectionId": null,
    "place": "Room 2",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
    "timeText": "12:30 م - 02:30 م",
@@ -6014,12 +6802,42 @@
    "order": 0
   },
   {
-   "id": "edbcb6da769-o1",
-   "eventId": "edbcb6da769",
+   "id": "ec7d51736b5-o1",
+   "eventId": "ec7d51736b5",
    "dayId": "2026-11-09",
    "sectionId": "workshops",
    "subsectionId": null,
    "place": "Room 3",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "الأمن والسلامة",
+   "speaker": "",
+   "timeText": "12:30 م - 02:30 م",
+   "durationText": "120 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e0ebc993280-o1",
+   "eventId": "e0ebc993280",
+   "dayId": "2026-11-09",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 1",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "التقنية والابتكار",
+   "speaker": "",
+   "timeText": "03:30 م - 05:30 م",
+   "durationText": "120 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "ed01b87b017-o1",
+   "eventId": "ed01b87b017",
+   "dayId": "2026-11-09",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 2",
    "type": "",
    "track": "التنمية والاستدامة",
    "category": "التدريب والتأهيل والتطوير",
@@ -6044,12 +6862,12 @@
    "order": 0
   },
   {
-   "id": "ed01b87b017-o1",
-   "eventId": "ed01b87b017",
+   "id": "edbcb6da769-o1",
+   "eventId": "edbcb6da769",
    "dayId": "2026-11-09",
    "sectionId": "workshops",
    "subsectionId": null,
-   "place": "Room 2",
+   "place": "Room 3",
    "type": "",
    "track": "التنمية والاستدامة",
    "category": "التدريب والتأهيل والتطوير",
@@ -6059,18 +6877,33 @@
    "order": 0
   },
   {
-   "id": "e0ebc993280-o1",
-   "eventId": "e0ebc993280",
+   "id": "e128492f5b1-o1",
+   "eventId": "e128492f5b1",
    "dayId": "2026-11-09",
    "sectionId": "workshops",
    "subsectionId": null,
-   "place": "Room 1",
+   "place": "Room 4",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
-   "timeText": "03:30 م - 05:30 م",
-   "durationText": "120 دقيقة",
+   "timeText": "06:00 م - 07:30 م",
+   "durationText": "90 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e506e36cb4d-o1",
+   "eventId": "e506e36cb4d",
+   "dayId": "2026-11-09",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 3",
+   "type": "",
+   "track": "التنمية والاستدامة",
+   "category": "إثراء التجربة",
+   "speaker": "",
+   "timeText": "06:00 م - 07:30 م",
+   "durationText": "90 دقيقة",
    "order": 0
   },
   {
@@ -6081,7 +6914,7 @@
    "subsectionId": null,
    "place": "Room 1",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
    "timeText": "06:00 م - 07:30 م",
@@ -6104,21 +6937,6 @@
    "order": 0
   },
   {
-   "id": "e506e36cb4d-o1",
-   "eventId": "e506e36cb4d",
-   "dayId": "2026-11-09",
-   "sectionId": "workshops",
-   "subsectionId": null,
-   "place": "Room 3",
-   "type": "",
-   "track": "التنمية والاستدامة",
-   "category": "إثراء التجربة",
-   "speaker": "",
-   "timeText": "06:00 م - 07:30 م",
-   "durationText": "90 دقيقة",
-   "order": 0
-  },
-  {
    "id": "ebd159cb013-o1",
    "eventId": "ebd159cb013",
    "dayId": "2026-11-09",
@@ -6128,36 +6946,6 @@
    "type": "",
    "track": "البنية التحتية والخدمات التشغيلية",
    "category": "الإسكان والضيافة",
-   "speaker": "",
-   "timeText": "08:00 م - 09:00 م",
-   "durationText": "60 دقيقة",
-   "order": 0
-  },
-  {
-   "id": "ef3373c1bb0-o1",
-   "eventId": "ef3373c1bb0",
-   "dayId": "2026-11-09",
-   "sectionId": "workshops",
-   "subsectionId": null,
-   "place": "Room 2",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "النقل والخدمات اللوجستية",
-   "speaker": "",
-   "timeText": "08:00 م - 09:00 م",
-   "durationText": "60 دقيقة",
-   "order": 0
-  },
-  {
-   "id": "eec02aed2d0-o1",
-   "eventId": "eec02aed2d0",
-   "dayId": "2026-11-09",
-   "sectionId": "workshops",
-   "subsectionId": null,
-   "place": "Room 3",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
    "speaker": "",
    "timeText": "08:00 م - 09:00 م",
    "durationText": "60 دقيقة",
@@ -6179,6 +6967,36 @@
    "order": 0
   },
   {
+   "id": "eec02aed2d0-o1",
+   "eventId": "eec02aed2d0",
+   "dayId": "2026-11-09",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 3",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "التقنية والابتكار",
+   "speaker": "",
+   "timeText": "08:00 م - 09:00 م",
+   "durationText": "60 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "ef3373c1bb0-o1",
+   "eventId": "ef3373c1bb0",
+   "dayId": "2026-11-09",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 2",
+   "type": "",
+   "track": "البنية التحتية والخدمات التشغيلية",
+   "category": "النقل والخدمات اللوجستية",
+   "speaker": "",
+   "timeText": "08:00 م - 09:00 م",
+   "durationText": "60 دقيقة",
+   "order": 0
+  },
+  {
    "id": "e66eb434f86-o1",
    "eventId": "e66eb434f86",
    "dayId": "2026-11-10",
@@ -6186,11 +7004,11 @@
    "subsectionId": null,
    "place": "المسرح الرئيسي للمؤتمر",
    "type": "كلمة رئيسية",
-   "track": "التنمية والاستدامة",
+   "track": "التنمية والإستدامة",
    "category": "",
    "speaker": "",
    "timeText": "10:30 ص - 10:40 ص",
-   "durationText": "10 دقائق",
+   "durationText": "10 دقيقة",
    "order": 0
   },
   {
@@ -6206,6 +7024,21 @@
    "speaker": "",
    "timeText": "10:40 ص - 11:20 ص",
    "durationText": "40 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "ed6635b6133-o1",
+   "eventId": "ed6635b6133",
+   "dayId": "2026-11-10",
+   "sectionId": "conference",
+   "subsectionId": null,
+   "place": "المسرح الرئيسي للمؤتمر",
+   "type": "جلسة رئيسية",
+   "track": "التمكين والتكامل",
+   "category": "",
+   "speaker": "",
+   "timeText": "11:20 ص - 12:05 م",
+   "durationText": "45 دقيقة",
    "order": 0
   },
   {
@@ -6235,7 +7068,7 @@
    "category": "",
    "speaker": "",
    "timeText": "12:55 م - 01:05 م",
-   "durationText": "10 دقائق",
+   "durationText": "10 دقيقة",
    "order": 0
   },
   {
@@ -6325,7 +7158,7 @@
    "category": "",
    "speaker": "",
    "timeText": "03:50 م - 04:00 م",
-   "durationText": "10 دقائق",
+   "durationText": "10 دقيقة",
    "order": 0
   },
   {
@@ -6386,6 +7219,66 @@
    "speaker": "",
    "timeText": "05:15 م - 05:35 م",
    "durationText": "20 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "ebe7c679207-o1",
+   "eventId": "ebe7c679207",
+   "dayId": "2026-11-10",
+   "sectionId": "conference",
+   "subsectionId": null,
+   "place": "المسرح الرئيسي للمؤتمر",
+   "type": "جلسة خاصة",
+   "track": "التمكين والتكامل",
+   "category": "",
+   "speaker": "",
+   "timeText": "06:30 م - 06:45 م",
+   "durationText": "15 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e61733aa9aa-o1",
+   "eventId": "e61733aa9aa",
+   "dayId": "2026-11-10",
+   "sectionId": "conference",
+   "subsectionId": null,
+   "place": "المسرح الرئيسي للمؤتمر",
+   "type": "جلسة خاصة",
+   "track": "التمكين والتكامل",
+   "category": "",
+   "speaker": "",
+   "timeText": "06:45 م - 08:30 م",
+   "durationText": "105 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e81552b1717-o1",
+   "eventId": "e81552b1717",
+   "dayId": "2026-11-10",
+   "sectionId": "conference",
+   "subsectionId": null,
+   "place": "المسرح الرئيسي للمؤتمر",
+   "type": "جلسة خاصة",
+   "track": "التمكين والتكامل",
+   "category": "",
+   "speaker": "",
+   "timeText": "06:45 م - 08:30 م",
+   "durationText": "105 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e2ca688c858-o1",
+   "eventId": "e2ca688c858",
+   "dayId": "2026-11-10",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "01:00 م - 01:45 م",
+   "durationText": "45 دقيقة",
    "order": 0
   },
   {
@@ -6509,21 +7402,6 @@
    "order": 0
   },
   {
-   "id": "e6f48f913fc-o1",
-   "eventId": "e6f48f913fc",
-   "dayId": "2026-11-10",
-   "sectionId": "majlis",
-   "subsectionId": null,
-   "place": "مسرح مجلس الحج",
-   "type": "",
-   "track": "",
-   "category": "",
-   "speaker": "",
-   "timeText": "05:30 م - 05:40 م",
-   "durationText": "10 دقائق",
-   "order": 0
-  },
-  {
    "id": "e4a7a9e72c4-o1",
    "eventId": "e4a7a9e72c4",
    "dayId": "2026-11-10",
@@ -6609,7 +7487,7 @@
    "track": "",
    "category": "",
    "speaker": "خالد سيوطي فلمبان مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
-   "timeText": "12:00 م",
+   "timeText": "12:00 م - 12:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -6624,7 +7502,7 @@
    "track": "",
    "category": "",
    "speaker": "وجدان العتيبي الإعلام والاتصال المؤسسي – وزارة الحج والعمرة",
-   "timeText": "01:00 م",
+   "timeText": "01:00 م - 01:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -6639,7 +7517,7 @@
    "track": "",
    "category": "",
    "speaker": "عبدالمجيد الشميري شركة الراجحي للخدمات التجارية المساندة",
-   "timeText": "02:00 م",
+   "timeText": "02:00 م - 02:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -6653,8 +7531,8 @@
    "type": "",
    "track": "",
    "category": "",
-   "speaker": "أمل عبدالله الزهراني – مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة سندس الشغدلي – شركة علم",
-   "timeText": "03:00 م",
+   "speaker": "أمل عبدهللا الزهراني – مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة سندس الشغدلي – شركة علم",
+   "timeText": "03:00 م - 03:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -6669,7 +7547,7 @@
    "track": "",
    "category": "",
    "speaker": "شهد سعد البلوي – مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة مرام علي الشهري – شركة علم",
-   "timeText": "04:00 م",
+   "timeText": "04:00 م - 04:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -6684,7 +7562,7 @@
    "track": "",
    "category": "",
    "speaker": "فاطمة خيمي مركز توعية ضيوف الرحمن",
-   "timeText": "05:00 م",
+   "timeText": "05:00 م - 05:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -6699,7 +7577,7 @@
    "track": "",
    "category": "",
    "speaker": "علاء بخش وزارة الحج والعمرة",
-   "timeText": "06:00 م",
+   "timeText": "06:00 م - 06:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -6831,8 +7709,8 @@
    "subsectionId": null,
    "place": "Room 3",
    "type": "",
-   "track": "التنمية والاستدامة",
-   "category": "التدريب والتأهيل والتطوير",
+   "track": "التمكين والتكامل",
+   "category": "الإعلام والتواصل",
    "speaker": "",
    "timeText": "10:30 ص - 12:00 م",
    "durationText": "90 دقيقة",
@@ -6869,15 +7747,30 @@
    "order": 0
   },
   {
-   "id": "efb37448edd-o1",
-   "eventId": "efb37448edd",
+   "id": "ead1c969cfb-o1",
+   "eventId": "ead1c969cfb",
    "dayId": "2026-11-10",
    "sectionId": "workshops",
    "subsectionId": null,
-   "place": "Room 4",
+   "place": "Room 1",
+   "type": "",
+   "track": "البنية التحتية والخدمات التشغيلية",
+   "category": "النقل والخدمات اللوجستية",
+   "speaker": "",
+   "timeText": "12:30 م - 02:30 م",
+   "durationText": "120 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e3ea108c5df-o1",
+   "eventId": "e3ea108c5df",
+   "dayId": "2026-11-10",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 2",
    "type": "",
    "track": "التمكين والتكامل",
-   "category": "الإعلام والتواصل",
+   "category": "التقنية والابتكار",
    "speaker": "",
    "timeText": "12:30 م - 02:30 م",
    "durationText": "120 دقيقة",
@@ -6899,60 +7792,30 @@
    "order": 0
   },
   {
-   "id": "e3ea108c5df-o1",
-   "eventId": "e3ea108c5df",
+   "id": "efc8b8f2999-o1",
+   "eventId": "efc8b8f2999",
    "dayId": "2026-11-10",
    "sectionId": "workshops",
    "subsectionId": null,
-   "place": "Room 2",
+   "place": "Room 4",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
+   "track": "التمكين والتكامل",
+   "category": "الإعلام والتواصل",
    "speaker": "",
    "timeText": "12:30 م - 02:30 م",
    "durationText": "120 دقيقة",
    "order": 0
   },
   {
-   "id": "ead1c969cfb-o1",
-   "eventId": "ead1c969cfb",
+   "id": "e2685021921-o1",
+   "eventId": "e2685021921",
    "dayId": "2026-11-10",
    "sectionId": "workshops",
    "subsectionId": null,
-   "place": "Room 1",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "النقل والخدمات اللوجستية",
-   "speaker": "",
-   "timeText": "12:30 م - 02:30 م",
-   "durationText": "120 دقيقة",
-   "order": 0
-  },
-  {
-   "id": "e1a2a9a1367-o1",
-   "eventId": "e1a2a9a1367",
-   "dayId": "2026-11-10",
-   "sectionId": "workshops",
-   "subsectionId": null,
-   "place": "Room 1",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
-   "speaker": "",
-   "timeText": "03:30 م - 05:30 م",
-   "durationText": "120 دقيقة",
-   "order": 0
-  },
-  {
-   "id": "e7a40870d2a-o1",
-   "eventId": "e7a40870d2a",
-   "dayId": "2026-11-10",
-   "sectionId": "workshops",
-   "subsectionId": null,
-   "place": "Room 2",
+   "place": "Room 4",
    "type": "",
    "track": "التنمية والاستدامة",
-   "category": "التدريب والتأهيل والتطوير",
+   "category": "القطاع الثالث",
    "speaker": "",
    "timeText": "03:30 م - 05:30 م",
    "durationText": "120 دقيقة",
@@ -6974,15 +7837,30 @@
    "order": 0
   },
   {
-   "id": "e2685021921-o1",
-   "eventId": "e2685021921",
+   "id": "e7a40870d2a-o1",
+   "eventId": "e7a40870d2a",
    "dayId": "2026-11-10",
    "sectionId": "workshops",
    "subsectionId": null,
-   "place": "Room 4",
+   "place": "Room 2",
    "type": "",
    "track": "التنمية والاستدامة",
-   "category": "القطاع الثالث",
+   "category": "التدريب والتأهيل والتطوير",
+   "speaker": "",
+   "timeText": "03:30 م - 05:30 م",
+   "durationText": "120 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e1a2a9a1367-o1",
+   "eventId": "e1a2a9a1367",
+   "dayId": "2026-11-10",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 1",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "التقنية والابتكار",
    "speaker": "",
    "timeText": "03:30 م - 05:30 م",
    "durationText": "120 دقيقة",
@@ -7019,6 +7897,21 @@
    "order": 0
   },
   {
+   "id": "e2709278dd0-o1",
+   "eventId": "e2709278dd0",
+   "dayId": "2026-11-10",
+   "sectionId": "forum",
+   "subsectionId": "special",
+   "place": "قاعة ملتقى مكاتب شؤون الحجاج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "04:00 م - 05:30 م",
+   "durationText": "90 دقيقة",
+   "order": 0
+  },
+  {
    "id": "e9c8b7a2485-o1",
    "eventId": "e9c8b7a2485",
    "dayId": "2026-11-10",
@@ -7026,7 +7919,7 @@
    "subsectionId": null,
    "place": "Room 3",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
    "speaker": "",
    "timeText": "06:00 م - 07:30 م",
@@ -7034,15 +7927,15 @@
    "order": 0
   },
   {
-   "id": "efc8b8f2999-o1",
-   "eventId": "efc8b8f2999",
+   "id": "e3f196d9a8d-o1",
+   "eventId": "e3f196d9a8d",
    "dayId": "2026-11-10",
    "sectionId": "workshops",
    "subsectionId": null,
    "place": "Room 4",
    "type": "",
-   "track": "التنمية والاستدامة",
-   "category": "التدريب والتأهيل والتطوير",
+   "track": "التمكين والتكامل",
+   "category": "الإعلام والتواصل",
    "speaker": "",
    "timeText": "06:00 م - 07:30 م",
    "durationText": "90 دقيقة",
@@ -7086,8 +7979,23 @@
    "subsectionId": null,
    "place": "Room 4",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
+   "track": "التمكين والتكامل",
    "category": "التقنية والابتكار",
+   "speaker": "",
+   "timeText": "08:00 م - 09:00 م",
+   "durationText": "60 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e956515cbeb-o1",
+   "eventId": "e956515cbeb",
+   "dayId": "2026-11-10",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 2",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "الأمن والسلامة",
    "speaker": "",
    "timeText": "08:00 م - 09:00 م",
    "durationText": "60 دقيقة",
@@ -7104,7 +8012,7 @@
    "track": "التمكين والتكامل",
    "category": "",
    "speaker": "",
-   "timeText": "10:40 ص - 11:20 ص",
+   "timeText": "11:00 ص - 11:40 ص",
    "durationText": "40 دقيقة",
    "order": 0
   },
@@ -7119,7 +8027,7 @@
    "track": "التنمية والاستدامة",
    "category": "",
    "speaker": "",
-   "timeText": "11:20 ص - 11:40 ص",
+   "timeText": "11:40 ص - 12:00 م",
    "durationText": "20 دقيقة",
    "order": 0
   },
@@ -7139,6 +8047,21 @@
    "order": 0
   },
   {
+   "id": "e9714ec2fa8-o1",
+   "eventId": "e9714ec2fa8",
+   "dayId": "2026-11-11",
+   "sectionId": "conference",
+   "subsectionId": null,
+   "place": "المسرح الرئيسي للمؤتمر",
+   "type": "جلسة حوارية",
+   "track": "التمكين والتكامل",
+   "category": "",
+   "speaker": "",
+   "timeText": "12:30 م - 12:50 م",
+   "durationText": "20 دقيقة",
+   "order": 0
+  },
+  {
    "id": "e05eb01ed0a-o1",
    "eventId": "e05eb01ed0a",
    "dayId": "2026-11-11",
@@ -7150,22 +8073,7 @@
    "category": "",
    "speaker": "",
    "timeText": "12:50 م - 01:00 م",
-   "durationText": "10 دقائق",
-   "order": 0
-  },
-  {
-   "id": "e1f9e33db69-o1",
-   "eventId": "e1f9e33db69",
-   "dayId": "2026-11-11",
-   "sectionId": "conference",
-   "subsectionId": null,
-   "place": "المسرح الرئيسي للمؤتمر",
-   "type": "جلسة حوارية",
-   "track": "التنمية والاستدامة",
-   "category": "",
-   "speaker": "",
-   "timeText": "01:00 م - 01:20 م",
-   "durationText": "20 دقيقة",
+   "durationText": "10 دقيقة",
    "order": 0
   },
   {
@@ -7179,7 +8087,7 @@
    "track": "التنمية والاستدامة",
    "category": "",
    "speaker": "",
-   "timeText": "01:20 م - 01:50 م",
+   "timeText": "01:00 م - 01:30 م",
    "durationText": "30 دقيقة",
    "order": 0
   },
@@ -7194,8 +8102,8 @@
    "track": "البنية التحتية والخدمات التشغيلية",
    "category": "",
    "speaker": "",
-   "timeText": "01:50 م - 02:00 م",
-   "durationText": "10 دقائق",
+   "timeText": "01:30 م - 01:40 م",
+   "durationText": "10 دقيقة",
    "order": 0
   },
   {
@@ -7209,7 +8117,7 @@
    "track": "البنية التحتية والخدمات التشغيلية",
    "category": "",
    "speaker": "",
-   "timeText": "02:00 م - 02:30 م",
+   "timeText": "01:40 م - 02:10 م",
    "durationText": "30 دقيقة",
    "order": 0
   },
@@ -7224,8 +8132,23 @@
    "track": "البنية التحتية والخدمات التشغيلية",
    "category": "",
    "speaker": "",
-   "timeText": "02:30 م - 03:20 م",
+   "timeText": "02:10 م - 03:00 م",
    "durationText": "50 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e1f9e33db69-o1",
+   "eventId": "e1f9e33db69",
+   "dayId": "2026-11-11",
+   "sectionId": "conference",
+   "subsectionId": null,
+   "place": "المسرح الرئيسي للمؤتمر",
+   "type": "جلسة حوارية",
+   "track": "التنمية والاستدامة",
+   "category": "",
+   "speaker": "",
+   "timeText": "03:00 م - 03:20 م",
+   "durationText": "20 دقيقة",
    "order": 0
   },
   {
@@ -7244,6 +8167,276 @@
    "order": 0
   },
   {
+   "id": "ee377a4d24c-o1",
+   "eventId": "ee377a4d24c",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "01:00 م - 01:05 م",
+   "durationText": "5 دقائق",
+   "order": 0
+  },
+  {
+   "id": "e21daf95486-o1",
+   "eventId": "e21daf95486",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "01:05 م - 01:17 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "ed999fc3645-o1",
+   "eventId": "ed999fc3645",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "01:17 م - 01:29 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e9f8ebb0e8f-o1",
+   "eventId": "e9f8ebb0e8f",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "01:29 م - 01:41 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e67b879e633-o1",
+   "eventId": "e67b879e633",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "01:41 م - 01:53 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e2df5fd93c5-o1",
+   "eventId": "e2df5fd93c5",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "01:53 م - 02:05 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e2df5fd93c5-o2",
+   "eventId": "e2df5fd93c5",
+   "dayId": "2026-11-11",
+   "sectionId": "forum",
+   "subsectionId": "majlis_forum",
+   "place": "مسرح مجلس الحج - خارج منطقة الملتقى",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "01:53 م - 02:05 م",
+   "durationText": "12 دقيقة",
+   "order": 1
+  },
+  {
+   "id": "ebc0cee74ab-o1",
+   "eventId": "ebc0cee74ab",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "02:05 م - 02:17 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e05bd7fd7fb-o1",
+   "eventId": "e05bd7fd7fb",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "02:17 م - 02:29 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "ea8c56e154f-o1",
+   "eventId": "ea8c56e154f",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "02:29 م - 02:41 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e04eba36bf1-o1",
+   "eventId": "e04eba36bf1",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "02:41 م - 02:53 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "ea70b187988-o1",
+   "eventId": "ea70b187988",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "02:53 م - 03:05 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e1f4f3f77bc-o1",
+   "eventId": "e1f4f3f77bc",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "03:05 م - 03:17 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e1e83816b3a-o1",
+   "eventId": "e1e83816b3a",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "03:35 م - 03:47 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "eccb575d749-o1",
+   "eventId": "eccb575d749",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "03:47 م - 03:59 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e501b8a012f-o1",
+   "eventId": "e501b8a012f",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "03:59 م - 04:11 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e501b8a012f-o2",
+   "eventId": "e501b8a012f",
+   "dayId": "2026-11-11",
+   "sectionId": "forum",
+   "subsectionId": "majlis_forum",
+   "place": "مسرح مجلس الحج - خارج منطقة الملتقى",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "03:59 م - 04:11 م",
+   "durationText": "12 دقيقة",
+   "order": 1
+  },
+  {
+   "id": "e15f4482781-o1",
+   "eventId": "e15f4482781",
+   "dayId": "2026-11-11",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "04:11 م - 04:23 م",
+   "durationText": "12 دقيقة",
+   "order": 0
+  },
+  {
    "id": "ed7d322198e-o1",
    "eventId": "ed7d322198e",
    "dayId": "2026-11-11",
@@ -7254,7 +8447,7 @@
    "track": "",
    "category": "",
    "speaker": "أهداب سمير بدر مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
-   "timeText": "01:00 م",
+   "timeText": "01:00 م - 01:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -7268,14 +8461,14 @@
    "type": "",
    "track": "",
    "category": "",
-   "speaker": "جمانة عبدالله البلوشي مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
-   "timeText": "02:00 م",
+   "speaker": "جمانة عبدهللا البلوشي مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
+   "timeText": "02:00 م - 02:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
   {
-   "id": "eb2564b59f2-o1",
-   "eventId": "eb2564b59f2",
+   "id": "e3aa8118f54-o1",
+   "eventId": "e3aa8118f54",
    "dayId": "2026-11-11",
    "sectionId": "forum",
    "subsectionId": "experts",
@@ -7283,8 +8476,8 @@
    "type": "",
    "track": "",
    "category": "",
-   "speaker": "د. أحمد بانوير شركة قيام",
-   "timeText": "03:00 م",
+   "speaker": "أفنان صديق قماش مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
+   "timeText": "03:00 م - 03:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -7299,7 +8492,7 @@
    "track": "",
    "category": "",
    "speaker": "إياد محمد فضل مركز ترخيص وتدريب العاملين – وزارة الحج والعمرة",
-   "timeText": "04:00 م",
+   "timeText": "04:00 م - 04:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -7313,8 +8506,8 @@
    "type": "",
    "track": "",
    "category": "",
-   "speaker": "د. عهود حسنين شركة رحلات ومنافع لخدمات الحج",
-   "timeText": "05:00 م",
+   "speaker": "د . عهود حسنين شركة رحلات ومنافع لخدمات الحج",
+   "timeText": "05:00 م - 05:10 م",
    "durationText": "10 دقائق",
    "order": 0
   },
@@ -7424,15 +8617,15 @@
    "order": 0
   },
   {
-   "id": "e9dec645f78-o1",
-   "eventId": "e9dec645f78",
+   "id": "e7db90a2fae-o1",
+   "eventId": "e7db90a2fae",
    "dayId": "2026-11-11",
    "sectionId": "workshops",
    "subsectionId": null,
-   "place": "Room 3",
+   "place": "Room 1",
    "type": "",
    "track": "التمكين والتكامل",
-   "category": "الرعاية الصحية",
+   "category": "الأمن والسلامة",
    "speaker": "",
    "timeText": "10:30 ص - 12:00 م",
    "durationText": "90 دقيقة",
@@ -7454,45 +8647,30 @@
    "order": 0
   },
   {
-   "id": "e768fbd71de-o1",
-   "eventId": "e768fbd71de",
+   "id": "e9dec645f78-o1",
+   "eventId": "e9dec645f78",
    "dayId": "2026-11-11",
    "sectionId": "workshops",
    "subsectionId": null,
-   "place": "Room 2",
+   "place": "Room 3",
    "type": "",
    "track": "التمكين والتكامل",
-   "category": "الإعلام والتواصل",
+   "category": "الرعاية الصحية",
    "speaker": "",
    "timeText": "10:30 ص - 12:00 م",
    "durationText": "90 دقيقة",
    "order": 0
   },
   {
-   "id": "e80f15daf5e-o1",
-   "eventId": "e80f15daf5e",
+   "id": "ea61028430e-o1",
+   "eventId": "ea61028430e",
    "dayId": "2026-11-11",
    "sectionId": "workshops",
    "subsectionId": null,
-   "place": "Room 1",
+   "place": "Room 3",
    "type": "",
-   "track": "التمكين والتكامل",
-   "category": "الإعاشة والتغذية",
-   "speaker": "",
-   "timeText": "12:30 م - 02:30 م",
-   "durationText": "120 دقيقة",
-   "order": 0
-  },
-  {
-   "id": "e3fd2ce63b1-o1",
-   "eventId": "e3fd2ce63b1",
-   "dayId": "2026-11-11",
-   "sectionId": "workshops",
-   "subsectionId": null,
-   "place": "Room 2",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
+   "track": "التنمية والاستدامة",
+   "category": "التدريب والتأهيل والتطوير",
    "speaker": "",
    "timeText": "12:30 م - 02:30 م",
    "durationText": "120 دقيقة",
@@ -7514,6 +8692,36 @@
    "order": 0
   },
   {
+   "id": "e80f15daf5e-o1",
+   "eventId": "e80f15daf5e",
+   "dayId": "2026-11-11",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 1",
+   "type": "",
+   "track": "البنية التحتية والخدمات التشغيلية",
+   "category": "الإعاشة والتغذية",
+   "speaker": "",
+   "timeText": "12:30 م - 02:30 م",
+   "durationText": "120 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e3fd2ce63b1-o1",
+   "eventId": "e3fd2ce63b1",
+   "dayId": "2026-11-11",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 2",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "التقنية والابتكار",
+   "speaker": "",
+   "timeText": "12:30 م - 02:30 م",
+   "durationText": "120 دقيقة",
+   "order": 0
+  },
+  {
    "id": "e3ab7ad5078-o1",
    "eventId": "e3ab7ad5078",
    "dayId": "2026-11-11",
@@ -7521,7 +8729,7 @@
    "subsectionId": null,
    "place": "Room 1",
    "type": "",
-   "track": "التمكين والتكامل",
+   "track": "البنية التحتية والخدمات التشغيلية",
    "category": "الإعاشة والتغذية",
    "speaker": "",
    "timeText": "03:30 م - 05:30 م",
@@ -7574,36 +8782,6 @@
    "order": 0
   },
   {
-   "id": "e02d34f192c-o1",
-   "eventId": "e02d34f192c",
-   "dayId": "2026-11-11",
-   "sectionId": "workshops",
-   "subsectionId": null,
-   "place": "Room 2",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
-   "speaker": "",
-   "timeText": "06:00 م - 07:30 م",
-   "durationText": "90 دقيقة",
-   "order": 0
-  },
-  {
-   "id": "e62e7a836dc-o1",
-   "eventId": "e62e7a836dc",
-   "dayId": "2026-11-11",
-   "sectionId": "workshops",
-   "subsectionId": null,
-   "place": "Room 4",
-   "type": "",
-   "track": "التنمية والاستدامة",
-   "category": "التدريب والتأهيل والتطوير",
-   "speaker": "",
-   "timeText": "06:00 م - 07:30 م",
-   "durationText": "90 دقيقة",
-   "order": 0
-  },
-  {
    "id": "e17bbeff863-o1",
    "eventId": "e17bbeff863",
    "dayId": "2026-11-11",
@@ -7611,8 +8789,23 @@
    "subsectionId": null,
    "place": "Room 3",
    "type": "",
-   "track": "التمكين والتكامل",
+   "track": "البنية التحتية والخدمات التشغيلية",
    "category": "الإعاشة والتغذية",
+   "speaker": "",
+   "timeText": "06:00 م - 07:30 م",
+   "durationText": "90 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e02d34f192c-o1",
+   "eventId": "e02d34f192c",
+   "dayId": "2026-11-11",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 2",
+   "type": "",
+   "track": "التمكين والتكامل",
+   "category": "التقنية والابتكار",
    "speaker": "",
    "timeText": "06:00 م - 07:30 م",
    "durationText": "90 دقيقة",
@@ -7634,30 +8827,15 @@
    "order": 0
   },
   {
-   "id": "e9488841cc1-o1",
-   "eventId": "e9488841cc1",
+   "id": "eee45a34a80-o1",
+   "eventId": "eee45a34a80",
    "dayId": "2026-11-11",
    "sectionId": "workshops",
    "subsectionId": null,
-   "place": "Room 1",
+   "place": "Room 2",
    "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "النقل والخدمات اللوجستية",
-   "speaker": "",
-   "timeText": "08:00 م - 09:00 م",
-   "durationText": "60 دقيقة",
-   "order": 0
-  },
-  {
-   "id": "e5a86cadde7-o1",
-   "eventId": "e5a86cadde7",
-   "dayId": "2026-11-11",
-   "sectionId": "workshops",
-   "subsectionId": null,
-   "place": "Room 3",
-   "type": "",
-   "track": "البنية التحتية والخدمات التشغيلية",
-   "category": "التقنية والابتكار",
+   "track": "التمكين والتكامل",
+   "category": "الإعلام والتواصل",
    "speaker": "",
    "timeText": "08:00 م - 09:00 م",
    "durationText": "60 دقيقة",
@@ -7679,19 +8857,101 @@
    "order": 0
   },
   {
-   "id": "eee45a34a80-o1",
-   "eventId": "eee45a34a80",
+   "id": "e5a86cadde7-o1",
+   "eventId": "e5a86cadde7",
    "dayId": "2026-11-11",
    "sectionId": "workshops",
    "subsectionId": null,
-   "place": "Room 2",
+   "place": "Room 3",
    "type": "",
    "track": "التمكين والتكامل",
-   "category": "الإعلام والتواصل",
+   "category": "التقنية والابتكار",
    "speaker": "",
    "timeText": "08:00 م - 09:00 م",
    "durationText": "60 دقيقة",
    "order": 0
+  },
+  {
+   "id": "e9488841cc1-o1",
+   "eventId": "e9488841cc1",
+   "dayId": "2026-11-11",
+   "sectionId": "workshops",
+   "subsectionId": null,
+   "place": "Room 1",
+   "type": "",
+   "track": "البنية التحتية والخدمات التشغيلية",
+   "category": "النقل والخدمات اللوجستية",
+   "speaker": "",
+   "timeText": "08:00 م - 09:00 م",
+   "durationText": "60 دقيقة",
+   "order": 0
+  }
+ ],
+ "removed": [
+  {
+   "id": "eb41189766b",
+   "dayId": "2026-11-08",
+   "title": "الريادة والتميز في خدمات المستفيدين لضيوف الرحمن",
+   "start": "10:30",
+   "end": "11:30",
+   "timeText": "10:30 ص - 11:30 ص",
+   "place": "Room 3",
+   "sections": [
+    "workshops"
+   ],
+   "reason": "لم تعد ضمن البرنامج الحالي"
+  },
+  {
+   "id": "efb37448edd",
+   "dayId": "2026-11-10",
+   "title": "صوت واحد لمنظومة الحج: حوكمة الاتصال بين الجهات في الموسم",
+   "start": "12:30",
+   "end": "14:30",
+   "timeText": "12:30 م - 02:30 م",
+   "place": "Room 4",
+   "sections": [
+    "workshops"
+   ],
+   "reason": "لم تعد ضمن البرنامج الحالي"
+  },
+  {
+   "id": "e6f48f913fc",
+   "dayId": "2026-11-10",
+   "title": "الاستثمار والابتكار: بناء منظومة إسكان متكاملة لخدمة ضيوف الرحمن",
+   "start": "17:30",
+   "end": "17:40",
+   "timeText": "05:30 م - 05:40 م",
+   "place": "مسرح مجلس الحج",
+   "sections": [
+    "majlis"
+   ],
+   "reason": "لم تعد ضمن البرنامج الحالي"
+  },
+  {
+   "id": "e768fbd71de",
+   "dayId": "2026-11-11",
+   "title": "الضوابط والتصاريح للتغطيات الإعلامية للحج",
+   "start": "10:30",
+   "end": "12:00",
+   "timeText": "10:30 ص - 12:00 م",
+   "place": "Room 2",
+   "sections": [
+    "workshops"
+   ],
+   "reason": "لم تعد ضمن البرنامج الحالي"
+  },
+  {
+   "id": "e62e7a836dc",
+   "dayId": "2026-11-11",
+   "title": "حماية بيانات الحجاج في التشغيل: توازن التميز والامتثال",
+   "start": "18:00",
+   "end": "19:30",
+   "timeText": "06:00 م - 07:30 م",
+   "place": "Room 4",
+   "sections": [
+    "workshops"
+   ],
+   "reason": "لم تعد ضمن البرنامج الحالي"
   }
  ]
 }
