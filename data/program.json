@@ -6,12 +6,12 @@
   "version": 2,
   "updatedAt": "2026-11-07",
   "daysCount": 4,
-  "eventsCount": 201,
-  "occurrencesCount": 212,
+  "eventsCount": 202,
+  "occurrencesCount": 215,
   "workshopsCount": 71,
   "expertsCount": 18,
   "preservedCount": 167,
-  "newEventsCount": 34,
+  "newEventsCount": 35,
   "removedEventsCount": 5
  },
  "days": [
@@ -1257,6 +1257,33 @@
    ]
   },
   {
+   "id": "e42786f6245",
+   "dayId": "2026-11-09",
+   "title": "الحوكمة والتشريعات والتكامل المؤسسي وجودة الخدمات",
+   "start": "13:45",
+   "end": "14:30",
+   "ranges": [
+    {
+     "start": "13:45",
+     "end": "14:30"
+    }
+   ],
+   "durationMinutes": 45,
+   "durationText": "45 دقيقة",
+   "timeText": "01:45 م - 02:30 م",
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "sections": [
+    "majlis"
+   ],
+   "occurrenceIds": [
+    "e42786f6245-o1"
+   ]
+  },
+  {
    "id": "eda53af5a81",
    "dayId": "2026-11-09",
    "title": "مبادرة \"مسافر بلا حقيبة\": بين الاستراتيجية والتنفيذ الميداني",
@@ -1460,16 +1487,18 @@
    "durationMinutes": 15,
    "durationText": "15 دقيقة",
    "timeText": "02:30 م - 02:45 م",
-   "place": "مسرح مجلس الحج - خارج منطقة الملتقى",
+   "place": "مسرح مجلس الحج",
    "type": "",
    "track": "",
    "category": "",
    "speaker": "",
    "sections": [
+    "majlis",
     "forum/majlis_forum"
    ],
    "occurrenceIds": [
-    "e7c978a560c-o1"
+    "e7c978a560c-o1",
+    "e7c978a560c-o2"
    ]
   },
   {
@@ -1487,16 +1516,18 @@
    "durationMinutes": 15,
    "durationText": "15 دقيقة",
    "timeText": "02:45 م - 03:00 م",
-   "place": "مسرح مجلس الحج - خارج منطقة الملتقى",
+   "place": "مسرح مجلس الحج",
    "type": "",
    "track": "",
    "category": "",
    "speaker": "",
    "sections": [
+    "majlis",
     "forum/majlis_forum"
    ],
    "occurrenceIds": [
-    "e37d9ebda8a-o1"
+    "e37d9ebda8a-o1",
+    "e37d9ebda8a-o2"
    ]
   },
   {
@@ -6364,6 +6395,51 @@
    "speaker": "",
    "timeText": "07:40 م - 08:00 م",
    "durationText": "20 دقيقة",
+   "order": 1
+  },
+  {
+   "id": "e42786f6245-o1",
+   "eventId": "e42786f6245",
+   "dayId": "2026-11-09",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "01:45 م - 02:30 م",
+   "durationText": "45 دقيقة",
+   "order": 0
+  },
+  {
+   "id": "e7c978a560c-o2",
+   "eventId": "e7c978a560c",
+   "dayId": "2026-11-09",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج (ملتقى التوعية والتدريب)",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "02:30 م - 02:45 م",
+   "durationText": "15 دقيقة",
+   "order": 1
+  },
+  {
+   "id": "e37d9ebda8a-o2",
+   "eventId": "e37d9ebda8a",
+   "dayId": "2026-11-09",
+   "sectionId": "majlis",
+   "subsectionId": null,
+   "place": "مسرح مجلس الحج (ملتقى التوعية والتدريب)",
+   "type": "",
+   "track": "",
+   "category": "",
+   "speaker": "",
+   "timeText": "02:45 م - 03:00 م",
+   "durationText": "15 دقيقة",
    "order": 1
   },
   {

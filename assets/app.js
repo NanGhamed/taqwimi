@@ -605,12 +605,12 @@
     return 'قبل ' + v + ' دقيقة';
   }
 
-  function renderMyTable(list) {
+  function renderMyTable(list, conflictIds) {
     const rows = list.map((e) => {
       const day = dayInfo(e.dayId);
       const r = recSafe(e.id);
       const att = r.attendance;
-      return `<tr data-event="${esc(e.id)}">
+      return `<tr data-event="${esc(e.id)}" class="${conflictIds.has(e.id) ? 'is-conflict' : ''}">
         <td class="mc-day" data-label="اليوم">${esc(day.weekday)}</td>
         <td class="mc-date" data-label="التاريخ">${esc(day.dateLabel.replace(day.weekday + ' ', ''))}</td>
         <td class="mc-title" data-label="العنوان">
@@ -660,7 +660,7 @@
     </div>`;
   }
 
-  function renderTimeline(list) {
+  function renderTimeline(list, conflictIds) {
     const byDay = {};
     list.forEach((e) => { (byDay[e.dayId] = byDay[e.dayId] || []).push(e); });
     return `<div class="timeline">` + DATA.days.filter((d) => byDay[d.id]).map((d) => {
@@ -674,7 +674,7 @@
         <div class="tl-items">
           ${arr.map((e) => {
             const r = recSafe(e.id);
-            return `<div class="tl-item ${r.priority === 'alt' ? 'alt' : ''}" data-event="${esc(e.id)}">
+            return `<div class="tl-item ${r.priority === 'alt' ? 'alt' : ''}${conflictIds.has(e.id) ? ' is-conflict' : ''}" data-event="${esc(e.id)}">
               <div class="tl-card">
                 <div class="tl-time">${esc(to12(e.start) || '—')}<small>${e.end ? 'حتى ' + esc(to12(e.end)) : esc(e.timeText || 'بدون توقيت')}</small></div>
                 <div class="tl-body">
@@ -750,6 +750,8 @@
     const alt = list.length - first;
     const attended = list.filter((e) => recSafe(e.id).attendance === 'attended').length;
     const pairs = overlaps(list);
+    const conflictIds = new Set();
+    pairs.forEach(([a, b]) => { conflictIds.add(a.id); conflictIds.add(b.id); });
 
     let body;
     if (!list.length) {
@@ -762,7 +764,7 @@
         </div>
       </div></div>`;
     } else {
-      body = (state.settings.view === 'timeline' ? renderTimeline(list) : renderMyTable(list));
+      body = (state.settings.view === 'timeline' ? renderTimeline(list, conflictIds) : renderMyTable(list, conflictIds));
     }
 
     const visitor = (state.name || '').trim();

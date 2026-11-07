@@ -1530,3 +1530,32 @@ mark {
   .print-only { display: block !important; }
 }
 .print-only { display: none; }
+
+/* ---------------- conflict highlight in my calendar ---------------- */
+table.mycal tr.is-conflict td {
+  background: var(--amber-bg);
+  border-top: 1px solid #f0dcb4;
+  border-bottom: 1px solid #f0dcb4;
+}
+table.mycal tr.is-conflict td:first-child { border-inline-start: 1px solid #f0dcb4; }
+table.mycal tr.is-conflict td:last-child { border-inline-end: 1px solid #f0dcb4; }
+table.mycal tr.is-conflict .mc-note textarea { background: rgba(255, 255, 255, .55); }
+.tl-item.is-conflict .tl-card {
+  background: var(--amber-bg);
+  border-color: #f0dcb4;
+  box-shadow: 0 0 0 1px rgba(150, 96, 26, .05), var(--shadow-1);
+}
+@media (max-width: 900px) {
+  table.mycal tr.is-conflict {
+    background: var(--amber-bg);
+    border-color: #f0dcb4;
+    box-shadow: 0 0 0 1px rgba(150, 96, 26, .06), var(--shadow-1);
+  }
+  table.mycal tr.is-conflict td {
+    background: transparent;
+    border: 0;
+  }
+  table.mycal tr.is-conflict .mc-note textarea {
+    background: rgba(255, 255, 255, .55);
+  }
+}
