@@ -1,14 +1,14 @@
 ﻿/* تقويمي — Service Worker
    استراتيجية: pre-cache للهيكل، ثم cache-first مع تحديث في الخلفية. */
 
-const VERSION = 'taqwimi-v29';
-const ASSET_V = '33';
+const VERSION = 'taqwimi-v30';
+const ASSET_V = '34';
 const CORE = [
   './',
   './index.html',
   `./assets/styles.css?v=${ASSET_V}`,
   `./assets/app.js?v=${ASSET_V}`,
-  './data/program.js',
+  './data/program.v2.js',
   './data/program.json',
   './manifest.webmanifest',
   './icons/icon-192.png',
