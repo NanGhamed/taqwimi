@@ -211,7 +211,7 @@
 
   function currentRoute() {
     const h = location.hash || '#/program';
-    const m = h.match(/^#\/(program|my|settings)(?:\/([0-9-]+))?(?:\?(.*))?$/);
+    const m = h.match(/^#\/(program|my|settings|links)(?:\/([0-9-]+))?(?:\?(.*))?$/);
     if (!m) return { name: 'program', day: state.settings.lastDay, params: {} };
     const params = {};
     (m[3] || '').split('&').filter(Boolean).forEach((kv) => {
@@ -941,6 +941,104 @@
     </div>`;
   }
 
+  /* ---------------- important links ---------------- */
+  function renderLinks() {
+    const links = [
+      {
+        title: 'الموقع الرسمي لمؤتمر ومعرض الحج',
+        desc: 'للتسجيل والاطلاع على أجندة مؤتمر ومعرض الحج',
+        href: 'https://hajjconfex.com/',
+        image: 'assets/important-links/official-site.png',
+        mobileImage: 'assets/important-links/official-site-mobile.png',
+        alt: 'اسم مؤتمر ومعرض الحج وعبارة النسخة السادسة',
+        cta: 'زيارة الموقع الرسمي',
+        icon: 'link',
+        feature: true,
+        width: 660,
+        height: 198,
+      },
+      {
+        title: 'التطبيق الرسمي لمؤتمر ومعرض الحج',
+        desc: 'استكشف العارضين، وتابع الجلسات وورش العمل، وخطّط لزيارتك',
+        href: 'https://hajjconfex.com/mobile',
+        image: 'assets/important-links/official-app.jpg',
+        alt: 'واجهة التطبيق الرسمي مع الهاتف والأيقونات المحيطة به',
+        cta: 'صفحة تحميل التطبيق',
+        icon: 'phone',
+        contain: true,
+        width: 580,
+        height: 635,
+      },
+      {
+        title: 'الكتيب التعريفي لمؤتمر ومعرض الحج',
+        desc: 'لقاءات واعدة وتجارب متنوعة، اكتشف تفاصيلها عبر دليل النسخة السادسة من مؤتمر ومعرض الحج',
+        href: 'https://tiny.cc/HajjConfexguideAR',
+        image: 'assets/important-links/guide-cover.png',
+        alt: 'غلاف الدليل التعريفي لمؤتمر ومعرض الحج',
+        cta: 'فتح الدليل',
+        icon: 'download',
+        contain: true,
+        width: 722,
+        height: 884,
+      },
+      {
+        title: 'جدول برامج مؤتمر ومعرض الحج',
+        desc: 'اطّلع على الملف الكامل لأجندة المؤتمر',
+        href: 'https://drive.google.com/file/d/1uLrM2LI4T6nRnbZSYYi04vJW3prIZKug/view',
+        image: 'assets/important-links/program-cover.png',
+        alt: 'غلاف برنامج مؤتمر ومعرض الحج',
+        cta: 'فتح ملف الأجندة',
+        icon: 'table',
+        contain: true,
+        width: 682,
+        height: 885,
+      },
+      {
+        title: 'موقع انعقاد مؤتمر ومعرض الحج',
+        desc: 'جدة سوبردوم، طريق المدينة المنورة، مطار الملك عبدالعزيز الدولي',
+        href: 'https://maps.app.goo.gl/YMaHHXatAtruTfQH8',
+        image: 'assets/important-links/venue.jpg',
+        alt: 'القبة والمدخل الرئيسي لمركز جدة سوبردوم',
+        cta: 'فتح في الخرائط',
+        icon: 'pin',
+        position: 'center 58%',
+        width: 1010,
+        height: 630,
+      },
+    ];
+
+    const card = (l) => `<article class="link-card${l.feature ? ' link-card--feature' : ''}${l.contain ? ' link-card--contain' : ''}">
+      <div class="link-card__media">
+        <picture>
+          ${l.mobileImage ? `<source media="(max-width: 720px)" srcset="${esc(l.mobileImage)}">` : ''}
+          <img src="${esc(l.image)}" alt="${esc(l.alt)}" width="${l.width}" height="${l.height}" loading="eager" decoding="async"${l.position ? ` style="object-position:${l.position}"` : ''}>
+        </picture>
+      </div>
+      <div class="link-card__body">
+        <h2 class="link-card__title">${esc(l.title)}</h2>
+        <p class="link-card__desc">${esc(l.desc)}</p>
+        <div class="link-card__actions">
+          <a class="btn btn-primary" href="${esc(l.href)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(l.cta)} (يفتح في نافذة جديدة)">${icon(l.icon)} ${esc(l.cta)}</a>
+        </div>
+      </div>
+    </article>`;
+
+    return `<div class="page">
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">روابط مهمة</h1>
+          <p class="page-sub">روابط المؤتمر في مكان واحد لتسهيل التخطيط لزيارتك</p>
+        </div>
+      </div>
+
+      <p class="page-intro">${icon('info')} <span>الصور والروابط متاحة داخل التطبيق المثبّت دون اتصال، أما فتح الوجهات الخارجية فيحتاج إلى الإنترنت.</span></p>
+
+      <div class="links-grid">${links.map(card).join('')}</div>
+
+      ${renderFooter()}
+    </div>`;
+  }
+
   /* ---------------- details modal ---------------- */
   function openDetails(eventId) {
     const e = EVENT_BY_ID.get(eventId);
@@ -1389,6 +1487,7 @@
     let html = '';
     if (route.name === 'my') html = renderMy();
     else if (route.name === 'settings') html = renderSettings();
+    else if (route.name === 'links') html = renderLinks();
     else html = renderProgram();
     main.innerHTML = html;
 
