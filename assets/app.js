@@ -11,6 +11,23 @@
   const UI_KEY = 'taqwimi.v1.ui';
   const NOTIFIED_KEY = 'taqwimi.v1.notified';
 
+  /* أوقات صلاة الظهر والعصر والمغرب والعشاء في جدة — تقويم أم القرى */
+  const PRAYER_TIMES = {
+    '2026-11-08': { dhuhr: '12:07', asr: '15:21', maghrib: '17:44', isha: '19:14' },
+    '2026-11-09': { dhuhr: '12:07', asr: '15:20', maghrib: '17:43', isha: '19:13' },
+    '2026-11-10': { dhuhr: '12:07', asr: '15:20', maghrib: '17:43', isha: '19:13' },
+    '2026-11-11': { dhuhr: '12:07', asr: '15:20', maghrib: '17:43', isha: '19:13' },
+  };
+  const PRAYER_ORDER = [
+    { key: 'dhuhr', name: 'الظهر' },
+    { key: 'asr', name: 'العصر' },
+    { key: 'maghrib', name: 'المغرب' },
+    { key: 'isha', name: 'العشاء' },
+  ];
+  const RIYADH_TZ = 'Asia/Riyadh';
+  const DAY_START = 9 * 60;
+  const DAY_END = 21 * 60;
+
   /* ---------------- helpers ---------------- */
   const $ = (sel, root) => (root || document).querySelector(sel);
   const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
@@ -54,6 +71,142 @@
 
   function compactTime(t) {
     return String(t || '').replace(/(^|[\s(])0(\d:)/g, '$1$2');
+  }
+
+  function toMinutes(hhmm) {
+    if (!hhmm) return null;
+    const parts = String(hhmm).split(':').map(Number);
+    if (!Number.isFinite(parts[0]) || !Number.isFinite(parts[1])) return null;
+    return parts[0] * 60 + parts[1];
+  }
+
+  function minutesToTime(mins) {
+    const m = Math.max(0, Math.min(24 * 60 - 1, Math.round(mins)));
+    return `${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
+  }
+
+  function rangeTimeText(start, end) {
+    const s = to12(minutesToTime(start));
+    const e = to12(minutesToTime(end));
+    if (s.slice(-1) === e.slice(-1)) return `${s.slice(0, -2)}–${e}`;
+    return `${s}–${e}`;
+  }
+
+  function minutesText(m) {
+    if (m === 1) return 'دقيقة';
+    if (m === 2) return 'دقيقتان';
+    if (m >= 3 && m <= 10) return `${m} دقائق`;
+    return `${m} دقيقة`;
+  }
+
+  function durationLabel(mins) {
+    const total = Math.max(0, Math.round(mins));
+    const h = Math.floor(total / 60);
+    const m = total % 60;
+    if (!h) return minutesText(m) || '0 دقيقة';
+    const hText = h === 1 ? 'ساعة' : h === 2 ? 'ساعتان' : h <= 10 ? `${h} ساعات` : `${h} ساعة`;
+    return m ? `${hText} و${minutesText(m)}` : hText;
+  }
+
+  function riyadhNow() {
+    const now = new Date();
+    const dateParts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: RIYADH_TZ, year: 'numeric', month: '2-digit', day: '2-digit',
+    }).formatToParts(now);
+    const timeParts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: RIYADH_TZ, hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+    }).formatToParts(now);
+    const getDate = (type) => (dateParts.find((p) => p.type === type) || {}).value;
+    const getTime = (type) => (timeParts.find((p) => p.type === type) || {}).value;
+    return {
+      date: `${getDate('year')}-${getDate('month')}-${getDate('day')}`,
+      minutes: Number(getTime('hour')) * 60 + Number(getTime('minute')),
+    };
+  }
+
+  function nextPrayerKey(dayId) {
+    const times = PRAYER_TIMES[dayId];
+    const now = riyadhNow();
+    if (!times || now.date !== dayId) return null;
+    for (const prayer of PRAYER_ORDER) {
+      if (now.minutes < toMinutes(times[prayer.key])) return prayer.key;
+    }
+    return null;
+  }
+
+  function prayerBarHtml(dayId) {
+    const times = PRAYER_TIMES[dayId];
+    if (!times) return '';
+    const next = nextPrayerKey(dayId);
+    return `<div class="prayer-bar" data-prayer-day="${esc(dayId)}" role="group" aria-label="مواقيت الصلاة في جدة">
+      <div class="prayer-head">${icon('clock')}<span>مواقيت الصلاة في جدة</span><small>تقويم أم القرى</small></div>
+      <div class="prayer-list">
+        ${PRAYER_ORDER.map((prayer) => `<div class="prayer-item${next === prayer.key ? ' is-next' : ''}" data-prayer="${prayer.key}"${next === prayer.key ? ' aria-current="true"' : ''}>
+          <span class="prayer-name">${prayer.name}</span>
+          <span class="prayer-time">${esc(to12(times[prayer.key]))}</span>
+          <span class="prayer-next">الصلاة القادمة</span>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  function refreshPrayerBars() {
+    $$('.prayer-bar[data-prayer-day]').forEach((bar) => {
+      const next = nextPrayerKey(bar.dataset.prayerDay);
+      $$('.prayer-item', bar).forEach((item) => {
+        const on = item.dataset.prayer === next;
+        item.classList.toggle('is-next', on);
+        if (on) item.setAttribute('aria-current', 'true');
+        else item.removeAttribute('aria-current');
+      });
+    });
+  }
+
+  function eventRanges(e) {
+    if (e.ranges && e.ranges.length) return e.ranges;
+    if (e.start && e.end) return [{ start: e.start, end: e.end }];
+    return [];
+  }
+
+  function eventStartMin(e) {
+    const starts = eventRanges(e).map((r) => toMinutes(r.start)).filter((v) => v != null);
+    return starts.length ? Math.min(...starts) : 24 * 60;
+  }
+
+  function mergeMinuteRanges(ranges) {
+    const sorted = ranges.filter((r) => r.end > r.start).slice().sort((a, b) => a.start - b.start);
+    const merged = [];
+    sorted.forEach((r) => {
+      const last = merged[merged.length - 1];
+      if (!last || r.start > last.end) merged.push({ start: r.start, end: r.end });
+      else last.end = Math.max(last.end, r.end);
+    });
+    return merged;
+  }
+
+  function availableSlots(dayEvents) {
+    const ranges = [];
+    dayEvents.forEach((e) => eventRanges(e).forEach((r) => {
+      const start = toMinutes(r.start);
+      const end = toMinutes(r.end);
+      if (start == null || end == null) return;
+      const clippedStart = Math.max(DAY_START, Math.min(DAY_END, start));
+      const clippedEnd = Math.max(DAY_START, Math.min(DAY_END, end));
+      if (clippedEnd > clippedStart) ranges.push({ start: clippedStart, end: clippedEnd });
+    }));
+    const merged = mergeMinuteRanges(ranges);
+    const slots = [];
+    let cursor = DAY_START;
+    merged.forEach((r) => {
+      if (r.start > cursor) slots.push({ start: cursor, end: r.start });
+      cursor = Math.max(cursor, r.end);
+    });
+    if (cursor < DAY_END) slots.push({ start: cursor, end: DAY_END });
+    return slots;
+  }
+
+  function freeSlotHtml(slot, empty) {
+    return `<div class="free-slot">${icon('clock')}<span class="free-label">وقت متاح · ${esc(rangeTimeText(slot.start, slot.end))} · ${esc(durationLabel(slot.end - slot.start))}</span>${empty ? '<span class="free-note">لم تُضف فعاليات لهذا اليوم</span>' : ''}</div>`;
   }
 
   /* Renders the time as two clear lines (start / end) whenever the PDF
@@ -605,40 +758,69 @@
     return 'قبل ' + v + ' دقيقة';
   }
 
+  function renderMyEventRow(e, conflictIds) {
+    const day = dayInfo(e.dayId);
+    const r = recSafe(e.id);
+    const att = r.attendance;
+    return `<tr data-event="${esc(e.id)}" class="${conflictIds.has(e.id) ? 'is-conflict' : ''}">
+      <td class="mc-day" data-label="اليوم">${esc(day.weekday)}</td>
+      <td class="mc-date" data-label="التاريخ">${esc(day.dateLabel.replace(day.weekday + ' ', ''))}</td>
+      <td class="mc-title" data-label="العنوان">
+        <div>${esc(e.title)}</div>
+        <div class="c-sub" style="margin-top:4px">
+          ${r.priority === 'first' ? '<span class="pill first">أولوية أولى</span>' : '<span class="pill alt">خيار بديل</span>'}
+          ${e.track ? `<span class="tag">${esc(e.track)}</span>` : ''}
+          ${(OCC_BY_EVENT.get(e.id) || []).length > 1 ? `<span class="tag gold">${icon('link')} يظهر في أكثر من قسم</span>` : ''}
+        </div>
+      </td>
+      <td class="mc-time" data-label="التوقيت">${timeCell(e)}</td>
+      <td class="mc-place" data-label="المكان"><div class="c-place">${esc(e.place || '—')}</div></td>
+      <td class="mc-prio" data-label="الأولوية">
+        ${priorityButtons(e.id, true)}
+      </td>
+      <td class="mc-att" data-label="الحضور">
+        <button class="att-btn" type="button" data-att="${esc(e.id)}" data-state="${att || ''}">
+          ${att === 'attended' ? icon('check') + ' حضرت' : att === 'missed' ? icon('x') + ' لم أحضر' : 'تسجيل الحضور'}
+        </button>
+        <button class="btn btn-sm btn-ghost" type="button" data-reminder="${esc(e.id)}" title="تنبيه">
+          ${icon('bell')} ${esc(reminderLabel(r.reminder))}
+        </button>
+      </td>
+      <td class="mc-note" data-label="ملاحظات">
+        <textarea rows="1" data-note="${esc(e.id)}" placeholder="اكتب ملاحظتك…" aria-label="ملاحظات ${esc(e.title)}">${esc(r.notes)}</textarea>
+      </td>
+    </tr>`;
+  }
+
   function renderMyTable(list, conflictIds) {
-    const rows = list.map((e) => {
-      const day = dayInfo(e.dayId);
-      const r = recSafe(e.id);
-      const att = r.attendance;
-      return `<tr data-event="${esc(e.id)}" class="${conflictIds.has(e.id) ? 'is-conflict' : ''}">
-        <td class="mc-day" data-label="اليوم">${esc(day.weekday)}</td>
-        <td class="mc-date" data-label="التاريخ">${esc(day.dateLabel.replace(day.weekday + ' ', ''))}</td>
-        <td class="mc-title" data-label="العنوان">
-          <div>${esc(e.title)}</div>
-          <div class="c-sub" style="margin-top:4px">
-            ${r.priority === 'first' ? '<span class="pill first">أولوية أولى</span>' : '<span class="pill alt">خيار بديل</span>'}
-            ${e.track ? `<span class="tag">${esc(e.track)}</span>` : ''}
-            ${(OCC_BY_EVENT.get(e.id) || []).length > 1 ? `<span class="tag gold">${icon('link')} يظهر في أكثر من قسم</span>` : ''}
+    const rows = [];
+    DATA.days.forEach((day) => {
+      const dayEvents = list.filter((e) => e.dayId === day.id);
+      const empty = dayEvents.length === 0;
+      const slots = availableSlots(dayEvents);
+      const items = [];
+      slots.forEach((slot) => items.push({ type: 'free', start: slot.start, slot }));
+      dayEvents.forEach((e) => items.push({ type: 'event', start: eventStartMin(e), e }));
+      items.sort((a, b) => a.start - b.start || (a.type === 'free' ? -1 : 1));
+
+      rows.push(`<tr class="my-day-row"><td colspan="8">
+        <div class="my-day-head">
+          <div class="my-day-title">
+            <h3>${esc(day.weekday)} · ${esc(day.dateLabel.replace(day.weekday + ' ', ''))}</h3>
+            <span class="cnt">${dayEvents.length ? evCount(dayEvents.length) : ''}</span>
           </div>
-        </td>
-        <td class="mc-time" data-label="التوقيت">${timeCell(e)}</td>
-        <td class="mc-place" data-label="المكان"><div class="c-place">${esc(e.place || '—')}</div></td>
-        <td class="mc-prio" data-label="الأولوية">
-          ${priorityButtons(e.id, true)}
-        </td>
-        <td class="mc-att" data-label="الحضور">
-          <button class="att-btn" type="button" data-att="${esc(e.id)}" data-state="${att || ''}">
-            ${att === 'attended' ? icon('check') + ' حضرت' : att === 'missed' ? icon('x') + ' لم أحضر' : 'تسجيل الحضور'}
-          </button>
-          <button class="btn btn-sm btn-ghost" type="button" data-reminder="${esc(e.id)}" title="تنبيه">
-            ${icon('bell')} ${esc(reminderLabel(r.reminder))}
-          </button>
-        </td>
-        <td class="mc-note" data-label="ملاحظات">
-          <textarea rows="1" data-note="${esc(e.id)}" placeholder="اكتب ملاحظتك…" aria-label="ملاحظات ${esc(e.title)}">${esc(r.notes)}</textarea>
-        </td>
-      </tr>`;
-    }).join('');
+          ${prayerBarHtml(day.id)}
+        </div>
+      </td></tr>`);
+
+      items.forEach((item) => {
+        if (item.type === 'free') {
+          rows.push(`<tr class="free-row"><td colspan="8">${freeSlotHtml(item.slot, empty)}</td></tr>`);
+        } else {
+          rows.push(renderMyEventRow(item.e, conflictIds));
+        }
+      });
+    });
 
     return `<div class="scroll-hint no-print">${icon('link')} اسحب الجدول أفقيًا لعرض بقية الأعمدة</div>
       <div class="card">
@@ -654,25 +836,35 @@
             <th scope="col">حالة الحضور</th>
             <th scope="col">الملاحظات</th>
           </tr></thead>
-          <tbody>${rows}</tbody>
+          <tbody>${rows.join('')}</tbody>
         </table>
       </div>
     </div>`;
   }
 
   function renderTimeline(list, conflictIds) {
-    const byDay = {};
-    list.forEach((e) => { (byDay[e.dayId] = byDay[e.dayId] || []).push(e); });
-    return `<div class="timeline">` + DATA.days.filter((d) => byDay[d.id]).map((d) => {
-      const arr = byDay[d.id].sort((a, b) => (a.start || '99:99') < (b.start || '99:99') ? -1 : 1);
+    return `<div class="timeline">` + DATA.days.map((day) => {
+      const dayEvents = list.filter((e) => e.dayId === day.id);
+      const empty = dayEvents.length === 0;
+      const slots = availableSlots(dayEvents);
+      const items = [];
+      slots.forEach((slot) => items.push({ type: 'free', start: slot.start, slot }));
+      dayEvents.forEach((e) => items.push({ type: 'event', start: eventStartMin(e), e }));
+      items.sort((a, b) => a.start - b.start || (a.type === 'free' ? -1 : 1));
+
       return `<div class="tl-day">
         <div class="tl-day-head">
-          <h3>${esc(d.weekday)} · ${esc(d.dateLabel.replace(d.weekday + ' ', ''))}</h3>
+          <h3>${esc(day.weekday)} · ${esc(day.dateLabel.replace(day.weekday + ' ', ''))}</h3>
           <span class="line"></span>
-          <span class="cnt">${evCount(arr.length)}</span>
+          <span class="cnt">${dayEvents.length ? evCount(dayEvents.length) : ''}</span>
         </div>
+        ${prayerBarHtml(day.id)}
         <div class="tl-items">
-          ${arr.map((e) => {
+          ${items.map((item) => {
+            if (item.type === 'free') {
+              return `<div class="tl-free">${freeSlotHtml(item.slot, empty)}</div>`;
+            }
+            const e = item.e;
             const r = recSafe(e.id);
             return `<div class="tl-item ${r.priority === 'alt' ? 'alt' : ''}${conflictIds.has(e.id) ? ' is-conflict' : ''}" data-event="${esc(e.id)}">
               <div class="tl-card">
@@ -753,19 +945,9 @@
     const conflictIds = new Set();
     pairs.forEach(([a, b]) => { conflictIds.add(a.id); conflictIds.add(b.id); });
 
-    let body;
-    if (!list.length) {
-      body = `<div class="card"><div class="empty" style="flex-direction:column;text-align:center;padding:44px 20px">
-        ${icon('bookmark')}
-        <div>
-          <strong style="font-size:16px">تقويمك الشخصي فارغ</strong>
-          <div class="small" style="margin-top:6px;max-width:420px">اختر الفعاليات من صفحة البرنامج بضغط «أولوية أولى» أو «خيار بديل»، وستظهر هنا مع ملاحظاتك وحالة حضورك.</div>
-          <button class="btn btn-primary" type="button" data-go="program" style="margin-top:16px">${icon('calendar')} تصفّح البرنامج</button>
-        </div>
-      </div></div>`;
-    } else {
-      body = (state.settings.view === 'timeline' ? renderTimeline(list, conflictIds) : renderMyTable(list, conflictIds));
-    }
+    const body = state.settings.view === 'timeline'
+      ? renderTimeline(list, conflictIds)
+      : renderMyTable(list, conflictIds);
 
     const visitor = (state.name || '').trim();
     const myTitle = visitor ? `مخطّط زيارة ${esc(visitor)}` : 'تقويمي';
@@ -1837,6 +2019,12 @@
     setupInstall();
     setInterval(checkReminders, 30000);
     setTimeout(checkReminders, 2500);
+    refreshPrayerBars();
+    setInterval(refreshPrayerBars, 15000);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) refreshPrayerBars();
+    });
+    window.addEventListener('focus', refreshPrayerBars);
 
     if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
       window.addEventListener('load', () => {
