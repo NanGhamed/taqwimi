@@ -1864,6 +1864,157 @@ table.mycal tr.free-row td {
 }
 .footer-brand-block { display: flex; align-items: center; gap: 18px; }
 
+/* ---------------- footer rating / comments ---------------- */
+.footer-rating {
+  flex: 0 1 430px;
+  width: 100%;
+  max-width: 480px;
+  padding-inline-start: 20px;
+  border-inline-start: 1px solid var(--line);
+}
+.rating-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.rating-title { display: inline-flex; align-items: center; gap: 7px; color: var(--brand-800); font-size: 14px; font-weight: 800; }
+.rating-title .ic { width: 17px; height: 17px; color: var(--gold-500); }
+.rating-summary { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: var(--muted); font-size: 12px; font-weight: 600; }
+.rating-average { color: var(--ink-soft); font-weight: 800; }
+.rating-count { color: var(--muted); }
+.rating-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.rating-comments-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--brand-700);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.rating-comments-toggle .ic { width: 14px; height: 14px; }
+.rating-comments-toggle:disabled { opacity: .5; cursor: not-allowed; }
+.rating-status { margin-top: 8px; color: var(--muted); font-size: 11.5px; font-weight: 600; line-height: 1.6; }
+.stars { position: relative; display: inline-flex; direction: ltr; vertical-align: middle; }
+.stars-row { display: inline-flex; align-items: center; gap: 1px; }
+.stars .star { display: inline-flex; color: #d8cdc2; }
+.stars .star .ic { width: 14px; height: 14px; }
+.stars-empty .star .ic { fill: transparent; }
+.stars-filled { position: absolute; inset: 0 auto 0 0; width: var(--stars-fill); overflow: hidden; }
+.stars-filled .stars-row { width: max-content; }
+.stars-filled .star { color: var(--gold-500); flex: none; }
+.stars-filled .star .ic { fill: var(--gold-500); }
+.rating-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fbfaf5;
+}
+.rating-form-head { display: flex; flex-direction: column; gap: 2px; }
+.rating-form-head strong { color: var(--brand-900); font-size: 13px; }
+.rating-form-head span { color: var(--muted); font-size: 11.5px; font-weight: 600; line-height: 1.6; }
+.rating-form-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.rating-form-label { color: var(--ink-soft); font-size: 12px; font-weight: 800; }
+.rating-input { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.rating-choice { position: relative; display: inline-flex; }
+.rating-choice input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.rating-choice span {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+.rating-choice span .ic { width: 12px; height: 12px; }
+.rating-choice input:checked + span { background: var(--brand-800); border-color: var(--brand-800); color: #fff; }
+.rating-choice input:checked + span .ic { fill: #fff; }
+.rating-choice input:focus-visible + span { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+.rating-form textarea { width: 100%; resize: vertical; }
+.rating-comment-note { color: var(--muted); font-size: 11.5px; font-weight: 600; }
+.rating-form-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.rating-comments { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; max-height: 360px; overflow: auto; padding-inline-end: 3px; }
+.rating-item { padding: 10px; border: 1px solid var(--line); border-radius: 9px; background: #fff; }
+.rating-item-head { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.rating-item-date { margin-inline-start: auto; color: var(--muted); font-size: 10.5px; }
+.rating-item p { margin: 6px 0 0; color: var(--ink-soft); font-size: 12.5px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
+.rating-item-actions { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-top: 6px; }
+.rating-item-actions:empty { display: none; }
+.rating-moderator {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+.rating-moderator-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.rating-moderator-toggle .ic { width: 13px; height: 13px; }
+.rating-moderator-toggle:hover { color: var(--brand-700); }
+.rating-moderator-form {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fbfaf5;
+}
+.rating-moderator-form label {
+  display: grid;
+  gap: 4px;
+  color: var(--ink-soft);
+  font-size: 11.5px;
+  font-weight: 800;
+}
+.rating-moderator-form input { width: 100%; }
+.rating-moderator-form-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.rating-moderator-hint { color: var(--muted); font-size: 10.5px; font-weight: 600; line-height: 1.5; }
+.rating-moderator-error { margin-top: 6px; color: #7d2a22; font-size: 11.5px; font-weight: 700; line-height: 1.6; }
+.rating-moderator-notice { margin-top: 6px; color: var(--muted); font-size: 11px; font-weight: 600; line-height: 1.6; }
+.rating-moderator-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .footer-rating {
+    flex-basis: auto;
+    max-width: none;
+    padding-inline-start: 0;
+    padding-top: 16px;
+    border-inline-start: 0;
+    border-top: 1px solid var(--line);
+  }
+  .rating-head { flex-direction: column; gap: 6px; }
+  .rating-form-row { align-items: flex-start; flex-direction: column; }
+}
+
 @media (max-width: 900px) {
   table.mycal tr.day-panel-row {
     display: block;
@@ -1892,5 +2043,5 @@ table.mycal tr.free-row td {
 }
 
 @media print {
-  .day-actions { display: none !important; }
+  .day-actions, .footer-rating { display: none !important; }
 }

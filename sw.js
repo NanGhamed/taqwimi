@@ -1,11 +1,13 @@
 ﻿/* تقويمي — Service Worker
    استراتيجية: pre-cache للهيكل، ثم cache-first مع تحديث في الخلفية. */
 
-const VERSION = 'taqwimi-v42';
-const ASSET_V = '45';
+const VERSION = 'taqwimi-v46';
+const ASSET_V = '49';
 const CORE = [
   './',
   './index.html',
+  './config.js',
+  './assets/vendor/supabase.js',
   './assets/og-image.png',
   './assets/important-links/official-site.png',
   './assets/important-links/official-site-mobile.png',
@@ -113,3 +115,4 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('message', (event) => {
   if (event.data === 'skip-waiting') self.skipWaiting();
 });
+
