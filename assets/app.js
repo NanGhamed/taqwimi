@@ -10,6 +10,14 @@
   const STORE_KEY = 'taqwimi.v1.user';
   const UI_KEY = 'taqwimi.v1.ui';
   const NOTIFIED_KEY = 'taqwimi.v1.notified';
+  const DAY_NOTES_KEY = 'taqwimi.v1.daynotes';
+  const STATS_SUMMARY_URL = 'data/stats-summary.json';
+  const STATS_METRICS = [
+    { key: 'visitors', label: 'إجمالي الزوار', hint: 'زوار الموقع الفعليون' },
+    { key: 'planners', label: 'أضافوا أول فعالية', hint: 'زائر أضاف فعالية إلى خطته' },
+    { key: 'appOpens', label: 'فتح من أيقونة التطبيق', hint: 'مرات الفتح كتطبيق مثبّت' },
+    { key: 'printUses', label: 'استخدام الطباعة', hint: 'مرات استخدام زر الطباعة' },
+  ];
 
   /* أوقات صلاة الظهر والعصر والمغرب والعشاء في جدة — تقويم أم القرى */
   const PRAYER_TIMES = {
@@ -173,6 +181,47 @@
     return starts.length ? Math.min(...starts) : 24 * 60;
   }
 
+  function eventEndMinute(e) {
+    const ends = eventRanges(e).map((r) => toMinutes(r.end)).filter((v) => v != null);
+    return ends.length ? Math.max(...ends) : null;
+  }
+
+  function isEventFinished(e, now) {
+    const n = now || riyadhNow();
+    if (e.dayId < n.date) return true;
+    if (e.dayId > n.date) return false;
+    const end = eventEndMinute(e);
+    if (end == null) return false;
+    return n.minutes >= end;
+  }
+
+  function isEventNow(e, now) {
+    const n = now || riyadhNow();
+    if (e.dayId !== n.date) return false;
+    return eventRanges(e).some((r) => {
+      const start = toMinutes(r.start);
+      const end = toMinutes(r.end);
+      if (start == null || end == null) return false;
+      return n.minutes >= start && n.minutes < end;
+    });
+  }
+
+  function dayCollapseMinute(dayEvents) {
+    let minute = DAY_END;
+    dayEvents.forEach((e) => {
+      const end = eventEndMinute(e);
+      if (end != null && end > minute) minute = end;
+    });
+    return minute;
+  }
+
+  function isDayCollapsed(dayId, dayEvents, now) {
+    const n = now || riyadhNow();
+    if (n.date > dayId) return true;
+    if (n.date < dayId) return false;
+    return n.minutes >= dayCollapseMinute(dayEvents);
+  }
+
   function mergeMinuteRanges(ranges) {
     const sorted = ranges.filter((r) => r.end > r.start).slice().sort((a, b) => a.start - b.start);
     const merged = [];
@@ -276,12 +325,119 @@
 
   let ui = Object.assign({ section: 'all', filter: 'all', q: '' }, readJSON(UI_KEY, {}));
 
+  let dayNotes = readJSON(DAY_NOTES_KEY, {});
+  if (!dayNotes || typeof dayNotes !== 'object' || Array.isArray(dayNotes)) dayNotes = {};
+  let dayNoteTimer = null;
+  let statsSummary = null;
+  let statsSummaryState = 'idle';
+  let statsSummaryPromise = null;
+  const openDayPanels = {};
+  let lastMyTimeSignature = '';
+
   let saveTimer = null;
   function save(immediate) {
     const run = () => { writeJSON(STORE_KEY, state); };
     if (immediate) { clearTimeout(saveTimer); run(); return; }
     clearTimeout(saveTimer);
     saveTimer = setTimeout(run, 350);
+  }
+
+  /* ---------------- day extras ---------------- */
+  function dayNote(dayId) {
+    return dayNotes[dayId] || '';
+  }
+
+  function dayNoteHasText(dayId) {
+    return !!String(dayNotes[dayId] || '').trim();
+  }
+
+  function saveDayNotesSoon() {
+    clearTimeout(dayNoteTimer);
+    dayNoteTimer = setTimeout(() => writeJSON(DAY_NOTES_KEY, dayNotes), 300);
+  }
+
+  function isPanelOpen(dayId, panel) {
+    return !!openDayPanels[dayId + ':' + panel];
+  }
+
+  function dayActionsHtml(day, finishedCount) {
+    return `<div class="day-actions no-print">
+      <button class="btn btn-sm day-action${dayNoteHasText(day.id) ? ' has-note' : ''}" type="button" data-day-panel="notes" data-panel-day="${esc(day.id)}" aria-expanded="${isPanelOpen(day.id, 'notes')}">
+        ${icon('plus')} إضافات اليوم
+      </button>
+      <button class="btn btn-sm day-action" type="button" data-day-panel="finished" data-panel-day="${esc(day.id)}" aria-expanded="${isPanelOpen(day.id, 'finished')}">
+        ${icon('check')} المنتهية${finishedCount ? `<span class="day-count">${finishedCount}</span>` : ''}
+      </button>
+    </div>`;
+  }
+
+  function dayNotesPanelHtml(day) {
+    return `<div class="day-panel day-note-panel">
+      <label class="day-note-label" for="day-note-${esc(day.id)}">${icon('plus')} أضف موعدًا شخصيًا آخر يهمك أو ملاحظة لهذا اليوم</label>
+      <textarea class="input day-note-input" id="day-note-${esc(day.id)}" rows="3" data-day-note="${esc(day.id)}" placeholder="اكتب موعدًا أو ملاحظة خاصة بهذا اليوم…">${esc(dayNote(day.id))}</textarea>
+      <div class="day-panel-foot">
+        <span>${icon('check')} يُحفظ تلقائيًا على هذا الجهاز</span>
+        <button class="btn btn-sm btn-ghost" type="button" data-clear-day-note="${esc(day.id)}">${icon('trash')} مسح</button>
+      </div>
+    </div>`;
+  }
+
+  function toggleDayPanel(dayId, panel) {
+    const key = dayId + ':' + panel;
+    const open = !openDayPanels[key];
+    if (open) openDayPanels[key] = true;
+    else delete openDayPanels[key];
+    $$(`[data-day-panel-row="${panel}"][data-panel-day="${dayId}"]`).forEach((row) => { row.hidden = !open; });
+    $$(`[data-day-panel="${panel}"][data-panel-day="${dayId}"]`).forEach((btn) => btn.setAttribute('aria-expanded', open ? 'true' : 'false'));
+    if (open) {
+      const row = $(`[data-day-panel-row="${panel}"][data-panel-day="${dayId}"]`);
+      if (row) setTimeout(() => row.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 30);
+    }
+  }
+
+  function clearDayNote(dayId) {
+    delete dayNotes[dayId];
+    writeJSON(DAY_NOTES_KEY, dayNotes);
+    $$(`[data-day-note="${dayId}"]`).forEach((area) => { area.value = ''; });
+    $$(`[data-day-panel="notes"][data-panel-day="${dayId}"]`).forEach((btn) => btn.classList.remove('has-note'));
+    toast('تم مسح إضافات اليوم', 'ok');
+  }
+
+  function finishedCardHtml(e) {
+    const r = recSafe(e.id);
+    const att = r.attendance;
+    return `<article class="finished-card" data-event="${esc(e.id)}">
+      <div class="finished-head">
+        <div class="finished-time">${esc(to12(e.start) || '—')}<small>${e.end ? 'حتى ' + esc(to12(e.end)) : esc(e.timeText || 'بدون توقيت')}</small></div>
+        <div class="finished-main">
+          <div class="finished-title">${esc(e.title)}</div>
+          <div class="finished-meta">
+            ${r.priority === 'first' ? '<span class="pill first">أولوية أولى</span>' : '<span class="pill alt">خيار بديل</span>'}
+            ${e.place ? `<span>${icon('pin')} ${esc(e.place)}</span>` : ''}
+            ${e.track ? `<span class="tag">${esc(e.track)}</span>` : ''}
+          </div>
+        </div>
+        <div class="finished-actions">
+          <button class="att-btn" type="button" data-att="${esc(e.id)}" data-state="${att || ''}">
+            ${att === 'attended' ? icon('check') + ' حضرت' : att === 'missed' ? icon('x') + ' لم أحضر' : 'تسجيل الحضور'}
+          </button>
+          <button class="btn btn-sm btn-ghost" type="button" data-details="${esc(e.id)}" title="التفاصيل">${icon('info')}</button>
+        </div>
+      </div>
+      <textarea class="input finished-note" rows="2" data-note="${esc(e.id)}" placeholder="ملاحظتك…" aria-label="ملاحظات ${esc(e.title)}">${esc(r.notes)}</textarea>
+    </article>`;
+  }
+
+  function finishedPanelHtml(day, finished) {
+    return `<div class="day-panel finished-panel">
+      <div class="day-panel-head">
+        <strong>${icon('check')} المنتهية</strong>
+        <span>${finished.length ? evCount(finished.length) : 'لا توجد فعاليات منتهية بعد'}</span>
+      </div>
+      ${finished.length
+        ? `<div class="finished-list">${finished.map(finishedCardHtml).join('')}</div>`
+        : `<div class="empty-small">ستظهر هنا الفعاليات المختارة بعد انتهاء وقتها بتوقيت السعودية.</div>`}
+    </div>`;
   }
 
   function rec(id) {
@@ -664,10 +820,12 @@
 
   function renderFooter() {
     return `<footer class="site-footer">
-      <img class="footer-logo" src="icons/committee-logo-320.png" alt="شعار لجنة التحول الرقمي والذكاء الاصطناعي" width="96" height="96" loading="lazy">
-      <div class="footer-text">
-        <strong>إهداء من لجنة التحول الرقمي والذكاء الاصطناعي</strong>
-        <span class="footer-brand">نون متحد</span>
+      <div class="footer-brand-block">
+        <img class="footer-logo" src="icons/committee-logo-320.png" alt="شعار لجنة التحول الرقمي والذكاء الاصطناعي" width="96" height="96" loading="lazy">
+        <div class="footer-text">
+          <strong>إهداء من لجنة التحول الرقمي والذكاء الاصطناعي</strong>
+          <span class="footer-brand">نون متحد</span>
+        </div>
       </div>
     </footer>`;
   }
@@ -699,12 +857,10 @@
   }
 
   function nextEvent() {
-    const now = new Date();
     const list = sortEvents(selectedEvents()).filter((e) => e.start);
     if (!list.length) return null;
     for (const e of list) {
-      const end = isoToDate(e.dayId, e.end || e.start);
-      if (end >= now) return e;
+      if (!isEventFinished(e)) return e;
     }
     return null;
   }
@@ -734,7 +890,7 @@
       </div>`;
     }
     const day = dayInfo(e.dayId);
-    const isNow = isoToDate(e.dayId, e.start) <= new Date() && isoToDate(e.dayId, e.end || e.start) >= new Date();
+    const isNow = isEventNow(e);
     return `<div class="nextcard">
       <div>
         <div class="nc-label">${isNow ? 'جارٍ الآن' : 'الفعالية القادمة'}</div>
@@ -794,32 +950,49 @@
 
   function renderMyTable(list, conflictIds) {
     const rows = [];
+    const now = riyadhNow();
     DATA.days.forEach((day) => {
-      const dayEvents = list.filter((e) => e.dayId === day.id);
-      const empty = dayEvents.length === 0;
-      const slots = availableSlots(dayEvents);
+      const allDayEvents = list.filter((e) => e.dayId === day.id);
+      const activeDayEvents = allDayEvents.filter((e) => !isEventFinished(e, now));
+      const finishedDayEvents = allDayEvents.filter((e) => isEventFinished(e, now));
+      const collapsed = isDayCollapsed(day.id, allDayEvents, now);
+      const empty = allDayEvents.length === 0;
+      const slots = availableSlots(allDayEvents);
       const items = [];
       slots.forEach((slot) => items.push({ type: 'free', start: slot.start, slot }));
-      dayEvents.forEach((e) => items.push({ type: 'event', start: eventStartMin(e), e }));
+      activeDayEvents.forEach((e) => items.push({ type: 'event', start: eventStartMin(e), e }));
       items.sort((a, b) => a.start - b.start || (a.type === 'free' ? -1 : 1));
+      const countLabel = collapsed
+        ? ''
+        : (activeDayEvents.length ? evCount(activeDayEvents.length) : (finishedDayEvents.length ? 'لا فعاليات نشطة' : ''));
 
       rows.push(`<tr class="my-day-row"><td colspan="8">
         <div class="my-day-head">
           <div class="my-day-title">
             <h3>${esc(day.weekday)} · ${esc(day.dateLabel.replace(day.weekday + ' ', ''))}</h3>
-            <span class="cnt">${dayEvents.length ? evCount(dayEvents.length) : ''}</span>
+            <span class="cnt">${countLabel}</span>
           </div>
-          ${prayerBarHtml(day.id)}
+          ${dayActionsHtml(day, finishedDayEvents.length)}
         </div>
+        ${collapsed ? '' : prayerBarHtml(day.id)}
       </td></tr>`);
 
-      items.forEach((item) => {
-        if (item.type === 'free') {
-          rows.push(`<tr class="free-row"><td colspan="8">${freeSlotHtml(item.slot, empty)}</td></tr>`);
-        } else {
-          rows.push(renderMyEventRow(item.e, conflictIds));
-        }
-      });
+      if (!collapsed) {
+        items.forEach((item) => {
+          if (item.type === 'free') {
+            rows.push(`<tr class="free-row"><td colspan="8">${freeSlotHtml(item.slot, empty)}</td></tr>`);
+          } else {
+            rows.push(renderMyEventRow(item.e, conflictIds));
+          }
+        });
+      }
+
+      rows.push(`<tr class="day-panel-row" data-day-panel-row="notes" data-panel-day="${esc(day.id)}" ${isPanelOpen(day.id, 'notes') ? '' : 'hidden'}>
+        <td colspan="8">${dayNotesPanelHtml(day)}</td>
+      </tr>`);
+      rows.push(`<tr class="day-panel-row" data-day-panel-row="finished" data-panel-day="${esc(day.id)}" ${isPanelOpen(day.id, 'finished') ? '' : 'hidden'}>
+        <td colspan="8">${finishedPanelHtml(day, finishedDayEvents)}</td>
+      </tr>`);
     });
 
     return `<div class="scroll-hint no-print">${icon('link')} اسحب الجدول أفقيًا لعرض بقية الأعمدة</div>
@@ -843,22 +1016,32 @@
   }
 
   function renderTimeline(list, conflictIds) {
+    const now = riyadhNow();
     return `<div class="timeline">` + DATA.days.map((day) => {
-      const dayEvents = list.filter((e) => e.dayId === day.id);
-      const empty = dayEvents.length === 0;
-      const slots = availableSlots(dayEvents);
+      const allDayEvents = list.filter((e) => e.dayId === day.id);
+      const activeDayEvents = allDayEvents.filter((e) => !isEventFinished(e, now));
+      const finishedDayEvents = allDayEvents.filter((e) => isEventFinished(e, now));
+      const collapsed = isDayCollapsed(day.id, allDayEvents, now);
+      const empty = allDayEvents.length === 0;
+      const slots = availableSlots(allDayEvents);
       const items = [];
       slots.forEach((slot) => items.push({ type: 'free', start: slot.start, slot }));
-      dayEvents.forEach((e) => items.push({ type: 'event', start: eventStartMin(e), e }));
+      activeDayEvents.forEach((e) => items.push({ type: 'event', start: eventStartMin(e), e }));
       items.sort((a, b) => a.start - b.start || (a.type === 'free' ? -1 : 1));
+      const countLabel = collapsed
+        ? ''
+        : (activeDayEvents.length ? evCount(activeDayEvents.length) : (finishedDayEvents.length ? 'لا فعاليات نشطة' : ''));
 
       return `<div class="tl-day">
         <div class="tl-day-head">
-          <h3>${esc(day.weekday)} · ${esc(day.dateLabel.replace(day.weekday + ' ', ''))}</h3>
+          <div class="tl-day-title">
+            <h3>${esc(day.weekday)} · ${esc(day.dateLabel.replace(day.weekday + ' ', ''))}</h3>
+            <span class="cnt">${countLabel}</span>
+          </div>
           <span class="line"></span>
-          <span class="cnt">${dayEvents.length ? evCount(dayEvents.length) : ''}</span>
+          ${dayActionsHtml(day, finishedDayEvents.length)}
         </div>
-        ${prayerBarHtml(day.id)}
+        ${collapsed ? '' : `${prayerBarHtml(day.id)}
         <div class="tl-items">
           ${items.map((item) => {
             if (item.type === 'free') {
@@ -887,7 +1070,9 @@
               </div>
             </div>`;
           }).join('')}
-        </div>
+        </div>`}
+        <div class="tl-day-panel" data-day-panel-row="notes" data-panel-day="${esc(day.id)}" ${isPanelOpen(day.id, 'notes') ? '' : 'hidden'}>${dayNotesPanelHtml(day)}</div>
+        <div class="tl-day-panel" data-day-panel-row="finished" data-panel-day="${esc(day.id)}" ${isPanelOpen(day.id, 'finished') ? '' : 'hidden'}>${finishedPanelHtml(day, finishedDayEvents)}</div>
       </div>`;
     }).join('') + `</div>`;
   }
@@ -938,10 +1123,11 @@
 
   function renderMy() {
     const list = sortEvents(selectedEvents());
+    const activeList = list.filter((e) => !isEventFinished(e));
     const first = list.filter((e) => recSafe(e.id).priority === 'first').length;
     const alt = list.length - first;
     const attended = list.filter((e) => recSafe(e.id).attendance === 'attended').length;
-    const pairs = overlaps(list);
+    const pairs = overlaps(activeList);
     const conflictIds = new Set();
     pairs.forEach(([a, b]) => { conflictIds.add(a.id); conflictIds.add(b.id); });
 
@@ -1026,7 +1212,113 @@
     return { key: 'default', label: 'لم تُطلب بعد', cls: 'status-off' };
   }
 
+  /* ---------------- public stats summary ---------------- */
+  function statsNumber(value) {
+    if (value === null || value === undefined || value === '') return null;
+    const n = Number(value);
+    return Number.isFinite(n) && n >= 0 ? n : null;
+  }
+
+  function normalizeStatsSummary(raw) {
+    const src = raw && typeof raw === 'object' ? raw : {};
+    const rawMetrics = src.metrics && typeof src.metrics === 'object' ? src.metrics : {};
+    const metrics = {};
+    STATS_METRICS.forEach(({ key }) => {
+      const n = statsNumber(rawMetrics[key]);
+      if (n !== null) metrics[key] = n;
+    });
+    return {
+      startedAt: typeof src.startedAt === 'string' && src.startedAt ? src.startedAt : null,
+      updatedAt: typeof src.updatedAt === 'string' && src.updatedAt ? src.updatedAt : null,
+      metrics,
+    };
+  }
+
+  function formatStatsDate(value, emptyLabel) {
+    if (!value) return emptyLabel;
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return emptyLabel;
+    try {
+      return date.toLocaleDateString('ar-SA-u-nu-latn', { year: 'numeric', month: 'long', day: 'numeric' });
+    } catch (e) { return emptyLabel; }
+  }
+
+  function formatStatsNumber(value) {
+    try {
+      return new Intl.NumberFormat('ar-SA-u-nu-latn').format(Number(value) || 0);
+    } catch (e) { return String(Number(value) || 0); }
+  }
+
+  function statsCardHtml() {
+    const summary = statsSummary;
+    const metrics = summary
+      ? STATS_METRICS.filter(({ key }) => Object.prototype.hasOwnProperty.call(summary.metrics, key))
+      : [];
+    const hasData = metrics.length > 0;
+    const startedAt = formatStatsDate(summary && summary.startedAt, 'لم يبدأ');
+    const updatedAt = formatStatsDate(summary && summary.updatedAt, '—');
+
+    let body = '';
+    if (statsSummaryState === 'loading' && !summary) {
+      body = `<div class="stats-empty">${icon('clock')}<div>جارٍ تحميل ملخص الأرقام…</div></div>`;
+    } else if (statsSummaryState === 'error' && !summary) {
+      body = `<div class="stats-empty">${icon('info')}<div>تعذّر تحميل ملخص الأرقام الآن. ستظهر الأرقام عند توفر الملخص العام.</div></div>`;
+    } else if (!hasData) {
+      body = `<div class="stats-empty">${icon('info')}<div>لا توجد مؤشرات فعلية بعد. ستظهر هنا الأرقام المجمّعة بعد ربط Google Analytics 4 وبدء جمع البيانات، دون أي سجلات أفراد أو مفاتيح وصول.</div></div>`;
+    } else {
+      body = `<div class="stats">${metrics.map(({ key, label, hint }) => `<div class="stat">
+        <div class="s-num">${esc(formatStatsNumber(summary.metrics[key]))}</div>
+        <div class="s-label">${esc(label)}</div>
+        <div class="s-hint">${esc(hint)}</div>
+      </div>`).join('')}</div>`;
+    }
+
+    return `<div class="card stats-card" data-stats-card>
+      <div class="card-head"><h2>${icon('chart')} إحصاءات تقويمي</h2><p>ملخص عام للأرقام المجمّعة فقط. لا تُنشر سجلات الأفراد أو مفاتيح لوحة التحليلات.</p></div>
+      <div class="card-body">
+        <div class="stats-meta">
+          <span>بدء القياس: <strong>${esc(startedAt)}</strong></span>
+          <span>آخر تحديث: <strong>${esc(updatedAt)}</strong></span>
+        </div>
+        ${body}
+        ${hasData ? '<p class="stats-foot">تُحدَّث الأرقام دوريًا من ملخص عام منفصل عن لوحة التحليلات.</p>' : ''}
+      </div>
+    </div>`;
+  }
+
+  function refreshStatsCard() {
+    const host = $('[data-stats-card]');
+    if (!host) return;
+    const wrap = document.createElement('div');
+    wrap.innerHTML = statsCardHtml();
+    if (wrap.firstElementChild) host.replaceWith(wrap.firstElementChild);
+  }
+
+  function loadStatsSummary() {
+    if (statsSummaryPromise) return statsSummaryPromise;
+    statsSummaryState = 'loading';
+    refreshStatsCard();
+    statsSummaryPromise = fetch(STATS_SUMMARY_URL, { cache: 'no-store' })
+      .then((res) => {
+        if (!res.ok) throw new Error('stats summary');
+        return res.json();
+      })
+      .then((data) => {
+        statsSummary = normalizeStatsSummary(data);
+        statsSummaryState = 'ready';
+        refreshStatsCard();
+        return statsSummary;
+      })
+      .catch(() => {
+        statsSummaryState = 'error';
+        refreshStatsCard();
+        return null;
+      });
+    return statsSummaryPromise;
+  }
+
   function renderSettings() {
+    if (statsSummaryState === 'idle') loadStatsSummary();
     const st = notifStatus();
     const enabled = state.settings.notificationsEnabled && st.key === 'granted';
     const total = DATA.meta.eventsCount;
@@ -1100,6 +1392,8 @@
           <div class="row"><div><div class="r-title">الإصدار</div><div class="r-desc">${APP.name} ${APP.version}.0 — نسخة مراجعة داخلية.</div></div></div>
         </div>
       </div>
+
+      ${statsCardHtml()}
 
       <div class="card">
         <div class="card-head"><h2>${icon('trash')} البيانات</h2><p>حذف دائم لبياناتك من هذا المتصفح.</p></div>
@@ -1674,6 +1968,7 @@
     else if (route.name === 'links') html = renderLinks();
     else html = renderProgram();
     main.innerHTML = html;
+    lastMyTimeSignature = route.name === 'my' ? myTimeSignature() : '';
 
     $$('.navtab').forEach((b) => {
       const active = b.dataset.route === route.name;
@@ -1702,8 +1997,17 @@
 
   /* ---------------- events ---------------- */
   document.addEventListener('click', (e) => {
-    const t = e.target.closest('[data-go],[data-route],[data-day],[data-section],[data-filter],[data-set-prio],[data-att],[data-details],[data-goto-occ],[data-reminder],[data-view],[data-action],[data-toggle-notif]');
+    const t = e.target.closest('[data-go],[data-route],[data-day],[data-section],[data-filter],[data-set-prio],[data-att],[data-details],[data-goto-occ],[data-reminder],[data-view],[data-action],[data-toggle-notif],[data-day-panel],[data-clear-day-note]');
     if (!t) return;
+
+    if (t.dataset.dayPanel) {
+      toggleDayPanel(t.dataset.panelDay, t.dataset.dayPanel);
+      return;
+    }
+    if (t.dataset.clearDayNote) {
+      clearDayNote(t.dataset.clearDayNote);
+      return;
+    }
 
     if (t.dataset.route) {
       const r = t.dataset.route;
@@ -1773,6 +2077,14 @@
       state.name = e.target.value;
       save();
       if (e.target.id === 'visitor-name') updateMyNameUI();
+    }
+    if (e.target.dataset && e.target.dataset.dayNote) {
+      const dayId = e.target.dataset.dayNote;
+      const value = e.target.value;
+      if (value.trim()) dayNotes[dayId] = value;
+      else delete dayNotes[dayId];
+      saveDayNotesSoon();
+      $$(`[data-day-panel="notes"][data-panel-day="${dayId}"]`).forEach((btn) => btn.classList.toggle('has-note', !!value.trim()));
     }
     if (e.target.dataset && e.target.dataset.note) {
       rec(e.target.dataset.note).notes = e.target.value;
@@ -1984,6 +2296,37 @@
     welcomeTimer = setInterval(render, 1000);
   }
 
+  function myTimeSignature() {
+    const now = riyadhNow();
+    const list = sortEvents(selectedEvents());
+    return now.date + '|' + DATA.days.map((day) => {
+      const events = list.filter((e) => e.dayId === day.id);
+      const finished = events.filter((e) => isEventFinished(e, now)).map((e) => e.id).sort().join(',');
+      return `${day.id}:${isDayCollapsed(day.id, events, now) ? '1' : '0'}:${finished}`;
+    }).join('|');
+  }
+
+  function refreshTimeState() {
+    const route = currentRoute();
+    if (route.name !== 'my') {
+      lastMyTimeSignature = '';
+      return;
+    }
+    const signature = myTimeSignature();
+    if (signature === lastMyTimeSignature) return;
+    const now = riyadhNow();
+    const list = sortEvents(selectedEvents());
+    DATA.days.forEach((day) => {
+      const events = list.filter((e) => e.dayId === day.id);
+      if (isDayCollapsed(day.id, events, now)) {
+        delete openDayPanels[day.id + ':notes'];
+        delete openDayPanels[day.id + ':finished'];
+      }
+    });
+    lastMyTimeSignature = signature;
+    render();
+  }
+
   /* ---------------- init ---------------- */
   function init() {
     $('#btn-back').addEventListener('click', () => history.back());
@@ -2012,6 +2355,7 @@
       history.replaceState(null, '', href(state.settings.lastRoute || 'program',
         (state.settings.lastRoute === 'program' || !state.settings.lastRoute) ? state.settings.lastDay : null));
     }
+    loadStatsSummary();
     handleHash(true);
 
     showWelcome();
@@ -2020,11 +2364,25 @@
     setInterval(checkReminders, 30000);
     setTimeout(checkReminders, 2500);
     refreshPrayerBars();
-    setInterval(refreshPrayerBars, 15000);
+    refreshTimeState();
+    setInterval(() => {
+      refreshPrayerBars();
+      refreshTimeState();
+    }, 15000);
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) refreshPrayerBars();
+      if (!document.hidden) {
+        refreshPrayerBars();
+        refreshTimeState();
+      }
     });
-    window.addEventListener('focus', refreshPrayerBars);
+    window.addEventListener('focus', () => {
+      refreshPrayerBars();
+      refreshTimeState();
+    });
+    window.addEventListener('pagehide', () => {
+      clearTimeout(dayNoteTimer);
+      writeJSON(DAY_NOTES_KEY, dayNotes);
+    });
 
     if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
       window.addEventListener('load', () => {

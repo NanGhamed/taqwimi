@@ -1,8 +1,8 @@
 ﻿/* تقويمي — Service Worker
    استراتيجية: pre-cache للهيكل، ثم cache-first مع تحديث في الخلفية. */
 
-const VERSION = 'taqwimi-v38';
-const ASSET_V = '41';
+const VERSION = 'taqwimi-v41';
+const ASSET_V = '44';
 const CORE = [
   './',
   './index.html',
@@ -17,6 +17,7 @@ const CORE = [
   `./assets/app.js?v=${ASSET_V}`,
   './data/program.v3.js',
   './data/program.json',
+  './data/stats-summary.json',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -70,6 +71,25 @@ self.addEventListener('fetch', (event) => {
         .catch(() =>
           caches.match(req).then((cached) => cached || caches.match('./index.html'))
         )
+    );
+    return;
+  }
+
+  /* Public aggregate stats: network-first so updates appear promptly. */
+  if (url.pathname.endsWith('/data/stats-summary.json')) {
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          if (res && res.status === 200 && res.type === 'basic') {
+            const copy = res.clone();
+            caches.open(VERSION).then((c) => c.put(req, copy)).catch(() => {});
+          }
+          return res;
+        })
+        .catch(() => caches.match(req).then((cached) => cached || new Response('{}', {
+          status: 200,
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        })))
     );
     return;
   }
