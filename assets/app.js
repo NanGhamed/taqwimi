@@ -11,6 +11,7 @@
   const UI_KEY = 'taqwimi.v1.ui';
   const NOTIFIED_KEY = 'taqwimi.v1.notified';
   const DAY_NOTES_KEY = 'taqwimi.v1.daynotes';
+  const FIRST_PLAN_ADD_KEY = 'taqwimi.v1.analytics.firstplanadd';
   const STATS_SUMMARY_URL = 'data/stats-summary.json';
   const STATS_METRICS = [
     { key: 'visitors', label: 'إجمالي الزوار', hint: 'زوار الموقع الفعليون' },
@@ -57,6 +58,27 @@
   function writeJSON(key, val) {
     try { localStorage.setItem(key, JSON.stringify(val)); return true; }
     catch (e) { toast('تعذّر حفظ البيانات محليًا. قد تكون مساحة التخزين ممتلئة.', 'err'); return false; }
+  }
+
+  /* أحداث القياس فقط — لا تُرسل الأسماء أو الملاحظات أو محتوى الخطة. */
+  function trackEvent(name) {
+    try {
+      if (typeof window.gtag === 'function') window.gtag('event', name);
+    } catch (e) { /* لا تعطّل التطبيق إن تعذّر القياس */ }
+  }
+
+  let firstPlanAddTracked = false;
+  function trackFirstPlanAdd() {
+    if (firstPlanAddTracked) return;
+    try {
+      if (localStorage.getItem(FIRST_PLAN_ADD_KEY) === '1') {
+        firstPlanAddTracked = true;
+        return;
+      }
+      localStorage.setItem(FIRST_PLAN_ADD_KEY, '1');
+    } catch (e) { /* متابعة بمرة واحدة لكل تحميل إذا مُنع التخزين */ }
+    firstPlanAddTracked = true;
+    trackEvent('first_plan_add');
   }
 
   const pad = (n) => String(n).padStart(2, '0');
@@ -336,10 +358,11 @@
 
   let saveTimer = null;
   function save(immediate) {
-    const run = () => { writeJSON(STORE_KEY, state); };
-    if (immediate) { clearTimeout(saveTimer); run(); return; }
+    const run = () => writeJSON(STORE_KEY, state);
+    if (immediate) { clearTimeout(saveTimer); return run(); }
     clearTimeout(saveTimer);
     saveTimer = setTimeout(run, 350);
+    return true;
   }
 
   /* ---------------- day extras ---------------- */
@@ -1588,9 +1611,11 @@
   /* ---------------- mutations ---------------- */
   function setPriority(eventId, p) {
     const r = rec(eventId);
+    const wasSelected = !!r.priority;
     r.priority = (r.priority === p || !p) ? null : p;
     if (r.priority && r.reminder == null) r.reminder = null;
-    save(true);
+    const saved = save(true);
+    if (!wasSelected && r.priority && saved) trackFirstPlanAdd();
     render();
     toast(r.priority === 'first' ? 'أُضيفت إلى أولوياتك الأولى' : r.priority === 'alt' ? 'أُضيفت كخيار بديل' : 'أُزيل التحديد', 'ok');
   }
@@ -1604,9 +1629,11 @@
 
   function setReminder(eventId, minutes) {
     const r = rec(eventId);
+    const wasSelected = !!r.priority;
     r.reminder = minutes;
     if (minutes != null && !r.priority) r.priority = 'first';
-    save(true);
+    const saved = save(true);
+    if (!wasSelected && r.priority && saved) trackFirstPlanAdd();
     if (minutes != null) ensureNotificationPermission().then((ok) => {
       if (!ok) toast('تم حفظ التنبيه، لكنه لن يظهر حتى تفعّل الإشعارات.', 'warn');
       else toast('تم ضبط التنبيه: ' + reminderLabel(minutes), 'ok');
@@ -2053,7 +2080,7 @@
     }
     if (t.dataset.action) {
       const a = t.dataset.action;
-      if (a === 'print') window.print();
+      if (a === 'print') { trackEvent('print_calendar'); window.print(); }
       else if (a === 'ics') {
         const ics = buildICS();
         if (ics) { download('taqwimi-selected.ics', ics, 'text/calendar;charset=utf-8'); toast('تم تصدير ملف ICS', 'ok'); }
@@ -2329,6 +2356,7 @@
 
   /* ---------------- init ---------------- */
   function init() {
+    if (isStandalone()) trackEvent('app_open');
     $('#btn-back').addEventListener('click', () => history.back());
     $('#btn-forward').addEventListener('click', () => history.forward());
     $('#btn-install').addEventListener('click', showInstallCard);
