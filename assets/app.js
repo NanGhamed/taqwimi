@@ -361,7 +361,6 @@
   /* ---------------- ratings / comments ---------------- */
   let ratingClient = null;
   let ratingSessionUser = null;
-  let moderatorClient = null;
   let ratingInitAttempts = 0;
   const cachedRatingSummary = readJSON(RATING_SUMMARY_CACHE_KEY, null);
   let ratingState = {
@@ -381,12 +380,7 @@
     commentsLoading: false,
     commentsError: '',
     commentsOpen: false,
-    formOpen: false,
-    moderator: false,
-    moderatorFormOpen: false,
-    moderatorBusy: false,
-    moderatorError: '',
-    moderatorNotice: '',
+    commentBoxOpen: false,
   };
 
   let saveTimer = null;
@@ -948,27 +942,31 @@
 
   function ratingFormHtml() {
     const own = ratingState.own;
-    return `<form class="rating-form" data-rating-form>
-      <div class="rating-form-head">
-        <strong>${own ? 'تعديل مشاركتك' : 'شارك تقييمك'}</strong>
-        <span>المشاركة اختيارية، ويمكنك إرسال النجوم دون تعليق.</span>
-      </div>
+    const ownComment = own && own.comment ? String(own.comment) : '';
+    const unavailable = !ratingState.ready || ratingState.offline;
+    const commentLink = ownComment ? 'عدّل تعليقك' : 'أضف تعليقًا (اختياري)';
+    return `<form class="rating-form rating-form-public" data-rating-form>
       <div class="rating-form-row">
         <span class="rating-form-label">تقييمك</span>
         <div class="rating-input" role="radiogroup" aria-label="اختر تقييمًا من ١ إلى ٥">
           ${[1, 2, 3, 4, 5].map((n) => `<label class="rating-choice">
-            <input type="radio" name="rating" value="${n}" ${own && Number(own.rating) === n ? 'checked' : ''} required>
+            <input type="radio" name="rating" value="${n}" ${own && Number(own.rating) === n ? 'checked' : ''} ${ratingState.busy || unavailable ? 'disabled' : ''}>
             <span>${n} ${icon('star')}</span>
           </label>`).join('')}
         </div>
       </div>
-      <label class="rating-form-label" for="rating-comment">تعليق اختياري</label>
-      <textarea class="input" id="rating-comment" name="comment" rows="3" maxlength="500" dir="auto" placeholder="اكتب تعليقك…">${esc(own ? own.comment : '')}</textarea>
-      <div class="rating-comment-note">سيظهر تعليقك للجميع</div>
-      <div class="rating-form-actions">
-        ${own ? `<button class="btn btn-sm btn-ghost" type="button" data-rating-delete>${icon('trash')} حذف مشاركتي</button>` : ''}
-        <button class="btn btn-primary btn-sm" type="submit" ${ratingState.busy ? 'disabled' : ''}>${ratingState.busy ? 'جارٍ الحفظ…' : (own ? 'تحديث مشاركتي' : 'إرسال التقييم')}</button>
+      <div class="rating-comment-toggle-row">
+        <button class="rating-comment-toggle" type="button" data-rating-comment-toggle aria-expanded="${ratingState.commentBoxOpen}" ${unavailable ? 'disabled' : ''}>${commentLink}</button>
       </div>
+      ${ratingState.commentBoxOpen ? `<div class="rating-comment-box">
+        <label class="rating-form-label" for="rating-comment">تعليقك (اختياري)</label>
+        <textarea class="input" id="rating-comment" name="comment" rows="3" maxlength="500" dir="auto" placeholder="اكتب تعليقك…">${esc(ownComment)}</textarea>
+        <div class="rating-comment-note">سيظهر تعليقك للجميع</div>
+        <div class="rating-form-actions">
+          ${own ? `<button class="btn btn-sm btn-ghost" type="button" data-rating-delete>${icon('trash')} حذف مشاركتي</button>` : ''}
+          <button class="btn btn-primary btn-sm" type="submit" ${ratingState.busy ? 'disabled' : ''}>${ratingState.busy ? 'جارٍ الحفظ…' : 'حفظ التعليق'}</button>
+        </div>
+      </div>` : ''}
     </form>`;
   }
 
@@ -984,7 +982,6 @@
       <div class="rating-item-actions">
         ${own ? `<button class="btn btn-sm btn-ghost" type="button" data-rating-edit>تعديل</button>
           <button class="btn btn-sm btn-ghost" type="button" data-rating-delete>${icon('trash')} حذف</button>` : ''}
-        ${ratingState.moderator && !own ? `<button class="btn btn-sm btn-ghost" type="button" data-rating-moderator-delete="${esc(entry.id)}">${icon('trash')} حذف (مشرفة)</button>` : ''}
       </div>
     </article>`;
   }
@@ -994,35 +991,6 @@
     if (ratingState.commentsError) return '<div class="rating-comments"><div class="empty-small">تعذّر تحميل التعليقات.</div></div>';
     if (!ratingState.comments.length) return '<div class="rating-comments"><div class="empty-small">لا توجد تعليقات بعد.</div></div>';
     return `<div class="rating-comments">${ratingState.comments.map(ratingCommentItemHtml).join('')}</div>`;
-  }
-
-  function moderatorPanelHtml() {
-    if (ratingState.moderator) {
-      return `<div class="rating-moderator-bar">
-        <span class="pill first">وضع المشرفة</span>
-        <span>يمكنك حذف تعليقات المشاركين.</span>
-        <button class="btn btn-sm btn-ghost" type="button" data-moderator-logout ${ratingState.moderatorBusy ? 'disabled' : ''}>${ratingState.moderatorBusy ? 'جارٍ الخروج…' : 'خروج'}</button>
-      </div>`;
-    }
-    return `<div class="rating-moderator">
-      <button class="rating-moderator-toggle" type="button" data-moderator-toggle aria-expanded="${ratingState.moderatorFormOpen}">
-        ${icon('lock')} ${ratingState.moderatorFormOpen ? 'إغلاق دخول المشرفة' : 'دخول المشرفة'}
-      </button>
-      ${ratingState.moderatorFormOpen ? `<form class="rating-moderator-form" data-moderator-form>
-        <label for="moderator-email">بريد المشرفة
-          <input class="input" id="moderator-email" name="email" type="email" autocomplete="username" dir="ltr" required>
-        </label>
-        <label for="moderator-password">كلمة المرور
-          <input class="input" id="moderator-password" name="password" type="password" autocomplete="current-password" dir="ltr" required>
-        </label>
-        <div class="rating-moderator-form-actions">
-          <button class="btn btn-primary btn-sm" type="submit" ${ratingState.moderatorBusy ? 'disabled' : ''}>${ratingState.moderatorBusy ? 'جارٍ الدخول…' : 'دخول'}</button>
-          <span class="rating-moderator-hint">للإشراف فقط، لا يؤثر على تقييمك كزائر.</span>
-        </div>
-      </form>` : ''}
-      ${ratingState.moderatorError ? `<div class="rating-moderator-error" role="alert">${esc(ratingState.moderatorError)}</div>` : ''}
-      ${ratingState.moderatorNotice ? `<div class="rating-moderator-notice" role="status">${esc(ratingState.moderatorNotice)}</div>` : ''}
-    </div>`;
   }
 
   function ratingSectionHtml() {
@@ -1039,25 +1007,25 @@
         : ratingState.error
           ? 'تعذّر تحميل التقييمات الآن.'
           : '';
+    const summaryHtml = count
+      ? `${starsHtml(average)}
+          <span class="rating-average">${average.toFixed(1)} من ٥</span>
+          <span class="rating-count">${ratingCountLabel(count)}</span>`
+      : `${starsHtml(0)}
+          <span class="rating-empty">لا توجد تقييمات بعد</span>`;
     return `<div class="footer-rating" data-rating-root>
       <div class="rating-head">
         <div class="rating-title">${icon('star')} قيّم تجربتك</div>
-        <div class="rating-summary">
-          ${starsHtml(average)}
-          <span class="rating-average">${count ? average.toFixed(1) : '—'} من ٥</span>
-          <span class="rating-count">${ratingCountLabel(count)}</span>
-        </div>
+        <div class="rating-summary">${summaryHtml}</div>
       </div>
-      <div class="rating-actions">
-        <button class="btn btn-sm btn-primary" type="button" data-rating-form-toggle aria-expanded="${ratingState.formOpen}" ${unavailable ? 'disabled' : ''}>${ratingState.formOpen ? 'إغلاق النموذج' : (ratingState.own ? 'عدّل تقييمك' : 'شارك تقييمك')}</button>
+      ${ratingFormHtml()}
+      ${commentCount ? `<div class="rating-actions">
         <button class="rating-comments-toggle" type="button" data-rating-comments-toggle aria-expanded="${ratingState.commentsOpen}" ${unavailable ? 'disabled' : ''}>
-          ${icon('chat')} ${ratingState.commentsOpen ? 'إخفاء التعليقات' : 'عرض التعليقات'}${commentCount ? ` (${commentCount})` : ''}
+          ${icon('chat')} ${ratingState.commentsOpen ? 'إخفاء التعليقات' : 'عرض التعليقات'} (${commentCount})
         </button>
-      </div>
+      </div>` : ''}
       ${status ? `<div class="rating-status" role="status" aria-live="polite">${status}</div>` : ''}
-      ${ratingState.formOpen ? ratingFormHtml() : ''}
-      ${ratingState.commentsOpen ? ratingCommentsHtml() : ''}
-      ${moderatorPanelHtml()}
+      ${ratingState.commentsOpen && commentCount ? ratingCommentsHtml() : ''}
     </div>`;
   }
 
@@ -1109,111 +1077,6 @@
     }
   }
 
-  async function loadModeratorState() {
-    if (!moderatorClient) {
-      ratingState.moderator = false;
-      return false;
-    }
-    const sessionRes = await moderatorClient.auth.getSession();
-    if (sessionRes.error) throw sessionRes.error;
-    if (!sessionRes.data.session) {
-      ratingState.moderator = false;
-      return false;
-    }
-    const { data: isModerator, error } = await moderatorClient.rpc('is_rating_moderator');
-    if (error) throw error;
-    if (isModerator === true) {
-      ratingState.moderator = true;
-      return true;
-    }
-    const out = await moderatorClient.auth.signOut();
-    if (out.error) console.warn('[moderator signout]', out.error);
-    ratingState.moderator = false;
-    ratingState.moderatorNotice = 'هذا الحساب لا يملك صلاحية المشرفة.';
-    return false;
-  }
-
-  function toggleModeratorForm() {
-    if (ratingState.moderator) return;
-    ratingState.moderatorFormOpen = !ratingState.moderatorFormOpen;
-    ratingState.moderatorError = '';
-    ratingState.moderatorNotice = '';
-    refreshRatingUI();
-    if (ratingState.moderatorFormOpen) {
-      setTimeout(() => {
-        const email = $('#moderator-email');
-        if (email) email.focus();
-      }, 40);
-    }
-  }
-
-  async function loginModerator(form) {
-    if (!moderatorClient) {
-      ratingState.moderatorError = 'دخول المشرفة غير متاح الآن.';
-      refreshRatingUI();
-      return;
-    }
-    const data = new FormData(form);
-    const email = String(data.get('email') || '').trim();
-    const password = String(data.get('password') || '');
-    if (!email || !password) {
-      ratingState.moderatorError = 'أدخل البريد وكلمة المرور.';
-      refreshRatingUI();
-      return;
-    }
-    ratingState.moderatorBusy = true;
-    ratingState.moderatorError = '';
-    ratingState.moderatorNotice = '';
-    refreshRatingUI();
-    try {
-      const { error } = await moderatorClient.auth.signInWithPassword({ email, password });
-      if (error) throw error;
-      const { data: isModerator, error: modError } = await moderatorClient.rpc('is_rating_moderator');
-      if (modError) throw modError;
-      if (isModerator !== true) {
-        await moderatorClient.auth.signOut();
-        ratingState.moderator = false;
-        ratingState.moderatorError = 'هذا الحساب لا يملك صلاحية المشرفة.';
-      } else {
-        ratingState.moderator = true;
-        ratingState.moderatorFormOpen = false;
-        ratingState.moderatorError = '';
-        ratingState.moderatorNotice = 'تم تفعيل وضع المشرفة.';
-        toast('تم الدخول كمسؤولة التقييمات.', 'ok');
-      }
-    } catch (e) {
-      const msg = String(e && (e.message || e.error_description || e) || '');
-      ratingState.moderatorError = /invalid|credentials|password|email|grant/i.test(msg)
-        ? 'تعذر الدخول. تحقق من البريد وكلمة المرور.'
-        : friendlyRatingError(e);
-      console.warn('[moderator login]', e);
-    } finally {
-      ratingState.moderatorBusy = false;
-      refreshRatingUI();
-    }
-  }
-
-  async function logoutModerator() {
-    if (!moderatorClient) return;
-    ratingState.moderatorBusy = true;
-    refreshRatingUI();
-    try {
-      const { error } = await moderatorClient.auth.signOut();
-      if (error) throw error;
-      ratingState.moderator = false;
-      ratingState.moderatorFormOpen = false;
-      ratingState.moderatorError = '';
-      ratingState.moderatorNotice = 'تم الخروج من وضع المشرفة.';
-      toast('تم الخروج من وضع المشرفة.', 'ok');
-    } catch (e) {
-      ratingState.moderatorError = friendlyRatingError(e);
-      console.warn('[moderator logout]', e);
-    } finally {
-      ratingState.moderatorBusy = false;
-      refreshRatingUI();
-    }
-  }
-
   async function loadRatingData() {
     if (!ratingClient) return;
     if (!navigator.onLine) {
@@ -1251,11 +1114,8 @@
         commentCount: Number(summary.comment_count) || 0,
       };
       ratingState.own = ownRes.data || null;
-      try {
-        await loadModeratorState();
-      } catch (moderatorError) {
-        console.warn('[moderator state]', moderatorError);
-        ratingState.moderator = false;
+      if (ratingState.summary.commentCount === 0) {
+        ratingState.commentsOpen = false;
       }
       ratingState.ready = true;
       cacheRatingSummary();
@@ -1295,32 +1155,17 @@
         return;
       }
     }
-    if (!moderatorClient) {
-      try {
-        moderatorClient = window.supabase.createClient(ratingUrl, ratingKey, {
-          auth: {
-            storageKey: 'taqwimi-moderator-auth',
-            persistSession: true,
-            autoRefreshToken: true,
-            detectSessionInUrl: false,
-          },
-        });
-      } catch (e) {
-        console.warn('[moderator init]', e);
-        moderatorClient = null;
-      }
-    }
     loadRatingData();
   }
 
-  function toggleRatingForm() {
+  function toggleRatingCommentBox() {
     if (!ratingState.ready || ratingState.offline) {
       toast('التقييمات تحتاج اتصالاً بالإنترنت.', 'warn');
       return;
     }
-    ratingState.formOpen = !ratingState.formOpen;
+    ratingState.commentBoxOpen = !ratingState.commentBoxOpen;
     refreshRatingUI();
-    if (ratingState.formOpen) {
+    if (ratingState.commentBoxOpen) {
       setTimeout(() => {
         const form = $('[data-rating-form]');
         if (form) form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -1351,7 +1196,7 @@
 
   function openRatingForm() {
     if (!ratingState.ready || ratingState.offline) return;
-    ratingState.formOpen = true;
+    ratingState.commentBoxOpen = true;
     refreshRatingUI();
     setTimeout(() => {
       const form = $('[data-rating-form]');
@@ -1361,19 +1206,17 @@
     }, 40);
   }
 
-  async function saveRatingFromForm(form) {
+  async function saveRating(rating, comment) {
     if (!ratingClient || !ratingSessionUser) {
       toast('التقييمات غير متاحة الآن.', 'warn');
       return;
     }
-    const data = new FormData(form);
-    const rating = Number(data.get('rating'));
-    const comment = String(data.get('comment') || '').trim();
     if (!(rating >= 1 && rating <= 5)) {
       toast('اختر تقييمًا من ١ إلى ٥.', 'warn');
       return;
     }
-    if (comment.length > 500) {
+    const text = String(comment || '').trim();
+    if (text.length > 500) {
       toast('التعليق يجب ألا يتجاوز ٥٠٠ حرف.', 'warn');
       return;
     }
@@ -1383,12 +1226,12 @@
     try {
       let error;
       if (wasOwn) {
-        ({ error } = await ratingClient.from('ratings').update({ rating, comment: comment || null }).eq('id', ratingState.own.id));
+        ({ error } = await ratingClient.from('ratings').update({ rating, comment: text || null }).eq('id', ratingState.own.id));
       } else {
-        ({ error } = await ratingClient.from('ratings').insert({ rating, comment: comment || null }));
+        ({ error } = await ratingClient.from('ratings').insert({ rating, comment: text || null }));
       }
       if (error) throw error;
-      ratingState.formOpen = false;
+      ratingState.commentBoxOpen = false;
       ratingState.commentsLoaded = false;
       await loadRatingData();
       if (ratingState.commentsOpen) await loadRatingComments();
@@ -1396,6 +1239,57 @@
     } catch (e) {
       toast(friendlyRatingError(e), 'err');
       console.warn('[ratings save]', e);
+    } finally {
+      ratingState.busy = false;
+      refreshRatingUI();
+    }
+  }
+
+  function saveRatingFromStars(rating) {
+    if (ratingState.busy || !ratingState.ready || ratingState.offline) return;
+    const textarea = ratingState.commentBoxOpen ? $('#rating-comment') : null;
+    const comment = textarea
+      ? textarea.value
+      : (ratingState.own && ratingState.own.comment ? ratingState.own.comment : '');
+    saveRating(rating, comment);
+  }
+
+  async function saveRatingComment(form) {
+    if (ratingState.busy) return;
+    const data = new FormData(form);
+    const own = ratingState.own;
+    const rating = own ? Number(own.rating) : Number(data.get('rating'));
+    const comment = String(data.get('comment') || '').trim();
+    if (!(rating >= 1 && rating <= 5)) {
+      toast('اختر تقييمك أولًا.', 'warn');
+      return;
+    }
+    if (comment.length > 500) {
+      toast('التعليق يجب ألا يتجاوز ٥٠٠ حرف.', 'warn');
+      return;
+    }
+    if (!ratingClient || !ratingSessionUser) {
+      toast('التقييمات غير متاحة الآن.', 'warn');
+      return;
+    }
+    ratingState.busy = true;
+    refreshRatingUI();
+    try {
+      let error;
+      if (own) {
+        ({ error } = await ratingClient.from('ratings').update({ comment: comment || null }).eq('id', own.id));
+      } else {
+        ({ error } = await ratingClient.from('ratings').insert({ rating, comment: comment || null }));
+      }
+      if (error) throw error;
+      ratingState.commentBoxOpen = false;
+      ratingState.commentsLoaded = false;
+      await loadRatingData();
+      if (ratingState.commentsOpen) await loadRatingComments();
+      toast(comment ? 'تم حفظ التعليق.' : 'تم حذف التعليق.', 'ok');
+    } catch (e) {
+      toast(friendlyRatingError(e), 'err');
+      console.warn('[ratings comment]', e);
     } finally {
       ratingState.busy = false;
       refreshRatingUI();
@@ -1410,7 +1304,7 @@
     try {
       const { error } = await ratingClient.from('ratings').delete().eq('id', ratingState.own.id);
       if (error) throw error;
-      ratingState.formOpen = false;
+      ratingState.commentBoxOpen = false;
       ratingState.commentsLoaded = false;
       await loadRatingData();
       if (ratingState.commentsOpen) await loadRatingComments();
@@ -1418,30 +1312,6 @@
     } catch (e) {
       toast(friendlyRatingError(e), 'err');
       console.warn('[ratings delete own]', e);
-    } finally {
-      ratingState.busy = false;
-      refreshRatingUI();
-    }
-  }
-
-  async function deleteOtherRating(id) {
-    if (!moderatorClient || !ratingState.moderator) {
-      toast('ليست لديك صلاحية مشرفة.', 'warn');
-      return;
-    }
-    if (!window.confirm('حذف تعليق هذا المشارك نهائيًا؟')) return;
-    ratingState.busy = true;
-    refreshRatingUI();
-    try {
-      const { error } = await moderatorClient.from('ratings').delete().eq('id', id);
-      if (error) throw error;
-      ratingState.commentsLoaded = false;
-      await loadRatingData();
-      if (ratingState.commentsOpen) await loadRatingComments();
-      toast('تم حذف التعليق.', 'ok');
-    } catch (e) {
-      toast(friendlyRatingError(e), 'err');
-      console.warn('[ratings moderator delete]', e);
     } finally {
       ratingState.busy = false;
       refreshRatingUI();
@@ -2619,16 +2489,13 @@
 
   /* ---------------- events ---------------- */
   document.addEventListener('click', (e) => {
-    const t = e.target.closest('[data-go],[data-route],[data-day],[data-section],[data-filter],[data-set-prio],[data-att],[data-details],[data-goto-occ],[data-reminder],[data-view],[data-action],[data-toggle-notif],[data-day-panel],[data-clear-day-note],[data-rating-form-toggle],[data-rating-comments-toggle],[data-rating-edit],[data-rating-delete],[data-rating-moderator-delete],[data-moderator-toggle],[data-moderator-logout]');
+    const t = e.target.closest('[data-go],[data-route],[data-day],[data-section],[data-filter],[data-set-prio],[data-att],[data-details],[data-goto-occ],[data-reminder],[data-view],[data-action],[data-toggle-notif],[data-day-panel],[data-clear-day-note],[data-rating-comment-toggle],[data-rating-comments-toggle],[data-rating-edit],[data-rating-delete]');
     if (!t) return;
 
-    if (t.hasAttribute('data-rating-form-toggle')) { toggleRatingForm(); return; }
+    if (t.hasAttribute('data-rating-comment-toggle')) { toggleRatingCommentBox(); return; }
     if (t.hasAttribute('data-rating-comments-toggle')) { toggleRatingComments(); return; }
     if (t.hasAttribute('data-rating-edit')) { openRatingForm(); return; }
     if (t.hasAttribute('data-rating-delete')) { deleteOwnRating(); return; }
-    if (t.dataset.ratingModeratorDelete) { deleteOtherRating(t.dataset.ratingModeratorDelete); return; }
-    if (t.hasAttribute('data-moderator-toggle')) { toggleModeratorForm(); return; }
-    if (t.hasAttribute('data-moderator-logout')) { logoutModerator(); return; }
 
     if (t.dataset.dayPanel) {
       toggleDayPanel(t.dataset.panelDay, t.dataset.dayPanel);
@@ -2695,16 +2562,10 @@
   });
 
   document.addEventListener('submit', (e) => {
-    const moderatorForm = e.target.closest('[data-moderator-form]');
-    if (moderatorForm) {
-      e.preventDefault();
-      loginModerator(moderatorForm);
-      return;
-    }
     const form = e.target.closest('[data-rating-form]');
     if (!form) return;
     e.preventDefault();
-    saveRatingFromForm(form);
+    saveRatingComment(form);
   });
 
   document.addEventListener('input', (e) => {
@@ -2740,6 +2601,10 @@
   });
 
   document.addEventListener('change', (e) => {
+    if (e.target.matches('input[name="rating"][value]')) {
+      saveRatingFromStars(Number(e.target.value));
+      return;
+    }
     if (e.target.id === 'import-file') {
       const f = e.target.files && e.target.files[0];
       if (f) importBackup(f);

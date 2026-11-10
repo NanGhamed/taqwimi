@@ -1,0 +1,218 @@
+/* صفحة إدارة التقييمات — أنماط مستقلة عن واجهة الموقع العامة */
+.admin-page {
+  padding: 24px 16px 40px;
+}
+.admin-shell {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.admin-brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(58, 35, 48, .12);
+}
+.admin-brand strong {
+  display: block;
+  color: var(--brand-900);
+  font-size: 18px;
+  line-height: 1.3;
+}
+.admin-brand span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+.admin-back {
+  color: var(--brand-700);
+  font-size: 12.5px;
+  font-weight: 800;
+}
+.admin-back:hover { color: var(--brand-900); }
+.admin-app { min-height: 180px; }
+.admin-card {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 10px 30px rgba(58, 35, 48, .06);
+}
+.admin-loading {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+.admin-login {
+  max-width: 440px;
+  margin: 48px auto 0;
+}
+.admin-title {
+  margin: 0;
+  color: var(--brand-900);
+  font-size: 22px;
+  letter-spacing: -.2px;
+}
+.admin-sub {
+  margin: 6px 0 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+.admin-form {
+  display: grid;
+  gap: 12px;
+}
+.admin-form label {
+  display: grid;
+  gap: 5px;
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  font-weight: 800;
+}
+.admin-form .input { width: 100%; }
+.admin-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+.admin-error,
+.admin-notice {
+  margin-top: 12px;
+  padding: 9px 11px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.65;
+}
+.admin-error {
+  border: 1px solid #e7c9c5;
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.admin-notice {
+  border: 1px solid var(--line);
+  background: var(--brand-50);
+  color: var(--brand-800);
+}
+.admin-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.admin-panel-head .admin-sub { margin-bottom: 0; }
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+}
+.admin-stat {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fbfaf5;
+}
+.admin-stat span {
+  display: block;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+.admin-stat strong {
+  display: block;
+  color: var(--brand-800);
+  font-size: 22px;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+.admin-list {
+  display: grid;
+  gap: 10px;
+}
+.admin-comment {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+.admin-comment-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.admin-stars {
+  color: var(--gold-600);
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.admin-comment-date {
+  margin-inline-start: auto;
+  color: var(--muted);
+  font-size: 10.5px;
+}
+.admin-comment p {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.admin-comment-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+.admin-empty {
+  padding: 18px;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: center;
+}
+.admin-busy { opacity: .6; pointer-events: none; }
+.admin-footnote {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .admin-page { padding: 16px 10px 30px; }
+  .admin-card { padding: 16px; }
+  .admin-login { margin-top: 24px; }
+  .admin-stats { grid-template-columns: 1fr; }
+  .admin-panel-head { flex-direction: column; }
+  .admin-toolbar { width: 100%; }
+}
